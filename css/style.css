@@ -1,11 +1,11 @@
 body {
     margin: 0px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 div#container {
-    width: 640px;
+    width: 620px;
     margin: 0px auto;
     border-left: 2px solid #444;
     border-right: 2px solid #444;
