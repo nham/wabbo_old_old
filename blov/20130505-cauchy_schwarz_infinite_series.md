@@ -1,10 +1,10 @@
 # My struggle with the infinite series version of the Cauchy-Schwarz inequality in $\mathbb{R}$, or why you should not half-ass learning analysis
 
-*The background needed is some very light real analysis: convergent sequences, one direction of the monotone convergence theorem, infinite series and the Cauchy criterion for infinite series.*
+*The background needed is some very light real analysis: one direction of the monotone convergence theorem and infinite series. The Cauchy criterion is optional.*
 
 In Steele's *The Cauchy-Schwarz Master Class*, after proving the basic Cauchy-Schwarz inequality for vectors in $\mathbb{R}^n$, he proves an analog version for infinite series. Step 1 is to establish
 
-**Lemma:** If $\sum_{1}^{\infty} a_k^2$ and $\sum_{1}^{\infty} b_k^2$ both converge for sequences $(a_k)$ and $(b_k)$ then $\sum_{1}^\infty |a_k b_k|$ does too.
+**Lemma:** If $\sum_{1}^{\infty} a_k^2$ and $\sum_{1}^{\infty} b_k^2$ both converge for sequences $(a_k)$ and $(b_k)$ then $\sum_{1}^\infty |a_k b_k|\ $ does too.
 
 In proving this, Steele establishes another inequality: 
 
@@ -20,7 +20,7 @@ Steele doesn't cross all t's and dot all the i's, however, and in trying to fill
 
 $$ xy \leq \frac{1}{2} x^2 + \frac{1}{2} y^2 $$
 
-In particular, for any $k \in \mathbb{P}$, letting $x = |a_k|$ and $y = |b_k|$, we get:
+In particular, for any $k \in \mathbb{P}$, letting $x = |a_k|\ $ and $y = |b_k|\ $, we get:
 
 $$ |a_k b_k| \leq \frac{1}{2} a_k^2 + \frac{1}{2} b_k^2 $$
 
