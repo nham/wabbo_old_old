@@ -1,5 +1,7 @@
 # My struggle with the infinite series version of the Cauchy-Schwarz inequality in $\mathbb{R}$, or why you should not half-ass learning analysis
 
+*The background needed is some very light real analysis: convergent sequences, one direction of the monotone convergence theorem, infinite series and the Cauchy criterion for infinite series.*
+
 In Steele's *The Cauchy-Schwarz Master Class*, after proving the basic Cauchy-Schwarz inequality for vectors in $\mathbb{R}^n$, he proves an analog version for infinite series. Step 1 is to establish
 
 **Lemma:** If $\sum_{1}^{\infty} a_k^2$ and $\sum_{1}^{\infty} b_k^2$ both converge for sequences $(a_k)$ and $(b_k)$ then $\sum_{1}^\infty |a_k b_k|$ does too.
@@ -18,7 +20,7 @@ Steele doesn't cross all t's and dot all the i's, however, and in trying to fill
 
 $$ xy \leq \frac{1}{2} x^2 + \frac{1}{2} y^2 $$
 
-In particular, for any $k \in \mathbb{P}$, letting $x = |a_k|$ and $y = |b_k$, we get 
+In particular, for any $k \in \mathbb{P}$, letting $x = |a_k|$ and $y = |b_k|$, we get:
 
 $$ |a_k b_k| \leq \frac{1}{2} a_k^2 + \frac{1}{2} b_k^2 $$
 
@@ -30,7 +32,7 @@ $$ 0 \leq z_k \leq d_k $$
 
 By the algebraic limit theorem for infinite series, $\sum_{1}^{\infty} d_k$ exists and equals $D = \frac{1}{2} \sum_{1}^\infty a_k^2 + \frac{1}{2} \sum_{1}^\infty b_k^2$
 
-Since $\sum_{1}^\infty z_k$ is an infinite series on non-negative terms, it is a monotone non-decreasing sequence. By the monotone convergence theorem, we need only prove that it is bounded to prove convergence. But the sequence $\sum_{1}^\infty d_k$ is bounded above by $D$, so each partial sum $\sum_{1}^n d_k \leq D$ (because $(d_k)$ is also monotone). So every partial sum $\sum_{1}^n z_k$ is similarly bounded above by $D$, so the infinite series on $(z_k)$ converges. It must converge to something not greater than $D$, since otherwise every partial sum would eventually be greater than $D$, implying that eventually partial sums of $(d_k)$ would be greater than $D$, which can't happen.
+Since $\sum_{1}^\infty z_k$ is an infinite series on non-negative terms, it is a monotone non-decreasing sequence. By the monotone convergence theorem, we need only prove that it is bounded to prove convergence. But the sequence $\sum_{1}^\infty d_k$ is bounded above by $D$, so each partial sum has $\sum_{1}^n d_k \leq D$ (because $(d_k)$ is also monotone). So every partial sum $\sum_{1}^n z_k$ is similarly bounded above by $D$, so the infinite series on $(z_k)$ converges. It must converge to something not greater than $D$, since otherwise every partial sum would eventually be greater than $D$, implying that eventually partial sums of $(d_k)$ would be greater than $D$, which can't happen.
 
 In other words:
 
@@ -46,7 +48,7 @@ But where did the absolute value on the left go! You can't just remove those!
 
 A-ha, but you can due to a well-known fact about infinite series: If $(x_k)$ is a series and $\sum_{1}^\infty |x_k|$ converges, then $\sum_{1}^\infty x_k$ converges. The former is called *absolute convergence*, and this proposition says that absolute convergence implies convergence. The proof for this follows quite handily from the Cauchy criterion for series and the triangle inequality. The proof is left as an exercise to the reader (which is code for "I'm feeling too lazy to write it up")
 
-So given that
+So having established that
 
 $$\sum_{1}^\infty a_k b_k \leq \frac{1}{2} \sum_{1}^\infty a_k^2 + \frac{1}{2} \sum_{1}^\infty b_k^2$$
 
@@ -57,3 +59,24 @@ $$ \sum_{1}^\infty a_k b_k \leq \sqrt{\sum_{1}^{\infty} a_k^2} \sqrt{\sum_{1}^{\
 Steele's trick is to construct new, "normalized" sequences $(\hat{a}_k)$, $(\hat{b}_k)$ defined by
 
 $$\hat{a}_k := \frac{a}{\sqrt{A}}$$
+$$\hat{b}_k := \frac{b}{\sqrt{B}}$$
+
+where
+
+$$A := \sum_{1}^{\infty} a_k^2$$
+$$B := \sum_{1}^{\infty} b_k^2$$
+
+It is now totally the case that
+
+$$\sqrt{\sum_{1}^{\infty} \hat{a}_k^2} = 1$$
+$$\sqrt{\sum_{1}^{\infty} \hat{b}_k^2} = 1$$
+
+Using our additive bound (the one established by the lemma + absolute convergence) and plugging in these new sequences $(\hat{a}_k)$, $(\hat{b}_k)$, we get
+
+$$\sum_{1}^\infty \hat{a}_k \hat{b}_k \leq \frac{1}{2} \sum_{1}^\infty \hat{a}_k^2 + \frac{1}{2} \sum_{1}^\infty \hat{b}_k^2 = 1$$
+
+Factoring out and multiplying by both sides, we get
+
+$$\sum_{1}^\infty a_k b_k \leq \sqrt{A} \sqrt{B} = \sqrt{\sum_{1}^\infty a_k^2} \sqrt{\sum_{1}^\infty b_k^2}$$
+
+which is the desired Cauchy-Schwarz inequality.
