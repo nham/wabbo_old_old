@@ -10,7 +10,7 @@ $$\sum_{1}^\infty |a_k b_k| \leq \frac{1}{2} \sum_{1}^\infty a_k^2 + \frac{1}{2}
 
 From this he uses a technique he calls "normalization" to establish the infinite series version of CSI:
 
-$$ \sum_{1}^\infty a_k b_k \leq \sqrt \sum_{1}^\infty a_k^2 + \sqrt \sum_{1}^\infty b_k^2 $$
+$$ \sum_{1}^\infty a_k b_k \leq \sqrt{\sum_{1}^\infty a_k^2} \sqrt{\sum_{1}^\infty b_k^2}$$
 
 Steele doesn't cross all t's and dot all the i's, however, and in trying to fill in the gaps, I failed to remember certain critical facts about infinite series. Here I will go over the full proofs, explaining in particular the facts I forgot.
 
