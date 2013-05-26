@@ -7,3 +7,5 @@ Bloviations on math and other things
  - [May 06 -- Associative operations on n operands](20130506-associative_operators_on_n_args.html)
 
  - [May 25 -- Let's get real.](20130525-lets_get_real.html)
+
+ - [May 26 -- The Archimedean Property and the density of the rationals](20130526-archimedean_property_and_density.html)
