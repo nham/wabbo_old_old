@@ -9,3 +9,5 @@ Bloviations on math and other things
  - [May 25 -- Let's get real.](20130525-lets_get_real.html)
 
  - [May 26 -- The Archimedean Property and the density of the rationals](20130526-archimedean_property_and_density.html)
+
+ - [May 26 -- The complex Cauchy-Schwarz inequality](20130526-complex_cauchy_schwarz.html)
