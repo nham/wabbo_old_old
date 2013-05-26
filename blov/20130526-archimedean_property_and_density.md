@@ -2,6 +2,12 @@
 
 In this post I prove two crucial properties of the reals.
 
+Three, actually, since we need this crucial lemma that I have not yet proved:
+
+**Lemma:** If $(S, \leq)$ is an ordered set with the least upper bound property and $X \subseteq S$ is bounded above so that $c = sup X$ exists, then for all $x \in S$ with $x \leq c$, there exists an $s \in S$ with $x < s$.
+
+*Proof:* Indeed, $x$ could not be an upper bound of $S$ since $c$ is the least upper bound, so some $s in S$ exceeds its. $\Box$
+
 **The Archimedean Property:** For $x, y \in \mathbb{R}$, there's a $n \in \mathbb{N}$ such that $nx \geq y$.
 
 *Proof:* If not, for all $n \in \mathbb{N}$, $nx < y$. $A = \{nx : n \in \mathbb{N}\}$ being bounded above by $y$ means $c = sup A$ exists. So there's a $m \in \mathbb{N}$ with $c - x < mx < c$. Hence $c < (m + 1)x$, which is a contradiction since $m+1 \in \mathbb{N}$. So $A$ is not bounded above after all. $\Box$
