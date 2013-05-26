@@ -52,3 +52,13 @@ Finally, our quarry is before us:
 For $x_1, \ldots, x_n, y_1, \ldots, y_n$ for any $n \in \mathbb{P}$ and $x_i, y_i \in \mathbb{C}$, we have
 
 $$ \left|\sum_1^n a_j \overline{b_j} \right|^2 \leq \sum_1^n |a_j|^2 \sum_1^n |b_j|^2 $$
+
+We proceed by induction. It clearly holds for $n = 1$. For $n = 2$, it is possible to prove it (exercise to the reader :P). Now assume it holds for all $k$ with $1 \leq k < n$. Then
+
+$$ \begin{align}
+\left|\sum_1^n a_j \overline{b_j} \right|^2 & = \left|\sum_1^{n-1} a_j \overline{b_j} + a_n \overline{b_n} \right|^2 \\ 
+& \leq \left| \sqrt{\sum_1^{n-1} |a_j|^2} \sqrt{\sum_1^{n-1} |b_j|^2} + a_n \overline{b_n} \right|^2 \\
+& \leq \sum_1^n |a_j|^2 \sum_1^n |b_j|^2
+\end{align}$$
+
+where the first inequality holds by the induction hypothesis for $n-1$ and the second inequality holds by the $n=2$ case. $\Box$.
