@@ -1,6 +1,6 @@
 # Systems of linear equations
 
-$\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a commutative division ring.
+$\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a non-trivial commutative ring with non-zero elements all having multiplicative inverses.
 
 A **system of linear equations** is a pair $(A, y)$ where 
 
@@ -34,3 +34,18 @@ A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 s
 This last corollary inspires a definition: systems $(A,y)$ and $(B,z)$ are **equivalent** if each equation in each system is a linear combination of the other. By the last corollary, equivalent systems have the same solution set. Hence if our interest is in determining the solution set for a given system, we might look for transformations that turn said system into an equivalent but easier to solve system.
 
 It should be noted (and can probably be inferred by our use of the word "equivalent") that the previous definition does define an equivalence relation. Every system is trivially a linear combination of itself, the definition is inherently symmetric, and if $A$ equivalent to $B$ and $B$ equivalent to $C$, then by distributivity, commutativity and associativity of $\mathbb{F}$,  $A$ and $C$ are equivalent as well.
+
+
+## Row-equivalence
+
+We define two **elementary row operations**, $scale_{r,c}$ and $add_{r,s}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $r,s \in [m]$, $r \neq s$, and $c \neq 0$, $c \in mathbb{F}$, by:
+
+$$[scale_{r,c}(A)]_{ij} := \cases{
+    c A_{ij} & \text{if } r = i \cr
+    A_{ij} & \text{otherwise}}$$
+
+$$[add_{r,s}(A)]_{ij} := \cases{
+    A_{ij} + A_{sj} & \text{if } r = i \cr
+    A_{ij} & \text{otherwise}}$$
+
+$scale_{r,c}$ multiplies row $r$ by scalar $c$, while $add{r,s}$ adds row $s$ to row $r$.
