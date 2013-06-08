@@ -11,7 +11,7 @@ A **system of linear equations** is a pair $(A, y)$ where
  1. $A$ is a function $[m] \times [n] \rightarrow \mathbb{F}$ for $m, n \in \mathbb{P}$ and $\mathbb{F}$ is a field. 
  2. $y \in \mathbb{F}^m$
 
-The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You've probably seen it before. $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
+The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
 
 We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in \mathbb{F}^n$, we define the **dot product of $x$ and $y$ by:
 
@@ -44,7 +44,7 @@ It should be noted (and can probably be inferred by our use of the word "equival
 
 ## Row-equivalence
 
-We define an **elementary row operation**, $LC_{i,j,c,d}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$, $i \neq j$, and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
+We define an **elementary row operation**, $LC_{i,j,c,d}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
 
 $$[LC_{i,j,c,d}(A)]_{rs} := \cases{
     c A_{rs} + d A_{js} & \text{if } r = i \cr
@@ -85,3 +85,47 @@ The following is a consequence of elementary row operations being invertible.
 **Corollary:** If $(A,0)$ and $(B,0)$ are homogeneous systems, then they are equivalent iff $A$ and $B$ are row-equivalent.
 
 Next we introduce a computational convenience: **augmented matrices**. If we have some system $(A,y)$, where $A \in \mathbb{F}^{m \times n}$ and $y \in mathbb{F}^{m \times 1}$, instead of applying row operations separately to each, we can form a new $m \times (n+1)$ matrix $B$ with $y$ as the $n+1$-th column and just apply the row operations to the this new matrix. This works because the row operations do the same thing on each row, so it really doesn't matter how long each row is. Note that if the system is homogeneous, there's really no point in forming the augmented matrix: the last column will always be zero.
+
+## Row-reduced matrices
+A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
+
+ - for every row $i$, if there is a $j$ such that $A[i,j] \neq 0$, the smallest such $j$ must have $A[i,j] = 1$. Each such cell is called a **pivot**
+ - for every pivot $(i,j)$, all non-pivot cells A[k,j]$ in column $j$ must be zero.
+
+**Theorem:** Every matrix is row-equivalent to a row-reduced matrix.
+
+*Proof:* We give an algorithm and prove its correctness.
+
+```
+def RowReduce(A):
+    for i in [1 to m]:
+        j <-- 1
+        while A[i,j] == 0 and j <= m:
+            j <-- j + 1
+        
+        if j <= m:
+            A <-- LC[i,i, A[i,j], 0](A)
+
+            for k in [1 to m]:
+                if k != i and A[k,j] != 0:
+                    A <--- LC[k,i,1, - A[k,j]](A)
+```
+
+````python
+def hello():
+    print('sup')
+````
+
+
+Prior to the start of the algorithm, we have that for $k = 1$, then for all rows $i$ with $1 \leq i \leq k-1$, if there is a $p_i$ such that $A[i, p_i] \neq 0$, then $A[i, p_i] = 1$ and if $p_1$ exists, all $j \neq i$ have $A[j, p_i] = 0$. 
+
+Assuming it is true after the $k$-th iteration, during the $(k+1)$-th iteration we set some $A[k+1,p_{k+1}]$ to 1 if possible and zero out the other terms in the $p_{k+1}$-th column (if there is such a column). So the property will be true again after the $k+1$-th iteration. Hence, after the $m$-iteration, the matrix will be row-reduced. $\Box$
+
+(Yeah, that was a bit silly, but hey, now you know how to prove the correctness of algorithms if you didn't already!)
+
+This computational tool allows us to quickly find solutions to systems. We simply row-reduce the augmented matrix of the system. After doing so, we have two possibilities
+
+ 1. There are pivots in the last column. This means there are no solutions to the system, because we have an equation that says $0 = 1$. No set of scalars can solve this equation.
+
+ 2. No pivots in the last column. Then we will have some set of $k$ pivots $(i, p_i)$. We simply have to find the solutions to the set of $k$ equations where each equation is $x_{p_i} = - B[i,n+1] + \sum_1^{m-k} c_i u_i$, where the $u_i$'s are the $x$'s that don't correspond to pivot points and $b_{n+1}$ is the value of the row-reduced augmented matrix in the last column. The point is that we can assign arbitrary values to the variables that don't correspond to pivots and we will obtain a solution of the system.
+
