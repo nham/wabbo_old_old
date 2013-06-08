@@ -1,4 +1,8 @@
-# Systems of linear equations
+# Linear algebra
+
+Please don't read these awful notes. Go get a real linear algebra book. I'm a fan of Hoffman and Kunze, as you can probably tell.
+
+## Systems of linear equations
 
 $\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a non-trivial commutative ring with non-zero elements all having multiplicative inverses.
 
@@ -18,6 +22,8 @@ Associated with any system of linear equations $(A,y)$ is a subset $\text{sol}(A
   $$\text{sol}(A,y) := \{x \in \mathbb{F}^n : A[i, :] \cdot x = y_i$$
 
 The typical presentation begins with some collection of equations and poses the question of how we can solve this collection of equations, later introducing matrices as a notational convenience. Here we cut to the chase.
+
+A **homogeneous system** is a system $(A,y)$ where $y = 0$ (the $m \times 1$ matrix of zeroes).
 
 A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 such that for some $c_1, \ldots, c_m \in \mathbb{F}$
 
@@ -75,3 +81,7 @@ The following is a consequence of elementary row operations being invertible.
 (*Note:* There is an abuse of notation here in that the same $f$ could not be a function on both an $m \times n$ and a $m \times 1$ matrix. Clearly we mean that there is an appropriate elementary row operation for each different width.)
 
 *Proof:* Given an elementary row operation $e$, the system $(e(A), e(y))$ is equivalent to $(A,y)$ since 1) every row of $(e(A), e(y))$ is a linear combination of $(A,y)$ and 2) there is an inverse row operation, showing that every row of $(A, y)$ is a linear combination of $(e(A), e(y))$. The result extends to arbitrary finite sequences of elementary row operations since linear systems equivalence is an equivalence relation. $\Box$
+
+**Corollary:** If $(A,0)$ and $(B,0)$ are homogeneous systems, then they are equivalent iff $A$ and $B$ are row-equivalent.
+
+Next we introduce a computational convenience: **augmented matrices**. If we have some system $(A,y)$, where $A \in \mathbb{F}^{m \times n}$ and $y \in mathbb{F}^{m \times 1}$, instead of applying row operations separately to each, we can form a new $m \times (n+1)$ matrix $B$ with $y$ as the $n+1$-th column and just apply the row operations to the this new matrix. This works because the row operations do the same thing on each row, so it really doesn't matter how long each row is. Note that if the system is homogeneous, there's really no point in forming the augmented matrix: the last column will always be zero.
