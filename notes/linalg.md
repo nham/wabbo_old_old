@@ -9,22 +9,22 @@ A **system of linear equations** is a pair $(A, y)$ where
 
 The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You've probably seen it before. $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
 
-We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in mathbb{F}^n$, we define the **dot product of $x$ and $y$ by:
+We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in \mathbb{F}^n$, we define the **dot product of $x$ and $y$ by:
 
   $$ x \cdot y := \sum_1^n x_i y_i$$
 
-Associated with any system of linear equations $(A,y)$ is a subset $sol(A,y)$ of $\mathbb{F}^n$ called the **solutions** of the system. This is defined:
+Associated with any system of linear equations $(A,y)$ is a subset $\text{sol}(A,y)$ of $\mathbb{F}^n$ called the **solutions** of the system. This is defined:
 
-  $$sol(A,y) := \{x \in \mathbb{F}^n : A[i, :] \cdot x = y_i$$
+  $$\text{sol}(A,y) := \{x \in \mathbb{F}^n : A[i, :] \cdot x = y_i$$
 
 The typical presentation begins with some collection of equations and poses the question of how we can solve this collection of equations, later introducing matrices as a notational convenience. Here we cut to the chase.
 
-A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 such that for some $c_1, \ldots, c_m \in mathbb{F}$
+A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 such that for some $c_1, \ldots, c_m \in \mathbb{F}$
 
  - $B = \sum_1^m c_i A[i, :]$
  - $z = \sum_1^m c_i y_i$
 
-**Lemma:** If $(B,z)$ is a linear combination of $(A,y)$ then $sol(A,y) \subseteq sol(B,z)$. $\Box$
+**Lemma:** If $(B,z)$ is a linear combination of $(A,y)$ then $\text{sol}(A,y) \subseteq \text{sol}(B,z)$. $\Box$
 
 **Corollary:** If $(B,z)$ is a system, all of whose equations are linear combinations of $(A,y)$, then $sol(A,y) \subseteq sol(B,z)$.
 *Proof:* The solutions of $(B,z)$ are those that are solutions of each individual equation in the system. Each individual equation's solution set is a superset of the solutions of $(A,y)$, hence the solution set of the whole system is. $\Box$
@@ -38,14 +38,40 @@ It should be noted (and can probably be inferred by our use of the word "equival
 
 ## Row-equivalence
 
-We define two **elementary row operations**, $scale_{r,c}$ and $add_{r,s}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $r,s \in [m]$, $r \neq s$, and $c \neq 0$, $c \in mathbb{F}$, by:
+We define an **elementary row operation**, $LC_{i,j,c,d}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$, $i \neq j$, and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
 
-$$[scale_{r,c}(A)]_{ij} := \cases{
-    c A_{ij} & \text{if } r = i \cr
-    A_{ij} & \text{otherwise}}$$
+$$[LC_{i,j,c,d}(A)]_{rs} := \cases{
+    c A_{rs} + d A_{js} & \text{if } r = i \cr
+    A_{rs} & \text{otherwise}}$$
 
-$$[add_{r,s}(A)]_{ij} := \cases{
-    A_{ij} + A_{sj} & \text{if } r = i \cr
-    A_{ij} & \text{otherwise}}$$
+This function replaces row $i$ with a linear combination of rows $i$ and $j$. 
 
-$scale_{r,c}$ multiplies row $r$ by scalar $c$, while $add{r,s}$ adds row $s$ to row $r$.
+A critical property of this operation is that it has an *inverse*:
+
+**Lemma:** Any elementary row operation $LC_{i,j,c,d}$ has an inverse elementary row operation.
+
+*Proof:* Since $c \neq 0$, $c^{-1}$ exists in $\mathbb{F}$ we can form the operation $LC_{i,j,c^{-1}, -d c^{-1}}$. Saying the original matrix is $A$, the result of the first elementary row operation is $B$, and the result of the second elementary row operation is $C$, every element $C_{is}$ has:
+
+$$\begin{align}
+C_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
+& = c^{-1} (c A_{is} + d A_{js}) + -d c^{-1} A_{js}
+& = A_{is}
+\end{align}$$
+
+$\Box$
+
+Clearly any finite sequence of elementary row operations on some linear system $(A, y)$ will result in a system $(B,z)$ whose equations are linear combinations of $(A,y)$. The fact that every elementary row operation has an inverse operation means that applying the same sequence of operations to both $A$ and $y$ will give us an *equivalent system* $(B, z)$.
+
+A quick definition will help: $m \times n$ matrices $A$ and $B$ are called **row-equivalent** if there is some sequence of elementary row operations $e_1, \ldots, e_n$ such that $(e_n \circ \cdots \circ e_1)(A) = B$.
+
+The following is a consequence of elementary row operations being invertible.
+
+**Corollary:** $A$ is row-equivalent to $B$ iff $B$ is row-equivalent to $A$.
+
+**Theorem:** If $(A,y)$ is a linear system with $A \in \mathbb{F}^{m \times n}$ and $e_1, \ldots, e_n$ are elementary row operations, then letting $f = e_n \circ \cdots \circ e_1$, we have that $(f(A), f(y)$ is equivalent to $(A,y)$
+
+*Restated:* If $(A,y)$ and $(B,z)$ are two linear systems with $A$ row-equivalent to $B$ and $y$ row-equivalent to $z$ by the same sequence of elementary row operations, then $(A,y)$ and $(B,z)$ are equivalent.
+
+(*Note:* There is an abuse of notation here in that the same $f$ could not be a function on both an $m \times n$ and a $m \times 1$ matrix. Clearly we mean that there is an appropriate elementary row operation for each different width.)
+
+*Proof:* Given an elementary row operation $e$, the system $(e(A), e(y))$ is equivalent to $(A,y)$ since 1) every row of $(e(A), e(y))$ is a linear combination of $(A,y)$ and 2) there is an inverse row operation, showing that every row of $(A, y)$ is a linear combination of $(e(A), e(y))$. The result extends to arbitrary finite sequences of elementary row operations since linear systems equivalence is an equivalence relation. $\Box$
