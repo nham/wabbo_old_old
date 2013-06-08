@@ -96,26 +96,18 @@ A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
 
 *Proof:* We give an algorithm and prove its correctness.
 
-```
-def RowReduce(A):
-    for i in [1 to m]:
-        j <-- 1
-        while A[i,j] == 0 and j <= m:
-            j <-- j + 1
-        
-        if j <= m:
-            A <-- LC[i,i, A[i,j], 0](A)
-
-            for k in [1 to m]:
-                if k != i and A[k,j] != 0:
-                    A <--- LC[k,i,1, - A[k,j]](A)
-```
-
-````python
-def hello():
-    print('sup')
-````
-
+$$ \begin{align}
+\text{def } & \text{RowReduce}(A \in \mathbb{F}^{m \times n}): \\
+& \text{for } i \in [m]: \\
+    & \text{.... } j \leftarrow 1 \\
+    & \text{.... } \text{while } A[i,j] = 0 \text{ and } j \leq m: \\
+    & \text{........ } j \leftarrow j + 1 \\
+    & \text{.... } \text{if } j \leq  m: \\
+    & \text{........ } A \leftarrow LC_{i,i, A[i,j], 0}(A) \\
+    & \text{........ } \text{for } k \in [m]: \\
+    & \text{............ } \text{if } k \neq i \text{ and } A[k,j] \neq 0: \\
+    & \text{................ } A \leftarrow LC_{k,i,1, - A[k,j]}(A) \\
+\end{align}$$
 
 Prior to the start of the algorithm, we have that for $k = 1$, then for all rows $i$ with $1 \leq i \leq k-1$, if there is a $p_i$ such that $A[i, p_i] \neq 0$, then $A[i, p_i] = 1$ and if $p_1$ exists, all $j \neq i$ have $A[j, p_i] = 0$. 
 
