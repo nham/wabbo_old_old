@@ -170,3 +170,74 @@ If $A \in mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ 
 **Corollary:** If $A \in \mathbb{F}^{n \times n}$ then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has a single solution for all $y \in \mathbb{F}^{n \times 1}$
 
 *Proof:* $I_n$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
+
+
+## Matrix multiplication
+I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
+
+Here are two theorems about matrix multiplication that I will not prove here:
+
+**Theorem:** If $A, B, C$ are matrices such that $AB$, $BC$ is well-defined, then $(AB)C = A(BC)$ (Matrix multiplication is associative).
+
+**Theorem:** For any $A \in mathbb{F}^{m \times n}$, $A = A I_n = I_m A$.
+
+This last theorem invites us to consider a "dual" interpretation of matrix multiplication, which is that each column of the result matrix $AB$ is a linear combination of the columns of $A$ by coefficients taken from each column of $B$.
+
+If we consider the set $\mathbb{F}^{n \times n}$, the above two theorems show that it forms a monoid under matrix multiplication. We can use the following basic definitons about monoids to begin to understand matrix multiplication:
+
+In a monoid $(M, \circ, e)$, for $x \in M$, if $y \in M$ is such that $y \circ x = e$, then $y$ is called a **left inverse** of $x$. If, instead, $x \circ y = e$, we say it is a **right inverse**. If there is a $z$ that is both a left and a right inverse of $x$, it is called a **two-sided inverse** of $x$.
+
+As a reminder, a monoid in which every element has a two-sided inverse is a group.
+
+We would like to consider the set of all $n \times n$ matrices with two-sided inverses. If a matrix has a two-sided inverse, we will call it **invertible.** First we prove some facts about monoids, and later we see how this applies to invertible matrices.
+
+**Lemma:* If $(M, \circ, e)$ is a monoid and $S \subseteq M$ is such that for every $x \in S$ there are $y,z \in S$ such that $y$ is a right inverse of $x$ and $z$ is a left inverse of $x$, then $y = z$.
+
+*Proof:* $y = e \circ y = (z \circ x) \circ y = z \circ (x \circ y) = z \circ e = z$ $\Box$
+
+**Corollary:** Any two-sided inverse is unique.
+
+We are now warranted in calling a two-sided inverse of $x$ in some monoid in $M$ **the inverse** of $x$. We will often notate it $x^{-1}$.
+
+**Lemma:**
+ 1. The inverse of $x^{-1}$ is $x$.
+ 2. If $x$ and $y$ have inverses, then their product $x \circ y$ has an inverse.
+
+*Proof:* 
+ 1. Since $x^{-1}$ is the inverse of $x$, $x$ symmetrically satifisies the conditions for being the inverse of $x$.
+
+ 2. Consider $y^{-1} \circ x^{-1}$. It is a two-sided inverse of $x \circ y$. $\Box$
+
+**Corollary:** The subset $S$ of elements with inverses of a monoid $(M, \circ, e)$ is a group.
+
+*Proof:* $S$ is closed under the monoid operation and closed under inverses. Because of this, $e \in S$, so $S$ forms a submonoid. Since every element has an inverse in $S$, it in fact forms a group. $\Box$
+
+### Elementary matrices
+Recall that elementary row operations were functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$. We should be able to find an $m \times m$ matrix which does the same thing when multiplied on the left.
+
+An **elementary matrix** is defined by:
+
+    $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
+
+**Lemma:** Every elementary matrix is invertible.
+
+*Proof:* Given an elementary matrix $E = f(I)$, where $f$ is some elementary row operation, we simply use $E^{-1} = f^{-1}(I)$. $\Box$
+
+
+**Theorem:** The following 3 conditions are equivalent for an $A \in \mathbb{F}^{n \times n}$:
+
+ 1. $A$ is row-equivalent to $I_n$
+ 2. $A$ is a product of elementary matrices
+ 3. $A$ is invertible
+
+*Proof:* (1) means that $E_k \cdots E_1 A = I_n$ for some elementary matrices $E_i$. The previous lemma implies that $A = E_1^{-1} \cdots E_k^{-1} I_n$, establishing (2). Given (2), $A$ is clearly invertible, again by the previously lemma. Finally for (3), if $A$ is invertible, then consider a row-reduced echelon matrix $R$ formed from $A$. There is some sequence of elementary matrices such that $E_k \cdots E_1 A = R$. Since $A$ is invertible, $R$ is invertible. Since $R$ is $n \times n$, if $R$ does not have full pivots, it could not be invertible since we must have some $n \times n$ X such that $RX = I_n$. This cannot be so, since a zero row in $R$ makes that corresponding row of the resultant matrix zero as well. The only $n \times n$ row-reduced echelon matrix with full pivots is $I_n$, so in fact $R = I_n$, establishing (1). $\Box$
+
+**Corollary:** $A, B \in mathbb{F}^{m \times n}$ are row-equivalent iff some invertible $P \in mathbb{F}^{m \times m}$ is such that $A = PB$.
+
+*Proof:* To be tedious about it, by the definitions of row-equivalent and elementary matrices, $A$ is row-equivalent to $B$ iff $A = E_k \cdots E_1 B$ for elementary matrices $E_i$. $\Box$
+
+
+**Theorem:** $A$ is invertible iff any system $(A,y)$ has exactly one solution.
+
+*Proof:* By a previous theorem, $A$ is row-equivalent to $I_n$ iff every $(A,y)$ has exactly one solution. By the previous theorem $A$ is invertible iff $A$ is row-equivalent to $I_n$. $\Box$
+
