@@ -121,3 +121,52 @@ This computational tool allows us to quickly find solutions to systems. We simpl
 
  2. No pivots in the last column. Then we will have some set of $k$ pivots $(i, p_i)$. We simply have to find the solutions to the set of $k$ equations where each equation is $x_{p_i} = - B[i,n+1] + \sum_1^{m-k} c_i u_i$, where the $u_i$'s are the $x$'s that don't correspond to pivot points and $b_{n+1}$ is the value of the row-reduced augmented matrix in the last column. The point is that we can assign arbitrary values to the variables that don't correspond to pivots and we will obtain a solution of the system.
 
+
+## Row-reduced echelon matrices
+We can extend the concept of row reduction by adding a few more properties. This will allow us to easily extract more information than mere row-reduction allows.
+
+But first we need a lemma and some notation. We will notate the $n \times n$ identity matrix as $I_n$.
+
+**Lemma:** The operation $\text{swap}_{i,j}$ defined on $m \times n$ matrices and defined by
+
+$$[swap_{i,j}(A)]_{rs} := \cases{
+    A_{js} & \text{if } r = i \cr
+    A_{is} & \text{if } r = j \cr 
+    A_{rs} & \text{otherwise}}$$
+
+can be implemented by a series of $LC$ operations.
+
+*Proof:* Peform the following:
+
+ 1. $LC[i,j,-1,1]$
+ 2. $LC[j,i,1,-1]$
+ 3. $LC[i,j,1,1]$
+
+This does $r_i \leftarrow - r_i + r_j$, $r_j \leftarrow r_j - r_i$, $r_i \leftarrow r_i + r_j$, in that order. It is an easy verification. $\Box$
+
+
+A matrix $A \in \mathbb{F}^{m \times n}$ is in **row-reduced echelon form** if
+
+ - $A$ is row-reduced
+ - every row of all zeroes in $A$ is below every non-zero row.
+ - if $(i, p_i)$ and $(j, p_j)$ are pivots with $i < j$, then $p_i < p_j$.
+
+Note that the last two stipulations can be rephrased as follows: if there are $k$ pivots, then the set $\{(i, p_i)\}$ of pivots is a monotonically increasing function on $[k] \rightarrow [n]$.
+
+It might be intuitively clear that all we need to turn a row-reduced matrix into a row-reduced echelon (RRE) matrix is swap some rows around. It is this fact that allows us to prove the following theorem:
+
+**Theorem:** Every matrix is row-equivalent to a row-reduced echelon matrix.
+
+*Proof:* Algorithm and proof are left as an exercise to the reader. $\Box$
+
+If $A \in mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
+
+**Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
+
+*Proof:* Some RRE matrix $R$ which is row equivalent to $A$ has $k$ pivots. The remaining $m-k$ rows are all zero. From the augmented matrix with $R$ and $z$ (where $z$ is the RRE version of $y$ formed from the same operations that turned $A$ into $R$), our equations are, for $i \in [k]$, $x_i = -z_i + \sum_{k+1}^m c_i x_i$ for some $c_i$. Since we have some solution, take the values of $x_{k+1}, \ldots, x_m$ and add one to each of them. This is a new solution. $\Box$
+
+**Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
+
+**Corollary:** If $A \in \mathbb{F}^{n \times n}$ then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has a single solution for all $y \in \mathbb{F}^{n \times 1}$
+
+*Proof:* $I_n$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
