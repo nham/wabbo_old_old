@@ -167,10 +167,9 @@ If $A \in mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ 
 
 **Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
 
-**Corollary:** If $A \in \mathbb{F}^{n \times n}$ then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has a single solution for all $y \in \mathbb{F}^{n \times 1}$
+**Corollary:** If $A \in \mathbb{F}^{n \times n}$ and $y \in mathbb{^}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
 
-*Proof:* $I_n$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
-
+*Proof:* $(I_n, y)$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
 
 ## Matrix multiplication
 I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
@@ -237,7 +236,10 @@ An **elementary matrix** is defined by:
 *Proof:* To be tedious about it, by the definitions of row-equivalent and elementary matrices, $A$ is row-equivalent to $B$ iff $A = E_k \cdots E_1 B$ for elementary matrices $E_i$. $\Box$
 
 
-**Theorem:** $A$ is invertible iff any system $(A,y)$ has exactly one solution.
+**Theorem:** For $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, $A$ is invertible iff $(A,y)$ has exactly one solution.
 
 *Proof:* By a previous theorem, $A$ is row-equivalent to $I_n$ iff every $(A,y)$ has exactly one solution. By the previous theorem $A$ is invertible iff $A$ is row-equivalent to $I_n$. $\Box$
 
+**Corollary:** An $n \times n$ matrix $A$ with a left inverse or a right inverse is invertible.
+
+*Proof:* If $A$ has a left inverse $B$, then $BA = I_n$. So $\text{sol}(A, 0) \subseteq \text{sol}(BA, 0) = \text{sol}(I_n, 0) \subseteq \text{sol}(A, 0). Thus $(A,0)$ has only the trivial solution, and is invertible. A similar proof holds in case that $A$ has a right inverse $C$ once one realizes that $AC = I_n$ means that $C$ is invertible (so that $A$, its inverse, is invertible as well). $\Box$
