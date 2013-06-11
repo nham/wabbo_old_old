@@ -163,13 +163,13 @@ If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$
 
 **Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
 
-*Proof:* Some RRE matrix $R$ which is row equivalent to $A$ has $k$ pivots. The remaining $m-k$ rows are all zero. From the augmented matrix with $R$ and $z$ (where $z$ is the RRE version of $y$ formed from the same operations that turned $A$ into $R$), our equations are, for $i \in [k]$, $x_i = -z_i + \sum_{k+1}^m c_i x_i$ for some $c_i$. Since we have some solution, take the values of $x_{k+1}, \ldots, x_m$ and add one to each of them. This is a new solution. $\Box$
+*Proof:* Some RRE matrix $R$ which is row equivalent to $A$ has $k$ pivots. The remaining $m-k$ rows are all zero. From the augmented matrix with $R$ and $z$ (where $z$ is the RRE version of $y$ formed from the same operations that turned $A$ into $R$), our equations are, for $i \in [k]$, let $p_i$ be the column that the pivot of row $i$ is in, and let $J = [n] - \{p_1, \ldots, p_k\}$. Then $x_{p_i} = -z_i + \sum_{J} r_{ij} x_j$. Since we have some solution, take the values of the $x_{j}, j \in J$ and add one to each of them. This is a new solution. $\Box$
 
 **Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
 
 **Corollary:** If $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
 
-*Proof:* $(I_n, y)$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
+*Proof:* $(I_n, y)$ clearly has only one solution, $y$. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
 
 ## Matrix multiplication
 I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
