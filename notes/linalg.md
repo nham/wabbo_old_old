@@ -13,13 +13,13 @@ A **system of linear equations** is a pair $(A, y)$ where
 
 The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
 
-We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in \mathbb{F}^n$, we define the **dot product of $x$ and $y$ by:
+We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in \mathbb{F}^n$, we define the **dot product** of $x$ and $y$ by:
 
   $$ x \cdot y := \sum_1^n x_i y_i$$
 
 Associated with any system of linear equations $(A,y)$ is a subset $\text{sol}(A,y)$ of $\mathbb{F}^n$ called the **solutions** of the system. This is defined:
 
-  $$\text{sol}(A,y) := \{x \in \mathbb{F}^n : A[i, :] \cdot x = y_i$$
+  $$\text{sol}(A,y) := \{x \in \mathbb{F}^n : A[i, :] \cdot x = y_i\}$$
 
 The typical presentation begins with some collection of equations and poses the question of how we can solve this collection of equations, later introducing matrices as a notational convenience. Here we cut to the chase.
 
@@ -44,7 +44,7 @@ It should be noted (and can probably be inferred by our use of the word "equival
 
 ## Row-equivalence
 
-We define an **elementary row operation**, $LC_{i,j,c,d}$ which are functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
+We define an **elementary row operation**, $LC_{i,j,c,d}$ which is a function $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
 
 $$[LC_{i,j,c,d}(A)]_{rs} := \cases{
     c A_{rs} + d A_{js} & \text{if } r = i \cr
@@ -159,7 +159,7 @@ It might be intuitively clear that all we need to turn a row-reduced matrix into
 
 *Proof:* Algorithm and proof are left as an exercise to the reader. $\Box$
 
-If $A \in mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
+If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
 
 **Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
 
@@ -167,7 +167,7 @@ If $A \in mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ 
 
 **Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
 
-**Corollary:** If $A \in \mathbb{F}^{n \times n}$ and $y \in mathbb{^}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
+**Corollary:** If $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
 
 *Proof:* $(I_n, y)$ clearly has only the trivial solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
 
