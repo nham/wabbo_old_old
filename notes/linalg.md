@@ -178,7 +178,7 @@ Here are two theorems about matrix multiplication that I will not prove here:
 
 **Theorem:** If $A, B, C$ are matrices such that $AB$, $BC$ is well-defined, then $(AB)C = A(BC)$ (Matrix multiplication is associative).
 
-**Theorem:** For any $A \in mathbb{F}^{m \times n}$, $A = A I_n = I_m A$.
+**Theorem:** For any $A \in \mathbb{F}^{m \times n}$, $A = A I_n = I_m A$.
 
 This last theorem invites us to consider a "dual" interpretation of matrix multiplication, which is that each column of the result matrix $AB$ is a linear combination of the columns of $A$ by coefficients taken from each column of $B$.
 
@@ -216,7 +216,7 @@ Recall that elementary row operations were functions $\mathbb{F}^{m \times n} \r
 
 An **elementary matrix** is defined by:
 
-    $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
+$$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
 
 **Lemma:** Every elementary matrix is invertible.
 
@@ -231,7 +231,7 @@ An **elementary matrix** is defined by:
 
 *Proof:* (1) means that $E_k \cdots E_1 A = I_n$ for some elementary matrices $E_i$. The previous lemma implies that $A = E_1^{-1} \cdots E_k^{-1} I_n$, establishing (2). Given (2), $A$ is clearly invertible, again by the previously lemma. Finally for (3), if $A$ is invertible, then consider a row-reduced echelon matrix $R$ formed from $A$. There is some sequence of elementary matrices such that $E_k \cdots E_1 A = R$. Since $A$ is invertible, $R$ is invertible. Since $R$ is $n \times n$, if $R$ does not have full pivots, it could not be invertible since we must have some $n \times n$ X such that $RX = I_n$. This cannot be so, since a zero row in $R$ makes that corresponding row of the resultant matrix zero as well. The only $n \times n$ row-reduced echelon matrix with full pivots is $I_n$, so in fact $R = I_n$, establishing (1). $\Box$
 
-**Corollary:** $A, B \in mathbb{F}^{m \times n}$ are row-equivalent iff some invertible $P \in mathbb{F}^{m \times m}$ is such that $A = PB$.
+**Corollary:** $A, B \in \mathbb{F}^{m \times n}$ are row-equivalent iff some invertible $P \in \mathbb{F}^{m \times m}$ is such that $A = PB$.
 
 *Proof:* To be tedious about it, by the definitions of row-equivalent and elementary matrices, $A$ is row-equivalent to $B$ iff $A = E_k \cdots E_1 B$ for elementary matrices $E_i$. $\Box$
 
@@ -242,4 +242,4 @@ An **elementary matrix** is defined by:
 
 **Corollary:** An $n \times n$ matrix $A$ with a left inverse or a right inverse is invertible.
 
-*Proof:* If $A$ has a left inverse $B$, then $BA = I_n$. So $\text{sol}(A, 0) \subseteq \text{sol}(BA, 0) = \text{sol}(I_n, 0) \subseteq \text{sol}(A, 0). Thus $(A,0)$ has only the trivial solution, and is invertible. A similar proof holds in case that $A$ has a right inverse $C$ once one realizes that $AC = I_n$ means that $C$ is invertible (so that $A$, its inverse, is invertible as well). $\Box$
+*Proof:* If $A$ has a left inverse $B$, then $BA = I_n$. So $\text{sol}(A, 0) \subseteq \text{sol}(BA, 0) = \text{sol}(I_n, 0) \subseteq \text{sol}(A, 0)$. Thus $(A,0)$ has only the trivial solution, and is invertible. A similar proof holds in case that $A$ has a right inverse $C$ once one realizes that $AC = I_n$ means that $C$ is invertible (so that $A$, its inverse, is invertible as well). $\Box$
