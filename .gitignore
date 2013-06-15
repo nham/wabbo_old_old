@@ -1,3 +1,5 @@
 _out/
 *.swp
 lib/
+__pycache__/
+driveler.sqlite
