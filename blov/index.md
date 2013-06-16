@@ -1,4 +1,6 @@
-Bloviations on math and other things
+% Bloviations
+
+Poorly articulated ideas, ramblings, and other incoherencies. Public for some reason?
 
 # 2013
 
