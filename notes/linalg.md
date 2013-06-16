@@ -90,7 +90,7 @@ Next we introduce a computational convenience: **augmented matrices**. If we hav
 A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
 
  - for every row $i$, if there is a $j$ such that $A[i,j] \neq 0$, the smallest such $j$ must have $A[i,j] = 1$. Each such cell is called a **pivot**
- - for every pivot $(i,j)$, all non-pivot cells A[k,j]$ in column $j$ must be zero.
+ - for every pivot $(i,j)$, all non-pivot cells $A[k,j]$ in column $j$ must be zero.
 
 **Theorem:** Every matrix is row-equivalent to a row-reduced matrix.
 
