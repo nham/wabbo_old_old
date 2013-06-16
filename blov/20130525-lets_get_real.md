@@ -1,4 +1,4 @@
-# Let's Get $\mathbb{R}$
+% Let's Get $\mathbb{R}$
 
 The real numbers are defined thusly: a pair $(\mathbb{R}, \leq)$ where 
 

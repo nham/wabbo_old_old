@@ -1,4 +1,4 @@
-# The complex Cauchy-Schwarz inequality
+% The complex Cauchy-Schwarz inequality
 
 Complex numbers $z \in \mathbb{C}$ can be represented as $z = a + bi$ for real numbers $a, b$. There is a way to build this up more rigorously from pairs, but I forego that development here.
 

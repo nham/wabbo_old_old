@@ -1,4 +1,4 @@
-# Proof that an associative binary operator applied to n terms is independent of how they are grouped into pairs
+% Proof that an associative binary operator applied to n terms is independent of how they are grouped into pairs
 
 *This not super interesting, in my opinion, but I'm working on my proof chops.*
 

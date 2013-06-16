@@ -1,4 +1,4 @@
-# My struggle with the infinite series version of the Cauchy-Schwarz inequality in $\mathbb{R}$, or why you should not half-ass learning analysis
+% My struggle with the infinite series version of the Cauchy-Schwarz inequality in $\mathbb{R}$, or why you should not half-ass learning analysis
 
 *The background needed is some very light real analysis: one direction of the monotone convergence theorem and infinite series. The Cauchy criterion is optional.*
 

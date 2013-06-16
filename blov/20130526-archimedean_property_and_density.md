@@ -1,4 +1,4 @@
-# The Archimedean Property and the Density of the Rationals in $\mathbb{R}$
+% The Archimedean Property and the Density of the Rationals in $\mathbb{R}$
 
 In this post I prove two crucial properties of the reals.
 

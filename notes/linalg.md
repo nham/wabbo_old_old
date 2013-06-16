@@ -1,4 +1,4 @@
-# Linear algebra
+% Some notes on linear algebra
 
 Please don't read these awful notes. Go get a real linear algebra book. I'm a fan of Hoffman and Kunze, as you can probably tell.
 
