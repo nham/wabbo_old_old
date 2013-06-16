@@ -1,5 +1,5 @@
 _out/
 *.swp
-lib/
+lib/driveler.py
 __pycache__/
 driveler.sqlite
