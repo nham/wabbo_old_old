@@ -243,3 +243,15 @@ $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
 **Corollary:** An $n \times n$ matrix $A$ with a left inverse or a right inverse is invertible.
 
 *Proof:* If $A$ has a left inverse $B$, then $BA = I_n$. So $\text{sol}(A, 0) \subseteq \text{sol}(BA, 0) = \text{sol}(I_n, 0) \subseteq \text{sol}(A, 0)$. Thus $(A,0)$ has only the trivial solution, and is invertible. A similar proof holds in case that $A$ has a right inverse $C$ once one realizes that $AC = I_n$ means that $C$ is invertible (so that $A$, its inverse, is invertible as well). $\Box$
+
+
+## Vector spaces, subspaces & all that
+
+Vector space is a quadruple $(V, \mathbb{F}, +,, \cdot)$ where $(V, +)$ is an abelian group, $\mathbb{F}$ is a field, and $\cdot: \mathbb{F} \times V \rightarrow V$ is such that
+
+ - $(a+b) \cdot u = a \cdot u + b \cdot u$
+ - $a\cdot(u + v) = a \cdot u + a \cdot v$
+ - $(ab) \cdot u = a \cdot (b \cdot v)$
+ - $1 \cdot u = u$
+
+**Exchange algorithm** (for  proving that any two bases of an fdvs have same number of elements)
