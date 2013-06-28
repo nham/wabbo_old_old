@@ -13,6 +13,10 @@ A **system of linear equations** is a pair $(A, y)$ where
 
 The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
 
+The underlying **augmented matrix** of a system of linear equations is the $m \times n+1$ matrix where $A[i, n+1] = y_i$. The significance of this will be seen later after the introduction of *linear combinations* of systems and *elementary row operations*. Essentially, these transform every column of a matrix in the same way, so that applying them to the augmented matrix yields the same solution as applying them individually to both sides of the equation.
+
+We will often notate the augmented matrix of system $(A,y)$ as $A|y$. If $B$ is an $m \times n+1$ matrix, we will sometimes need to "pull the last column" out of the matrix $B$ and form a system $(B,z)$, where $z$ is an $m \times 1$ matrix with the same values as column $n+1$ of $B$. In fact, it will be convenient to think of $A|y$ *as* the system $(A,y)$. They are formally distinct, but there is a clear correspondence between them.
+
 We can also view $1 \times n$ and $n \times 1$ matrices as **vectors**, that is, elements of $\mathbb{F}^n$. For two vectors $x, y \in \mathbb{F}^n$, we define the **dot product** of $x$ and $y$ by:
 
   $$ x \cdot y := \sum_1^n x_i y_i$$
@@ -27,8 +31,7 @@ A **homogeneous system** is a system $(A,y)$ where $y = 0$ (the $m \times 1$ mat
 
 A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 such that for some $c_1, \ldots, c_m \in \mathbb{F}$
 
- - $B = \sum_1^m c_i A[i, :]$
- - $z = \sum_1^m c_i y_i$
+ - $B|z = \sum_1^m c_i A|y[i, :]$
 
 **Lemma:** If $(B,z)$ is a linear combination of $(A,y)$ then $\text{sol}(A,y) \subseteq \text{sol}(B,z)$. $\Box$
 
@@ -74,17 +77,14 @@ The following is a consequence of elementary row operations being invertible.
 
 **Corollary:** $A$ is row-equivalent to $B$ iff $B$ is row-equivalent to $A$.
 
-**Theorem:** If $(A,y)$ is a linear system with $A \in \mathbb{F}^{m \times n}$ and $e_1, \ldots, e_n$ are elementary row operations, then letting $f = e_n \circ \cdots \circ e_1$, we have that $(f(A), f(y)$ is equivalent to $(A,y)$
+This shows us that applying elementary row operations doesn't change the solution set of a system.
 
-*Restated:* If $(A,y)$ and $(B,z)$ are two linear systems with $A$ row-equivalent to $B$ and $y$ row-equivalent to $z$ by the same sequence of elementary row operations, then $(A,y)$ and $(B,z)$ are equivalent.
+**Theorem:** If $(A,y)$ is a linear system with $A \in \mathbb{F}^{m \times n}$ and $e_1, \ldots, e_n$ are elementary row operations, then letting $f = e_n \circ \cdots \circ e_1$, we have that the associated system of $f(A|y)$ is equivalent to $(A,y)$. 
 
-(*Note:* There is an abuse of notation here in that the same $f$ could not be a function on both an $m \times n$ and a $m \times 1$ matrix. Clearly we mean that there is an appropriate elementary row operation for each different width.)
-
-*Proof:* Given an elementary row operation $e$, the system $(e(A), e(y))$ is equivalent to $(A,y)$ since 1) every row of $(e(A), e(y))$ is a linear combination of $(A,y)$ and 2) there is an inverse row operation, showing that every row of $(A, y)$ is a linear combination of $(e(A), e(y))$. The result extends to arbitrary finite sequences of elementary row operations since linear systems equivalence is an equivalence relation. $\Box$
+*Proof:* Given an elementary row operation $e$, the associated system of $e(A|y)$ is equivalent to $A|y$ since 1) every row of $e(A|y)$ is a linear combination of $(A,y)$ and 2) there is an inverse row operation, showing that every row of $A|y$ is a linear combination of $e(A|y)$. The result extends to arbitrary finite sequences of elementary row operations since linear systems equivalence is an equivalence relation. $\Box$
 
 **Corollary:** If $(A,0)$ and $(B,0)$ are homogeneous systems, then they are equivalent iff $A$ and $B$ are row-equivalent.
 
-Next we introduce a computational convenience: **augmented matrices**. If we have some system $(A,y)$, where $A \in \mathbb{F}^{m \times n}$ and $y \in mathbb{F}^{m \times 1}$, instead of applying row operations separately to each, we can form a new $m \times (n+1)$ matrix $B$ with $y$ as the $n+1$-th column and just apply the row operations to the this new matrix. This works because the row operations do the same thing on each row, so it really doesn't matter how long each row is. Note that if the system is homogeneous, there's really no point in forming the augmented matrix: the last column will always be zero.
 
 ## Row-reduced matrices
 A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
