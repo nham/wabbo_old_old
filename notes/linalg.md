@@ -161,7 +161,7 @@ It might be intuitively clear that all we need to turn a row-reduced matrix into
 
 If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
 
-**Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
+**Underconstrained System Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
 
 *Proof:* Some RRE matrix $R$ which is row equivalent to $A$ has $k$ pivots. The remaining $m-k$ rows are all zero. From the augmented matrix with $R$ and $z$ (where $z$ is the RRE version of $y$ formed from the same operations that turned $A$ into $R$), our equations are, for $i \in [k]$, let $p_i$ be the column that the pivot of row $i$ is in, and let $J = [n] - \{p_1, \ldots, p_k\}$. Then $x_{p_i} = -z_i + \sum_{J} r_{ij} x_j$. Since we have some solution, take the values of the $x_{j}, j \in J$ and add one to each of them. This is a new solution. $\Box$
 
@@ -190,7 +190,7 @@ As a reminder, a monoid in which every element has a two-sided inverse is a grou
 
 We would like to consider the set of all $n \times n$ matrices with two-sided inverses. If a matrix has a two-sided inverse, we will call it **invertible.** First we prove some facts about monoids, and later we see how this applies to invertible matrices.
 
-**Lemma:* If $(M, \circ, e)$ is a monoid and $S \subseteq M$ is such that for every $x \in S$ there are $y,z \in S$ such that $y$ is a right inverse of $x$ and $z$ is a left inverse of $x$, then $y = z$.
+**Lemma:** If $(M, \circ, e)$ is a monoid and $S \subseteq M$ is such that for every $x \in S$ there are $y,z \in S$ such that $y$ is a right inverse of $x$ and $z$ is a left inverse of $x$, then $y = z$.
 
 *Proof:* $y = e \circ y = (z \circ x) \circ y = z \circ (x \circ y) = z \circ e = z$ $\Box$
 
