@@ -1,6 +1,6 @@
 % Some notes on linear algebra
 
-Please don't read these awful notes. Go get a real linear algebra book. I'm a fan of Hoffman and Kunze, as you can probably tell.
+These terrible notes owe a great deal of the presentation style to Hoffman & Kunze's text.
 
 ## Systems of linear equations
 
