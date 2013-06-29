@@ -29,6 +29,8 @@ The typical presentation begins with some collection of equations and poses the 
 
 A **homogeneous system** is a system $(A,y)$ where $y = 0$ (the $m \times 1$ matrix of zeroes). Any homogeneous system always has the **trivial solution** $0 \in \mathbb{F}^n$
 
+A **square system** is a system $(A,y)$ where $A$ is $n \times n$.
+
 A **linear combination** of a system $(A, y)$ is a system $(B, z)$ of height 1 such that for some $c_1, \ldots, c_m \in \mathbb{F}$
 
  - $B|z = \sum_1^m c_i A|y[i, :]$
@@ -167,6 +169,8 @@ If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$
 
 **Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
 
+This next theorem about square systems is a straightforward consequence of the Underconstrained System Theorem.
+
 **Theorem:** If $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
 
 *Proof:* If some composition of elementary row ops, $f$, is such that $f(A) = I_n$, then the associated system of $f(A|y)$ is $(I_n, z)$ for some $z$, which clearly has only one solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the Underconstrained System Theorem it would have more than one solution. Any row-reduced echelon matrix which is row-equivalent to $A$ must have $n$ pivots. The only such matrix is $I_n$. $\Box$
@@ -223,7 +227,7 @@ $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
 *Proof:* Given an elementary matrix $E = f(I)$, where $f$ is some elementary row operation, we simply use $E^{-1} = f^{-1}(I)$. $\Box$
 
 
-**Theorem:** The following 3 conditions are equivalent for an $A \in \mathbb{F}^{n \times n}$:
+**Theorem:** The following 3 conditions are equivalent for square systems (an $A \in \mathbb{F}^{n \times n}$):
 
  1. $A$ is row-equivalent to $I_n$
  2. $A$ is a product of elementary matrices
