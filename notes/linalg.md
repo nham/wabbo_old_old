@@ -167,9 +167,9 @@ If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$
 
 **Corollary:** If $(A,0)$ is a homogeneous system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then it has a non-trivial solution.
 
-**Corollary:** If $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
+**Theorem:** If $A \in \mathbb{F}^{n \times n}$ and $y \in \mathbb{F}^{n \times 1}$, then $A$ is row-equivalent to $I_n$ iff $(A,y)$ has exactly one solution.
 
-*Proof:* $(I_n, y)$ clearly has only one solution, $y$. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the theorem it would have more than one solution. Any row-reduced echelon matrix that $A$ is row equivalent to must have $n$ pivots. The only such matrix is $I_n$. $\Box$
+*Proof:* If some composition of elementary row ops, $f$, is such that $f(A) = I_n$, then the associated system of $f(A|y)$ is $(I_n, z)$ for some $z$, which clearly has only one solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the Underconstrained System Theorem it would have more than one solution. Any row-reduced echelon matrix which is row-equivalent to $A$ must have $n$ pivots. The only such matrix is $I_n$. $\Box$
 
 ## Matrix multiplication
 I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in \mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
