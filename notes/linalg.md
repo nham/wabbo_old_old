@@ -222,10 +222,15 @@ An **elementary matrix** is defined by:
 
 $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
 
+**Proposition:** For $A \in \mathbb{F}^{m \times n}$, $E_{i, j, c,d} A = LC_{i, j, c, d} (A)$
+
+*Proof:* By inspection. $\Box$
+
 **Lemma:** Every elementary matrix is invertible.
 
 *Proof:* Given an elementary matrix $E = f(I)$, where $f$ is some elementary row operation, we simply use $E^{-1} = f^{-1}(I)$. $\Box$
 
+After the introduction of elementary matrices, "$A$ is row-equivalent to $B$" means there's some sequence $E_1, \ldots, E_k$ such that $E_k \cdots E_1 A = B$.
 
 **Theorem:** The following 3 conditions are equivalent for square systems (an $A \in \mathbb{F}^{n \times n}$):
 
@@ -233,7 +238,7 @@ $$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
  2. $A$ is a product of elementary matrices
  3. $A$ is invertible
 
-*Proof:* (1) means that $E_k \cdots E_1 A = I_n$ for some elementary matrices $E_i$. The previous lemma implies that $A = E_1^{-1} \cdots E_k^{-1} I_n$, establishing (2). Given (2), $A$ is clearly invertible, again by the previously lemma. Finally for (3), if $A$ is invertible, then consider a row-reduced echelon matrix $R$ formed from $A$. There is some sequence of elementary matrices such that $E_k \cdots E_1 A = R$. Since $A$ is invertible, $R$ is invertible. Since $R$ is $n \times n$, if $R$ does not have full pivots, it could not be invertible since we must have some $n \times n$ X such that $RX = I_n$. This cannot be so, since a zero row in $R$ makes that corresponding row of the resultant matrix zero as well. The only $n \times n$ row-reduced echelon matrix with full pivots is $I_n$, so in fact $R = I_n$, establishing (1). $\Box$
+*Proof:* (1) means that $E_k \cdots E_1 A = I_n$ for some elementary matrices $E_i$. The previous lemma implies that $A = E_1^{-1} \cdots E_k^{-1} I_n$, establishing (2). Given (2), $A$ is clearly invertible, again by the previously lemma. Finally for (3), if $A$ is invertible, then consider a row-reduced echelon matrix $R$ formed from $A$. There is some sequence of elementary matrices such that $E_k \cdots E_1 A = R$. Since $A$ is invertible, $R$ is invertible (since $R$ is the product of invertible matrices). Since $R$ is $n \times n$, if $R$ does not have full pivots, it could not be invertible since we must have some $n \times n$ X such that $RX = I_n$. This cannot be so, since a zero row in $R$ makes that corresponding row of the resultant matrix zero as well. The only $n \times n$ row-reduced echelon matrix with full pivots is $I_n$, so in fact $R = I_n$, establishing (1). $\Box$
 
 **Corollary:** $A, B \in \mathbb{F}^{m \times n}$ are row-equivalent iff some invertible $P \in \mathbb{F}^{m \times m}$ is such that $A = PB$.
 
