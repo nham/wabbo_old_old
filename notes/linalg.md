@@ -263,4 +263,13 @@ Vector space is a quadruple $(V, \mathbb{F}, +,, \cdot)$ where $(V, +)$ is an ab
  - $(ab) \cdot u = a \cdot (b \cdot v)$
  - $1 \cdot u = u$
 
+The additive group operation will be referred to as *vector addition*, while the operation $F \times V \rightarrow V$ is called *scalar multiplication*. Note that the last two conditions imply that the multiplicative group of the field acts on the abelian group of vectors.
+
+The vectors obey all the rules that groups do: namely, the inverses are unique, vectors can be cancelled ($u + v = u + w \implies v = w$), the inverse of the inverse of a vector is the original vector.
+
+Scalar multiplication has these important properties:
+
+ - $0 \cdot v = 0 = a \cdot 0$
+ - $-1 \cdot v = -v$
+
 **Exchange algorithm** (for  proving that any two bases of an fdvs have same number of elements)
