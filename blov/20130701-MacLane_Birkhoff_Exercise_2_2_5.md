@@ -14,4 +14,4 @@ $$j = x \Box j = (g \Box h) \Box j = g \Box (h \Box j) = g$$
 
 So every element in fact has a two-sided inverse, which completes the proof that $S$ is a group under $\Box$.
 
-For an example of an infinite $S$ that is not a group,  I thought I had an example, but have just shown it to not be valid. I will continue working on it and update when I have one!
+For an example of an infinite $S$ that is not a group, just take $\mathbb{N}$ under addition. It's clearly associative, and in fact if $m + n = m + p$, then $n = p$ by the injectivity of the successor function that the defines the natural numbers (see: Peano postulates).
