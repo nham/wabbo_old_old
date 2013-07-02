@@ -1,4 +1,4 @@
-# Exercise 2.2.5 of Mac Lane and Birkhoff's Algebra, 3rd ed.
+% Exercise 2.2.5 of Mac Lane and Birkhoff's Algebra, 3rd ed.
 
 *If $(S, \Box)$ is such that $\Box$ is an associative binary operation on $S$ that obeys the cancellation law $a \Box b = a \Box c \implies b = c$ and $r \Box s = t \Box s \implies r = t$, then prove that if $S$ is finite, $(S, \Box)$ is a group, and that if $S$ is infinite it is not necessarily a group.*
 
