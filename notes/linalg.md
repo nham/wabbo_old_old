@@ -272,4 +272,8 @@ Scalar multiplication has these important properties:
  - $0 \cdot v = 0 = a \cdot 0$
  - $-1 \cdot v = -v$
 
+If $v_1, \ldots, v_n$ are distinct vectors in a vector space $(V, \mathbb{F})$, then a **linear combination** of the vectors is the sum $a_1 \cdot v_1 + \cdots + a_n \cdot v_n$, where each $a_i \in \mathbb{F}$. This is often simply notated $\sum_1^n a_i v_i$.
+
+A **subspace** of a vector space $V$ is a subset $W$ of $V$ which is a vector space when the binary operations of vector addition and scalar multiplication are restricted to $W$.
+
 **Exchange algorithm** (for  proving that any two bases of an fdvs have same number of elements)
