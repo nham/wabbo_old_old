@@ -36,6 +36,8 @@
 
 - Lagrange's theorem
 
+- groups of prime order are cyclic
+
 - index of a subgroup
 
 - order of an element
