@@ -32,7 +32,7 @@
 
 - congruence modulo a subgroup (equivalence relation)
 
-- cosets of a subgroup
+- (right) cosets of a subgroup
 
 - Lagrange's theorem
 
@@ -41,3 +41,13 @@
 - index of a subgroup
 
 - order of an element
+
+- kernel of a homomorphism
+
+- left cosets of a subgroup
+
+- conjugation of a subgroup
+
+- Normal subgroup
+
+Definitely use Gowers' approach to normal subgroups. I actively dislike the "coset algebra" approach that isn't even strictly an algebra between cosets since you need to do manipulations like (Na)(Nb) = N(aN)b. So you need to take (aN)b, which is...something. And then take left multiplication of that result by N. Ugly. (Though to be fair, something like this is suggested by conjugation. But I think its cleaner to restrict it to actual conjugation)
