@@ -95,7 +95,9 @@ The **index** of a subgroup $H$ of $G$, denoted $[G : H]$, is the number of righ
 
 - groups of prime order are cyclic
 
-- homomorphisms
+## Homomorphisms and normal subgroups
+
+A **group homomorphism** from group $G$ to group $K$ is a function $\phi: G \rightarrow K$ such that $\phi(gh) = \phi(g) \phi(h)$ for all $g, h \in G$.
 
 - kernel of a homomorphism
 
