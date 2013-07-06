@@ -1,8 +1,13 @@
 # Group theory notes
 
+## Prerequisites
+Basic set theory (sets, unions, intersections, cartesian products, functions). In particular, binary operations (<http://en.wikipedia.org/wiki/Binary_operation>) and restrictions of a function (<http://en.wikipedia.org/wiki/Restriction_(mathematics)>).
+
 ## Fundamentals
 
 A **group** is a set $G$ with a binary operation on $G$ which is 1) associative, 2) has a unit, and 3) has inverses under the operation for each $g \in G$.
+
+That means that 1) $\forall a,b,c \in G$ $a \circ (b \circ c) = (a \circ b) \circ c$, 2) there is an element $u \in G$ such that for every $g \in G$ u \circ g = g \circ u = g$, and 3) for every $g \in G$ there exists an $h \in G$ such that $g \circ h = h \circ g = v$, where $v$ is one of the units that (2) stipulates must exist.
 
 **Unit is unique:** If there are two such elements $u$ and $e$, such that for any $g \in G$, $ug = gu = g$ and $eg = ge = g$, then $u = ue = e$.
 
@@ -26,7 +31,7 @@ The **order** of a group $G$ is the cardinality of the underlying set of the gro
 
 ## Subgroups
 
-A subset $H$ of (the underlying set of) a group $G$ is called a **subgroup* precisely when the group operation being restricted (cf. <http://en.wikipedia.org/wiki/Restriction_(mathematics)>) to $H$ makes $H$ into a group.
+A subset $H$ of (the underlying set of) a group $G$ is called a **subgroup* precisely when the group operation being restricted to $H$ makes $H$ into a group.
 
 **Alternate characterization of subgroups:** A subset $S$ of $G$ is a subgroup iff it is closed under products of $G$ and contains all its inverses (in $G$).
 
