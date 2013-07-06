@@ -1,10 +1,8 @@
 # Group theory notes
 
+## Fundamentals
+
 A **group** is a set $G$ with a binary operation on $G$ which is 1) associative, 2) has a unit, and 3) has inverses under the operation for each $g \in G$.
-
-A group whose operation is commutative is called a **commutative** (naturally enough) or an **abelian**  group.
-
-- all groupings of a product of n elements are the same
 
 **Unit is unique:** If there are two such elements $u$ and $e$, such that for any $g \in G$, $ug = gu = g$ and $eg = ge = g$, then $u = ue = e$.
 
@@ -14,7 +12,13 @@ By convention we notate the unique unit of group $G$ as $e$, or $e_G$ if we need
 
 **Inverses are unique:** If $d$ and $f$ are both inverses for $a$, then $d = de = d(af) = (da)f = ef = f$.
 
-- unique solvability of equations
+Since inverses are unique, we can define a function $\cdot^{-1}$ which takes each elemeent of the group to its inverse. Hence we will often denote the inverse of $g \in G$ by $g^{-1}$.
+
+**Unique solvability of equations:** For fixed $a, b \in G$, the equations $xa = b$ and $ay = b$ have unique solutions. Clearly $x = b a^{-1]$ is one possible solution. If $za = b$, then $za = xa$, and by cancellation $x = z$. So $x = b a^{-1}$ is the unique solution. The same argument shows that $y = a^{-1} b$ is the unique solution of the second equation.
+
+**Parens can be dropped in group products:** [See here for now](http://www.wabbo.org/blov/20130506-associative_operators_on_n_args.html)
+
+A group whose operation is commutative is called a **commutative** (naturally enough) or an **abelian**  group.
 
 - order of a group
 
