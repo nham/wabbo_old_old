@@ -21,6 +21,10 @@ Since inverses are unique, we can define a function $\cdot^{-1}$ which takes eac
 
 **Unique solvability of equations:** For fixed $a, b \in G$, the equations $xa = b$ and $ay = b$ have unique solutions. Clearly $x = b a^{-1]$ is one possible solution. If $za = b$, then $za = xa$, and by cancellation $x = z$. So $x = b a^{-1}$ is the unique solution. The same argument shows that $y = a^{-1} b$ is the unique solution of the second equation.
 
+**Inverses of inverses:** $\forall g \in G$, $(g^{-1})^{-1}$ is the unique solution to $xg^{-1} = e$. But $g$ solves that as well, so they must be the same.
+
+**Inverse of product is product of inverses:** Similarly to the previous proof, $b^{-1} a^{-1}$ solves $x(ab) = e$.
+
 **Parens can be dropped in group products:** [See here for now](http://www.wabbo.org/blov/20130506-associative_operators_on_n_args.html)
 
 A group whose operation is commutative is called a **commutative** (naturally enough) or an **abelian**  group.
