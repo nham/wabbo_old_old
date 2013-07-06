@@ -1,7 +1,7 @@
 # Group theory notes
 
 ## Prerequisites
-Basic set theory (sets, unions, intersections, cartesian products, functions). In particular, binary operations (<http://en.wikipedia.org/wiki/Binary_operation>) and restrictions of a function (<http://en.wikipedia.org/wiki/Restriction_(mathematics)>).
+Basic set theory (sets, unions, intersections, cartesian products, relations, functions). In particular, binary operations (<http://en.wikipedia.org/wiki/Binary_operation>) and restrictions of a function (<http://en.wikipedia.org/wiki/Restriction_(mathematics)>). Also, equivalence relations, in particular that each equivalence relation yields a partition and vice versa.
 
 ## Fundamentals
 
@@ -29,7 +29,7 @@ Since inverses are unique, we can define a function $\cdot^{-1}$ which takes eac
 
 A group whose operation is commutative is called a **commutative** (naturally enough) or an **abelian**  group.
 
-The **order** of a group $G$ is the cardinality of the underlying set of the group. For *finite* groups, the order is just the number of group elements. There are infinite groups as well (e.g. the integers over addition).
+The **order** of a group $G$ is the cardinality of the underlying set of the group. We notate this $|G|$ (which is not a special notation, it is just the standard notation for the cardinality of a set). For *finite* groups, the order is just the number of group elements. There are infinite groups as well (e.g. the integers over addition).
 
 **Power notation:** For any group $G$, with $g \in G$, we define $g^0 = e$, $g^1 = g$, $g^2 = gg$, and $g^n = g g^{n-1}$ for any $n \in \mathbb{P}$. We can also define $g^{-2} = g^{-1} g^{-1}$ and $g^{-n} = g^{-1} g^{-n + 1}$.
 
@@ -67,19 +67,33 @@ I'm not sure this next one is important, but I've included it because I think it
 
 *Proof:* TODO
 
-- congruence modulo a subgroup (equivalence relation)
+If $H$ is a subgroup of $G$, then we can define a relation on $G$ called **congruence modulo $H$** by
 
-- order of a group
+$$a \equiv b \text{mod} H$ if $\exists h \in H a = hb$.
 
-- (right) cosets of a subgroup
+Equivalently $a \equiv b \text{mod} H$ iff $ab^{-1} \in H$
 
-- Lagrange's theorem
+**Congruence modulo a subgroup is an equivalence relation:** Clearly $a \equiv a \text{mod} H$, since $e \in H$. If $\exists h$ such that $a = hb$, then $h^{-1} a = b$, so that the relation is symmetric. Finally, if $a = hb$, $b = gc$, then $a = (hg)c$. Because $H$ is a subgroup, this means that $a \equiv c \text{mod} H$. $\Box$
+
+A **(right) coset** of a subgroup $H$ in $G$ is the subset of $G$ defined by
+
+$$\{ha : h \in H\}$$
+
+for some $a \in G$. The following is nearly immediate:
+
+**The right cosets of $H$ are the equivalence classes of congruence modulo $H$**.
+
+This means that the right cosets of $H$ in $G$ partition $G$. We have nearly proved a very important fact about groups, and will lock in the missing piece now:
+
+**Cosets are the same size:** We prove there is a bijection between any right coset $Hg$ and $H$. Think about how we generate the elements of $Hg$. We could not have $h_1 g = h_2 g$ for distinct $h_1$ and $h_2$ due to cancellation. Hence the function $H \rightarrow Hg$ defined by $h \mapsto hg$ is well-defined and an injection. It's also a surjection due to $Hg$ basically being defined as the image of this function.
+
+Since every right coset of $H$ is bijective to $H$, any two right cosets are in bijection (the composition of bijections is a bijection). $\Box$
+
+**Lagrange's theorem:** If $G$ is a finite group and $H$ a subgroup of $G$, then $|H|$ divides $|G|$. This is because the right cosets of $H$ partition $G$ into $|H|$-sized blocks, as proven above. $\Box$
+
+The **index** of a subgroup $H$ of $G$, denoted $[G : H]$, is the number of right cosets it generates.
 
 - groups of prime order are cyclic
-
-- index of a subgroup
-
-- order of an element
 
 - homomorphisms
 
