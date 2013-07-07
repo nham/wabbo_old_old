@@ -1,6 +1,10 @@
 # Notes on Logic and Structure (Van Dalen)
 
-The **propositional language** consists of the *proposition symbols* $P = \{ p_0, p_1, p_2, \ldots \}$, the *connective symbols* $\{ \vee, \wedge, \rightarrow, \leftrightarrow, \bot, \neg \}$, and the *auxiliary symbols* $\{ (, ) \}$. We call the set $B = \{ \vee, \wedge, \rightarrow, \leftarrow \}$ the *binary connectives*. The set $A = P \cup \{ \bot \}$ is called the *atomic propositions*, or *atoms*.
+The **propositional language** consists of the *proposition symbols* $P = \{ p_0, p_1, p_2, \ldots \}$, the *connective symbols* $C = \{ \vee, \wedge, \rightarrow, \leftrightarrow, \bot, \neg \}$, and the *auxiliary symbols* $\{ (, ) \}$. We call the set $B = \{ \vee, \wedge, \rightarrow, \leftarrow \}$ the *binary connectives*. The set $A = P \cup \{ \bot \}$ is called the *atomic propositions*, or *atoms*.
+
+The whole set $P \cup C \cup \{ (, ) \}$ will be denoted $\Gamma$, called the *alphabet* of the propositional language.
+
+The set of all sequences of symbols in $\Gamma$ is denoted $\Gamma^{\ast}$ (see Kleene star). Such sequences will be called **expressions**.
 
 **Propositional sentences:** The set of propositional sentences, denoted $\Phi$, is the smallest set $X$ satisfying:
 
@@ -21,3 +25,13 @@ A **formation sequence** of $\phi \in \Phi$ is a tuple $(\phi_0, \ldots, \phi_n)
  3. $\phi_i = (\neg \phi_j)$ for $0 \leq j < i$
 
 Informally, we might like to think of some collection of propositional sentences as nodes in a digraph, with an arrow from node i to node j if the sentence at node j depends on the sentence at i being valid. We would need to prove things like that there aren't any cycles in this graph, but if so we could say that a formation sentence is just a topological sorting of the digraph of sentences.
+
+**Proposition:** If $(\phi_0, \ldots, \phi_n)$ is a formation sequence for $\phi_n$, then for all $i, 0 \leq i < n$, $(\phi_0, \ldots, \phi_i)$ is a formation sequence for $\phi_i$.
+
+*Proof:* ~~I'm too lazy to prove this~~ Left as an exercise to the reader.
+
+**Theorem:** The subset $F$ of $\Gamma^{\ast}$ which have formation sequences is precisely $\Phi$.
+
+*Proof:* TODO. $\Box$
+
+
