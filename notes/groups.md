@@ -99,11 +99,42 @@ The **index** of a subgroup $H$ of $G$, denoted $[G : H]$, is the number of righ
 
 A **group homomorphism** from group $G$ to group $K$ is a function $\phi: G \rightarrow K$ such that $\phi(gh) = \phi(g) \phi(h)$ for all $g, h \in G$.
 
-- kernel of a homomorphism
+In a group $G$, the product $gh$ means that when $g, h \in G$ come together to interact, they do a dance and end up as $gh$. The homomorphism is a way of nominating, for each $g \in G$, an element of $k$ to stand-in for $g$ in all the interactions in $K$. So for the stand-ins $\phi(g)$ and $\phi(h)$, they must interact in $K$ in such a way as to end up as $gh$'s stand-in, $\phi(gh)$. (This story kind of sucks, but I'm hoping I can modify it to make it work at some time in the future)
+
+An **isomorphism** is a bijective group homomorphism. An **automorphism** is an isomorphism from $G \rightarrow G$ for some group $G$.
+
+(I'm going to introduce a string of seemingly unrelated things now, because I don't know how to motivate their introduction.)
+
+Some basic facts about homomorphisms follow.
+
+**Homomorphisms map units to units:** If $\phi: G \rightarrow K$ is a homomorphism, then $\phi(e_G) = \phi(e_G e_G) = \phi(e_G) \phi(e_G)$. This implies $\phi(e_G) = e_K$. $\Box$
+
+**Homomorphisms map inverses to inverses:** If $\phi: G \rightarrow K$ is a homomorphism, then $\phi(e_G) = \phi(g g^{-1}) = \phi(g) \phi(g^{-1})$. By cancellation, $\phi(g^{-1}) = \phi(g)^{-1}$. $\Box$
+
+The **kernel** of a homomorphism $\phi:G \rightarrow K$ is the subset of $G$ that map to $e_K$, i.e.
+
+$$\text{ker} \phi := \{g \in G: \phi(g) = e_K\}$$
+
+**Kernel is a subgroup:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then $N$ is a subgroup of $G$.
+
+*Proof:* If $a,b \in N$, $\phi(a) = e_K = \phi(b)$, so $\phi(ab) = e_K e_K = e_K$. Also, $\phi(a^{-1})
+
+If $G$ is a group, $a, g \in G$, then the element $gag^{-1}$ is the result of **conjugation by $g$ of $a$**. We can extend this definition to the conjugation of an entire subset of $G$: for subset $S$, $gSg^{-1} := \{ gsg^{-1} : s \in S \}$. In other words, $gSg^{-1}$ is the set formed by conjugating every element of $S$ by $g$.
+
+Here's a curious fact:
+
+**Kernel of a homomorphism is closed under conjugation:** For any homomorphism $\phi : G \rightarrow K$, and any $g \in G$, $g(\text{ker} \phi)g^{-1} \subseteq \text{ker} \phi$
+
+*Proof:* Let's say $n \in \text{ker} \phi$. For any $g \in G$,
+
+$$\begin{align} \phi(gng^{-1}) = \phi(g) \phi(n) \phi(g^{-1}) = \phi(g) e_K \phi(g)^{-1} = e_K$$
+
+which proves $gng^{-1}$ is in the kernel of $\phi$. $\Box$
+
+See [Timothy Gowers's blog post](http://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/) for the details (and better exposition than you will find here), but at some point mathematicians considered (or realized) whether (that) a converse to the proposition just proved was true: that if some subgroup $N$ of $G$ was closed under conjugation, then we could find a homomorphism originating at $G$ into some other group for which $N$ is the kernel. We attempt to derive that now.
+
 
 - left cosets of a subgroup
-
-- conjugation of a subgroup
 
 - Normal subgroup
 
