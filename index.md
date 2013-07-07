@@ -9,6 +9,7 @@ This site is on [github](https://github.com/nham/wabbo).
  - [bloviations](blov/) - Strings of symbols, largely unorganized.
  - [Notes on linear algebra](notes/linalg.html)
  - [Notes on group theory](notes/groups.html)
+ - [Notes on Logic and Structure (Van Dalen)](notes/logic.html)
 
 
 ### External links
