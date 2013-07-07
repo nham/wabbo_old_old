@@ -134,8 +134,24 @@ which proves $gng^{-1}$ is in the kernel of $\phi$. $\Box$
 See [Timothy Gowers's blog post](http://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/) for the details (and better exposition than you will find here), but at some point mathematicians considered (or realized) whether (that) a converse to the proposition just proved was true: that if some subgroup $N$ of $G$ was closed under conjugation, then we could find a homomorphism originating at $G$ into some other group for which $N$ is the kernel. We attempt to derive that now.
 
 
-- left cosets of a subgroup
+### Quotient sets
+(This should also be present in the approach to normal subgroups, but I'm unsure where to put it just yet.)
 
-- Normal subgroup
+If $X$ and $Y$ are sets and $f: X \rightarrow Y$ is a function, then for $y \in Y$, the **fiber above $y$ is the set
+
+$$pre(f, y) := \{ x \in X : f(x) = y$$
+
+So a fiber of a function is the preimage of a single element of $Y$. It should be clear that the collection of fibers of elements in the image of $f$ is a **partition** of $X$: no element of $X$ is mapped to distinct elements of $Y$, and every element of $X$ is mapped somewhere. Hence the fibers cover $X$ and are disjoint, so they form a bona fide partition.
+
+We can form the set of all components in the partition, notated $X/f$. As a shorthand we'll notate the component of the partition that $x \in X$ belongs to by $[x]$. We will call the entire collection of $[x]$'s the **quotient set** induced by $f$. The only thing we'll note for now is that the function $f$ can be decomposed into two functions, a surjection $q: X \rightarrow X/f$ defined by $q(x) = [x]$, and an injection $g: X/f \rightarrow Y$ defined by $g([x]) = f(x)$.
+
+### Back to kernels and homomorphisms
+
+Since we have no obvious means of constructing a homomorphism given a subgroup closed under conjugation, we will assume that we have found such a homomorphism and see what must be true, hoping to work our way backwards to the definition of the homomorphism.
+
+**Lemma:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then $\phi$ is constant over each right coset $Ng$ of $N$, and distinct cosets are mapped to distinct values in $K$.
+
+*Proof:* For all $g \in G$, $n \in N$, $\phi(ng) = \phi(n) \phi(g) = e_K \phi(g) = \phi(g)$ (which proves that $\forall x \in Ng$, $\phi(x) = \phi(g)$). Also, if $\phi(a) = \phi(b)$, then $e_k = \phi(b) \phi(a^{-1})$, which implies $ba^{-1} \in N$. This gives us an element $n$ in $N$ such that $na = b$, hence $b \in Na$. This establishes that for all $a,b \in G$, $\phi(a) = \phi(b)$ iff $Na = Nb$. $\Box$
+
 
 Definitely use Gowers' approach to normal subgroups. I actively dislike the "coset algebra" approach that isn't even strictly an algebra between cosets since you need to do manipulations like (Na)(Nb) = N(aN)b. So you need to take (aN)b, which is...something. And then take left multiplication of that result by N. Ugly. (Though to be fair, something like this is suggested by conjugation. But I think its cleaner to restrict it to actual conjugation)
