@@ -202,3 +202,5 @@ Combine this with the earlier fact that a subgroup is closed under conjugation i
 **Quotient groups, no, for real:** If $N$ is a subgroup of $G$ closed under conjugation, then we can define a group $G/N$ of cosets of $N$ with the product defined as before: $(Na) \cdot (Nb) = Nab$. Then the function $q: G \rightarrow G/N$ defined by $a \mapsto Na$ is a homomorphism, and $N$ is the kernel of $q$.
 
 *Proof:* $G/N$ is a group for the same reasons as above. $q(ab) = Nab = (Na) \cdot (Nb) = q(a) q(b)$, so $q$ is a homomorphism. Finally, for all $n \in N$, $q(n) = Nn = N = Ne$, which is the unit of $G/N$. And if $q(x) = Nx = N$, then $x \in N$. So $N$ is the kernel of $q$. $\Box$
+
+Since the property of being closed under conjugation allows us to define quotient groups (which, we shall see, is a big deal), it makes sense to give this property a name. A **normal subgroup** is a subgroup closed under conjugation.
