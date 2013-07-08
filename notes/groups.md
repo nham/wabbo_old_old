@@ -131,11 +131,13 @@ $$\begin{align} \phi(gng^{-1}) = \phi(g) \phi(n) \phi(g^{-1}) = \phi(g) e_K \phi
 
 which proves $gng^{-1}$ is in the kernel of $\phi$. $\Box$
 
+**Characterization of subgroups closed under conjugation:** If $H$ is a subgroup of $G$, then $H$ is closed under conjugation ($\forall g, gHg^{-1} \subseteq H$) iff $gHg^{-1} = H$.
+
+*Proof:* Clearly $gHg^{-1} = H$ implies $H$ is closed under conjugation. Conversely, we just need to prove that if $gHg^{-1} \subseteq H$ for all $g$, then $H \subseteq gHg^{-1}$ (for all $g$) as well. If $h \in H$, certainly $x = g^{-1} h g \in H$. Hence $gxg^{-1} = g(g^{-1}hg)g^{-1} = h$, so $H \subseteq gHg^{-1}$. $\Box$
+
 See [Timothy Gowers's blog post](http://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/) for the details (and better exposition than you will find here), but at some point mathematicians considered (or realized) whether (that) a converse to the proposition just proved was true: that if some subgroup $N$ of $G$ was closed under conjugation, then we could find a homomorphism originating at $G$ into some other group for which $N$ is the kernel. We attempt to derive that now.
 
-
 ### Quotient sets
-(This should also be present in the approach to normal subgroups, but I'm unsure where to put it just yet.)
 
 If $X$ and $Y$ are sets and $f: X \rightarrow Y$ is a function, then for $y \in Y$, the **fiber above $y$ is the set
 
@@ -153,5 +155,50 @@ Since we have no obvious means of constructing a homomorphism given a subgroup c
 
 *Proof:* For all $g \in G$, $n \in N$, $\phi(ng) = \phi(n) \phi(g) = e_K \phi(g) = \phi(g)$ (which proves that $\forall x \in Ng$, $\phi(x) = \phi(g)$). Also, if $\phi(a) = \phi(b)$, then $e_k = \phi(b) \phi(a^{-1})$, which implies $ba^{-1} \in N$. This gives us an element $n$ in $N$ such that $na = b$, hence $b \in Na$. This establishes that for all $a,b \in G$, $\phi(a) = \phi(b)$ iff $Na = Nb$. $\Box$
 
+This proves that right cosets of the kernel are exactly the fibers of the homomorphism. If we define "left cosets", will we get a similar result?
 
-Definitely use Gowers' approach to normal subgroups. I actively dislike the "coset algebra" approach that isn't even strictly an algebra between cosets since you need to do manipulations like (Na)(Nb) = N(aN)b. So you need to take (aN)b, which is...something. And then take left multiplication of that result by N. Ugly. (Though to be fair, something like this is suggested by conjugation. But I think its cleaner to restrict it to actual conjugation)
+A **left coset** of a subgroup $H$ of $G$ is the set $gH := \{ gh : h \in H\}$.
+
+**Lemma:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then $\phi$ is constant over each left coset $Ng$ of $N$, and distinct cosets are mapped to distinct values in $K$.
+
+*Proof:* The same strategy holds: $\phi(gn) = \phi(g), so $\phi$ is constant over any left coset, and $\phi(a) = \phi(b)$ implies $\phi(a^{-1}b) = e_K$, or $a^{-1}b \in N$. This shows that $b \in aN$, so $aN = bN$. $\Box$
+
+So the left cosets of the kernel are also the fibers of the homomorphism. There's only one collection of fibers, so the left cosets and the right cosets are the same sets. Also, $a \in aN$ and $a \in Na$, so $aN = Na$ for all $a \in G$. This establishes
+
+**Proposition:** If $N$ is the kernel of a homomorphism, then $aN = Na$ for all $a$.
+
+This doesn't necessarily mean that every $a$ commutes with every element of $N$. All it means is that for every $n \in N$, there's an $n_0 \in N$ such that $an = n_0 a$.
+
+Since left and right cosets of a kernel are the same, we can safely refer to them simply as cosets.
+
+As with any function, we can define a **quotient set** $G/N$ to be the cosets of $N$ (that is, the fibers of $\phi$) in $G$. However, there is more that we would like to do, because the original function was not merely a function, but a group homomorphism. And the original set $G$ was not merely a set, but a group. Can we possibly set up a group operation on $G/N$ that would allow us to factor the original homomorphism? I.e., can we turn $G/N$ into a group in such a way that $\phi$ can be factored into the composition of a surjective homomorphism $q: G \rightarrow G/N$ and an injective homomorphism $g: G/N \rightarrow K$?
+
+Yes. This fact allows us to create not merely a quotient set, but a *quotient group*.
+
+**Quotient group:** If $\phi : G \rightarrow K$ is a homomorphism and $N$ is the kernel of $\phi$, then the set $G/N$ of right cosets of $N$ can be made into a group by defining
+
+$$Na \cdot Nb := N(ab)$$
+
+This definition allows us to factor $\phi$ by $\phi = g \circ q$ where $q : G \rightarrow G/N$ and $g: G/N \rightarrow K$ are homomorphisms defined by $q(a) := Na$ and $g(Na) := \phi(a)$.
+
+*Proof:* We only need prove that the product is well-defined. The rest of the group properties will follow from the group properties of $G$.  So we must prove that if $x \in Na$ and $y \in Nb$, then $xy \in Nab$. But $x \in Na$ and $y \in Nb$ means that there are $n_0, n_1 \in N$ such that $x = n_0 a$ and $y = n_1 b$. so $xy = n_0 a n_1 b$. Since $Na = aN$, there exists an $n_2 \in N$ such that $a n_1 = n_2 a$. Hence $xy = n_0 n_2 ab$, or $xy \in Nab$. We leave verification that $(G/N, \circ)$ is associative, has a unit, has inverses under the product in question to the reader.
+
+Notice that the product in $G/N$ is basically expressly defined to make $q: G \rightarrow G/N$ sending $a \mapsto Na$ into a homomorphism. We must also show that $g(Nab) =g(Na) g(Nb)$, or $\phi(ab) = \phi(a) \phi(b)$, which is immediate from $\phi$ being a homomorphism.
+
+Finally, note that $g$ and $q$ are defined such that $\phi = g \circ q$. $\Box$
+
+We have defined quotient groups for kernels of a homomorphism, but what of our original quest to find a homomorphism for an arbitrary subgroup closed under conjugation?
+
+Looking over the proof, you might be able to see that we don't actually need to know that $N$ is a kernel of some homomorphism in order to establish the quotient group. We just need that the left cosets are the same as the right cosets. The following proposition will help us make some sense of this:
+
+**Proposition:** For all $g \in G$, $gN = Ng$ iff $gNg^{-1} = N$
+
+*Proof:* If $gN = Ng$, then $x \in gNg^{-1} means $x = gng^{-1}$ for some $n \in N$. But there exists an $n_0 \in N$ such that $gn = n_0 g$, so $x = n_0 g g^{-1} = n_0$. Hence $x \in N$ and $gNg^{-1} \subseteq N$. On the other hand, if $n \in N$, we can find an $n_1$ such that $g n_1 = n g$, or $n = $g n_1 g^{-1}$. So $N = gNg^{-1}$.
+
+Conversely, if $gNg^{-1} = N$, then for every $n \in N$ $\exists n_0 \in N$ such that g n_0 g^{-1} = n$, or $g n_0 = n g$. This proves $Ng \subseteq gN$. Similarly, for all $n \in N$ there's a $n_0 \in N$ such that $ g n g^{-1} = n_0$, or gn = n_0 g$, proving $gN \subseteq Ng$. This proves that $gN = Ng$. $\Box$
+
+Combine this with the earlier fact that a subgroup is closed under conjugation iff its conjugation by any element of $G$ is the subgroup again, and we have that a subgroup is closed under conjugation iff its left cosets are equal to its right cosets.
+
+**Quotient groups, no, for real:** If $N$ is a subgroup of $G$ closed under conjugation, then we can define a group $G/N$ of cosets of $N$ with the product defined as before: $(Na) \cdot (Nb) = Nab$. Then the function $q: G \rightarrow G/N$ defined by $a \mapsto Na$ is a homomorphism, and $N$ is the kernel of $q$.
+
+*Proof:* $G/N$ is a group for the same reasons as above. $q(ab) = Nab = (Na) \cdot (Nb) = q(a) q(b)$, so $q$ is a homomorphism. Finally, for all $n \in N$, $q(n) = Nn = N = Ne$, which is the unit of $G/N$. And if $q(x) = Nx = N$, then $x \in N$. So $N$ is the kernel of $q$. $\Box$
