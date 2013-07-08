@@ -204,3 +204,14 @@ Combine this with the earlier fact that a subgroup is closed under conjugation i
 *Proof:* $G/N$ is a group for the same reasons as above. $q(ab) = Nab = (Na) \cdot (Nb) = q(a) q(b)$, so $q$ is a homomorphism. Finally, for all $n \in N$, $q(n) = Nn = N = Ne$, which is the unit of $G/N$. And if $q(x) = Nx = N$, then $x \in N$. So $N$ is the kernel of $q$. $\Box$
 
 Since the property of being closed under conjugation allows us to define quotient groups (which, we shall see, is a big deal), it makes sense to give this property a name. A **normal subgroup** is a subgroup closed under conjugation.
+
+**Theorem:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then the quotient group $G/N$ is isomorphic to the image of $\phi$.
+
+*Proof:* TODO
+
+## Gotta figure out how to group this stuff now
+
+**Lemma:** A homomorphism $\phi: G \rightarrow K$ is injective iff the kernel of $\phi$ is $\{ e \}$, i.e. is trivial.
+
+*Proof:* The cosets of the kernel are the fibers of the homomorphism, so since every coset is bijective to the kernel, if the kernel has more than one element the homomorphism fails to be injective. Conversely, no two distinct cosets get mapped to the same value, so if the kernel is trivial, every element of $G$ is in its own coset, and thus has its own value, making the homomorphism injective. $\Box$
+
