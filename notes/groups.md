@@ -139,7 +139,7 @@ See [Timothy Gowers's blog post](http://gowers.wordpress.com/2011/11/20/normal-s
 
 ### Quotient sets
 
-If $X$ and $Y$ are sets and $f: X \rightarrow Y$ is a function, then for $y \in Y$, the **fiber above $y$ is the set
+If $X$ and $Y$ are sets and $f: X \rightarrow Y$ is a function, then for $y \in Y$, the **fiber above $y$** is the set
 
 $$pre(f, y) := \{ x \in X : f(x) = y$$
 
