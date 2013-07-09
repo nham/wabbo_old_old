@@ -34,3 +34,5 @@ A **field** is a commutative division ring. I'm not clear if this excludes the t
  2. $(-1)(-1) = 1$
 
 *Proof:* $a + (-1)a = 1a + (-1)a = (1 + -1)a = 0a = 0$, which establishes (1). (2) follows because (1) gives us $(-1)(-1) = -(-1)$, which is $1$ since the inverse of an inverse is the original in any group. $\Box$
+
+A **two-sided ideal** is a subset $I$ of a ring $R$ such that $I$ is a subgroup of $R$ considered as an abelian group and for all $r \in R$, $x \in I$, both $rx$ and $xr$ are in $I$. ($I$ is closed under ring multiplication)
