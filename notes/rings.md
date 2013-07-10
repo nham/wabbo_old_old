@@ -35,4 +35,15 @@ A **field** is a commutative division ring. I'm not clear if this excludes the t
 
 *Proof:* $a + (-1)a = 1a + (-1)a = (1 + -1)a = 0a = 0$, which establishes (1). (2) follows because (1) gives us $(-1)(-1) = -(-1)$, which is $1$ since the inverse of an inverse is the original in any group. $\Box$
 
+A **ring homomorphism** from ring $R$ to ring $S$ is a function $\phi: R \rightarrow S$ which preserves both operations in $R$:
+
+ - $\phi(a + b) = \phi(a) + \phi(b)$
+ - $\phi(ab) = \phi(a) \phi(b)$
+
+The **kernel** of a ring homomorphism $\phi: R \rightarrow S$ is the set of elements being mapped to the zero element of $S$. (i.e. it's exactly the kernel of $\phi$ considered as a group homomorphism)
+
+**Kernel is an ideal:** If $K$ is the kernel of ring homomorphism $\phi: R \rightarrow S$, then $K$ is a subgroup of $R$ considered as an abelian group, and for all $r \in R$, $k \in K$, $rk$ and $kr$ are in $K$.
+
+*Proof:* The $K$ is a subgroup of $R$ because $\phi$ is a group homomorphism as well, and any kernel of a group homomorphism is a subgroup of the source group. For $r \in R$, $k \in K$, $\phi(rk) = \phi(r) \phi(k) = \phi(r) 0 = 0$. Ditto for $\phi(kr)$. So $K$ absorbs multiplication by any ring element. $\Box$
+
 A **two-sided ideal** is a subset $I$ of a ring $R$ such that $I$ is a subgroup of $R$ considered as an abelian group and for all $r \in R$, $x \in I$, both $rx$ and $xr$ are in $I$. ($I$ is closed under ring multiplication)
