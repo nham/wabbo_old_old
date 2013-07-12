@@ -210,7 +210,7 @@ Since the property of being closed under conjugation allows us to define quotien
 
 **Theorem:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then the quotient group $G/N$ is isomorphic to the image of $\phi$.
 
-*Proof:* TODO
+*Proof:* The elements of $G/N$ are the cosets $Ng$ for $g \in G$. The map $f$ mapping $Ng \mapsto \phi(g)$ is well-defined and is a bijection since the cosets are the fibers of the homomorphism (see an earlier lemma). It's also a homomorphism since $f(Ng \circ Nh) = f(Ngh) = \phi(gh) = \phi(g) \phi(h) = f(Ng) f(Nh)$. $\Box$
 
 ## Gotta figure out how to group this stuff now
 
