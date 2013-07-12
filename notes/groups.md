@@ -111,6 +111,8 @@ Some basic facts about homomorphisms follow.
 
 **Homomorphisms map inverses to inverses:** If $\phi: G \rightarrow K$ is a homomorphism, then $\phi(e_G) = \phi(g g^{-1}) = \phi(g) \phi(g^{-1})$. By cancellation, $\phi(g^{-1}) = \phi(g)^{-1}$. $\Box$
 
+**Image of a homomorphism is a subgroup:** If $\phi : G \rightarrow H$ is a group homomorpism, then if $a, b \in \phi(G)$, $\exists s, t \in G$ such that $\phi(s) = a$, $\phi(t) = b$. Hence $\phi(st) = ab$, so $ab \in \phi(G)$ as well. Since $\phi(a)^{-1} = \phi(a^{-1}$, the image is closed under inverses also. $\Box$
+
 The **kernel** of a homomorphism $\phi:G \rightarrow K$ is the subset of $G$ that map to $e_K$, i.e.
 
 $$\text{ker} \phi := \{g \in G: \phi(g) = e_K\}$$
@@ -204,6 +206,7 @@ Combine this with the earlier fact that a subgroup is closed under conjugation i
 *Proof:* $G/N$ is a group for the same reasons as above. $q(ab) = Nab = (Na) \cdot (Nb) = q(a) q(b)$, so $q$ is a homomorphism. Finally, for all $n \in N$, $q(n) = Nn = N = Ne$, which is the unit of $G/N$. And if $q(x) = Nx = N$, then $x \in N$. So $N$ is the kernel of $q$. $\Box$
 
 Since the property of being closed under conjugation allows us to define quotient groups (which, we shall see, is a big deal), it makes sense to give this property a name. A **normal subgroup** is a subgroup closed under conjugation.
+
 
 **Theorem:** If $N$ is the kernel of a homomorphism $\phi: G \rightarrow K$, then the quotient group $G/N$ is isomorphic to the image of $\phi$.
 
