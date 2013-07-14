@@ -58,13 +58,15 @@ If $v_1, \ldots, v_n$ are distinct vectors in a vector space $(V, \mathbb{F})$, 
 
 **Span is the set of all linear combinations:** If $S$ is a subset of vector space $V$, we denote by $L(S)$ the set of all linear combinations of vectors in $S$. Then $\text{span}(S) = L(S)$. $\Box$
 
+**Condition for being in the span:** If $S$ is a subset of vector space $V$, then $v \in \text{span}(S)$ iff there is a linear combination $\sum_1^n a_i s_i = v$ of vectors $s_i \in S$. $\Box$
+
 The intersection of any number of subspaces is a subspace. Do we have a similar result for unions of subspaces? The answer is no, but we can take the span to make it into a subspace. The **sum** of a collection $\mathcal{W}$ of subspaces is defined to be $\text{span}(\bigcup \mathcal{W}$. That is, the sum of a collection of subspaces is the smallest subspace containing every subspace. We notate the sum as $+ \mathcal{W}$.
 
 If we stipulate that for every $W \in \mathcal{W}$, $+ \mathcal{W} - W \cap W = \{0\}$, then each $v \in + \mathcal{W}$ must have a unique representation as a linear combination of $v_1, \ldots, v_n$ where $v_i \in W_i \in \mathcal{W}$. Otherwise, we could find a linear combination $\sum_1^n a_i v_i = 0$, where not all $a_i = 0$. Assuming $a_1$ is not zero (we could re-order as necessary), then $v_1 = -\frac{1}{a_1} \Sum_2^n a_i v_i$, so $v_1$ is in both $W_1 and $\mathcal{W} - W_1$.
 
 Upon reflection, it shouldn't be too hard to see that the converse is true as well. So each element in the sum of a collection of subspaces has a unique linear combination yielding that vector iff $+(\mathcal{W} - W)$ and $W$ have only trivial intersection for every subspace $W$ in $\mathcal{W}$. We record this condition in a definition: the sum $+(\mathcal{W})$ is a **direct sum** if it is true.
 
-## Dimension
+## Linear dependence and dimension
 
 A linear combination $\sum_1^n a_i v_i$ is called **trivial** if each $a_i = 0$. A subset $S$ in vector space $V$ is called **linearly dependent** if it contains some finite subset $s_1, \ldots, s_n$ (all necessarily distinct) such that some non-trivial linear combination $\sum_1^n a_i s_i = 0$. A subset is **linearly independent** if it is not linearly dependent. That is, $S$ is linearly independent if for every finite subset of $S$, the only linear combination (of necesssarily distinct vectors) that obtains the zero vector is the trivial combination.
 
@@ -87,3 +89,16 @@ A **basis** for vector space $V$ is a linearly independent set that spans $V$.
 **Lemma:** If $S$ is finite and $\text{span}(S) = V$, then a subset of $S$ is a basis for $V$.
 
 *Proof:* If $S$ spans $V$, then if it's linearly independent, we are done. Otherwise it's linearly dependent, so either $S = \{0\}$ (in which case $V$ is the trivial vector space) or there's more than one vector in $S$, which by the preceding lemma one we have $s \in S$ in the span of the others. Hence $S_1 = S - \{s\}$ also spans $V$. Repeat this procedure until we obtain a linearly independent set (which will happen eventually because we started with only finitely many vectors in $S$). $\Box$
+
+**Exchange Lemma:** If $S$ is finite and spans $V$, and $B$ is linearly independent in $V$, then $|B| \leq |S|$.
+
+*Proof:* The following pseudocode illustrates the procedure. We assume $S = \{s_1, \ldots, s_n\}$.
+
+    l := (s_1, ..., s_n)
+    for b in B:
+        prepend b to l
+        remove an x in l that is in the span of the preceding elements of l
+
+We initially order the elements of $S$. Then we prepend the elements of $B$ one at a time. After each prepend, remove the first element that is in the span of the vectors in the tuple that precede it. The trick here is in grouping all the elements of $B$ together, because this means that we will never remove any element of $B$ ($B$ is linearly independent). So in effect, during each iteration we add an element of $B$, then remove an element of $S$.
+
+The result we desire is obtained after realizing that the algorithm cannot terminate early due to running out of elements of $S$ to remove. If that were to happen, i.e. if, after some iteration of the loop, the tuple contains only elements of $B$, but not all elements of $B$, then some proper subset of $B$ spans $V$, which implies that $B$ is not linearly independent. So there must be at least as many vectors in $S$ as there are in $B$. $\Box$
