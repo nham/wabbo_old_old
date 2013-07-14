@@ -16,3 +16,4 @@ We notate by $C_{\ast}$ the set of elements in $U$ which have construction seque
 
 It can be proved without much difficulty that $C_{\ast} = C^{\ast}$. We will call this unique set $C$, the **set generated from $B$ by $\mathcal{F}$**
 
+A set $C$ generated from $B$ by $\mathcal{F}$ is **freely generated** if, for $f' = f|_C$ and $g' = g|_C$, $f'$ and $g'$ are injective and $img f'$, $img g'$ and $B$ are pairwise disjoint.
