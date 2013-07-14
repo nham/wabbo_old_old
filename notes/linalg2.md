@@ -1,4 +1,4 @@
-# Notes on Herstein's linear algebra presentation.
+# Notes on an abstract(er) approach to linear algebra
 
 A **vector space** is a quadruple $(V, \mathbb{F}, +, \cdot)$ such that $(V, +)$ is an abelian group, $\cdot$ is a function $\mathbb{F} \ times V \rightarrow V$ such that $
 
@@ -90,7 +90,7 @@ A **basis** for vector space $V$ is a linearly independent set that spans $V$.
 
 *Proof:* If $S$ spans $V$, then if it's linearly independent, we are done. Otherwise it's linearly dependent, so either $S = \{0\}$ (in which case $V$ is the trivial vector space) or there's more than one vector in $S$, which by the preceding lemma one we have $s \in S$ in the span of the others. Hence $S_1 = S - \{s\}$ also spans $V$. Repeat this procedure until we obtain a linearly independent set (which will happen eventually because we started with only finitely many vectors in $S$). $\Box$
 
-**Exchange Lemma:** If $S$ is finite and spans $V$, and $B$ is linearly independent in $V$, then $|B| \leq |S|$.
+**Exchange Lemma:** If $S$ is finite and spans $V$, and $B$ is any linearly independent subset of $V$, then $|B| \leq |S|$.
 
 *Proof:* The following pseudocode illustrates the procedure. We assume $S = \{s_1, \ldots, s_n\}$.
 
@@ -102,3 +102,17 @@ A **basis** for vector space $V$ is a linearly independent set that spans $V$.
 We initially order the elements of $S$. Then we prepend the elements of $B$ one at a time. After each prepend, remove the first element that is in the span of the vectors in the tuple that precede it. The trick here is in grouping all the elements of $B$ together, because this means that we will never remove any element of $B$ ($B$ is linearly independent). So in effect, during each iteration we add an element of $B$, then remove an element of $S$.
 
 The result we desire is obtained after realizing that the algorithm cannot terminate early due to running out of elements of $S$ to remove. If that were to happen, i.e. if, after some iteration of the loop, the tuple contains only elements of $B$, but not all elements of $B$, then some proper subset of $B$ spans $V$, which implies that $B$ is not linearly independent. So there must be at least as many vectors in $S$ as there are in $B$. $\Box$
+
+The exchange lemma has an important corollary:
+
+**Dimension:** If $V$ is any vector space with a finite spanning set, then any two bases for $V$ have the same number of elements.
+
+*Proof:* Say $S$ is finite and spans $V$. First we apply a previous lemma to show that some subset $B$ of $S$ is a basis for $V$. Now let $B_1$ be a basis for $V$. Then $B$ is a finite spanning set for $V$ and $B_1$ is linearly independent, so the exchange lemma yields $|B_1| \leq |B|$. This implies $B_1$ is finite, so since it is also a spanning set, and since $B$ is linearly independent, the exchange lemma yields the reverse: $|B| \leq |B_1|$. This proves that every basis has the same number of vectors as $B$. $\Box$
+
+For vector spaces with a finite spanning set, this allows us to make a definition: the **dimension** of said vector space is the (unique) number of vectors in every basis. We shall call any vector space with a finite spanning set a **finite-dimensional vector space**.
+
+We now give a counterpart to the established fact that every spanning set in a finite dimensional vector space can be trimmed to a basis. We have, in fact, established all the parts needed already, we merely need to tie them together.
+
+**You can extend independent sets to a basis:** If $S$ is a linearly independent set in a finite-dimensional vector space $V$, then we can find elements $\{b_1, \ldots, b_k\}$ such that $S \cup \{b_1, \ldots, b_k\}$ is a basis for $V$.
+
+*Proof:* If $S$ spans $V$, we are done. Otherwise, some $v \in V$ is not in the span of $S$, so $S \cup \{v\}$ is linearly independent. Continue this way until we obtain a set that spans $V$ (and hence a basis). This process must eventually terminate, since by the exchange lemma any linearly independent set has less elements than any spanning set, and $V$, being a finite-dimensional vector space, has a (finite) basis $B$. (Hence, once the set in question has as many elements as $B$ has, adding another element gives us a linearly dependent set, so the set spans $V$ and is a basis). $\Box$
