@@ -63,3 +63,27 @@ The intersection of any number of subspaces is a subspace. Do we have a similar 
 If we stipulate that for every $W \in \mathcal{W}$, $+ \mathcal{W} - W \cap W = \{0\}$, then each $v \in + \mathcal{W}$ must have a unique representation as a linear combination of $v_1, \ldots, v_n$ where $v_i \in W_i \in \mathcal{W}$. Otherwise, we could find a linear combination $\sum_1^n a_i v_i = 0$, where not all $a_i = 0$. Assuming $a_1$ is not zero (we could re-order as necessary), then $v_1 = -\frac{1}{a_1} \Sum_2^n a_i v_i$, so $v_1$ is in both $W_1 and $\mathcal{W} - W_1$.
 
 Upon reflection, it shouldn't be too hard to see that the converse is true as well. So each element in the sum of a collection of subspaces has a unique linear combination yielding that vector iff $+(\mathcal{W} - W)$ and $W$ have only trivial intersection for every subspace $W$ in $\mathcal{W}$. We record this condition in a definition: the sum $+(\mathcal{W})$ is a **direct sum** if it is true.
+
+## Dimension
+
+A linear combination $\sum_1^n a_i v_i$ is called **trivial** if each $a_i = 0$. A subset $S$ in vector space $V$ is called **linearly dependent** if it contains some finite subset $s_1, \ldots, s_n$ (all necessarily distinct) such that some non-trivial linear combination $\sum_1^n a_i s_i = 0$. A subset is **linearly independent** if it is not linearly dependent. That is, $S$ is linearly independent if for every finite subset of $S$, the only linear combination (of necesssarily distinct vectors) that obtains the zero vector is the trivial combination.
+
+Some edge cases for linear dependence: the empty set is linearly independent because there is no finite subset whose non-trivial linear combination obtains 0 (there are no linear combinations at all, because there are no vectors!). There is only one linearly dependent singleton set: $\{0\}$.
+
+**Lemma:** If $v_1, \ldots, v_n$ is a set of (necessarily distinct) linearly dependent vectors with $n \geq 2$, then any vector with a non-zero coefficient in the non-trivial combination obtaining zero is in the span of the others. 
+
+*Proof:* If $v_1, \ldots, v_n$ is linearly dependent, then $\sum_1^n a_i v_i = 0$ for some $a_i$'s not all zero. If $a_i \neq 0$, then 
+
+$$- \frac{1}{a_i}(a_1 v_1 + \ldots + a_{i-1} v_{i-1} + a_{i+1} v_{i+1} + \ldots + a_n v_n = v_i$$
+
+$\Box$
+
+**Corollary:** If $B = \{v_1, \ldots, v_n\}$ is linearly independent but $B \cup \{v\}$ is linearly dependent, then $v \in \text{span}(B)$
+
+*Proof:* $a v + \sum_1^n a_i v_i = 0$ for some $a$ and $a_i$'s not all zero. If $a = 0$ then we have a non-trivial combination of $B$ resulting in zero, which is contrary to assumption. So $a \neq 0$ and hence $v \in \text{span}(B)$. $\Box$
+
+A **basis** for vector space $V$ is a linearly independent set that spans $V$.
+
+**Lemma:** If $S$ is finite and $\text{span}(S) = V$, then a subset of $S$ is a basis for $V$.
+
+*Proof:* If $S$ spans $V$, then if it's linearly independent, we are done. Otherwise it's linearly dependent, so either $S = \{0\}$ (in which case $V$ is the trivial vector space) or there's more than one vector in $S$, which by the preceding lemma one we have $s \in S$ in the span of the others. Hence $S_1 = S - \{s\}$ also spans $V$. Repeat this procedure until we obtain a linearly independent set (which will happen eventually because we started with only finitely many vectors in $S$). $\Box$
