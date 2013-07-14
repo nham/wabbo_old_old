@@ -256,24 +256,6 @@ After the introduction of elementary matrices, "$A$ is row-equivalent to $B$" me
 
 ## Vector spaces, subspaces & all that
 
-Vector space is a quadruple $(V, \mathbb{F}, +,, \cdot)$ where $(V, +)$ is an abelian group, $\mathbb{F}$ is a field, and $\cdot: \mathbb{F} \times V \rightarrow V$ is such that
-
- - $(a+b) \cdot u = a \cdot u + b \cdot u$
- - $a\cdot(u + v) = a \cdot u + a \cdot v$
- - $(ab) \cdot u = a \cdot (b \cdot v)$
- - $1 \cdot u = u$
-
 The additive group operation will be referred to as *vector addition*, while the operation $F \times V \rightarrow V$ is called *scalar multiplication*. Note that the last two conditions imply that the multiplicative group of the field acts on the abelian group of vectors.
-
-The vectors obey all the rules that groups do: namely, the inverses are unique, vectors can be cancelled ($u + v = u + w \implies v = w$), the inverse of the inverse of a vector is the original vector.
-
-Scalar multiplication has these important properties:
-
- - $0 \cdot v = 0 = a \cdot 0$
- - $-1 \cdot v = -v$
-
-If $v_1, \ldots, v_n$ are distinct vectors in a vector space $(V, \mathbb{F})$, then a **linear combination** of the vectors is the sum $a_1 \cdot v_1 + \cdots + a_n \cdot v_n$, where each $a_i \in \mathbb{F}$. This is often simply notated $\sum_1^n a_i v_i$.
-
-A **subspace** of a vector space $V$ is a subset $W$ of $V$ which is a vector space when the binary operations of vector addition and scalar multiplication are restricted to $W$.
 
 **Exchange algorithm** (for  proving that any two bases of an fdvs have same number of elements)
