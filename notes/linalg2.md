@@ -62,6 +62,15 @@ If $v_1, \ldots, v_n$ are distinct vectors in a vector space $(V, \mathbb{F})$, 
 
 The intersection of any number of subspaces is a subspace. Do we have a similar result for unions of subspaces? The answer is no, but we can take the span to make it into a subspace. The **sum** of a collection $\mathcal{W}$ of subspaces is defined to be $\text{span}(\bigcup \mathcal{W}$. That is, the sum of a collection of subspaces is the smallest subspace containing every subspace. We notate the sum as $+ \mathcal{W}$.
 
+It's a bit easier to understand sums by taking a look at where the union of subspaces fails to be a subspace. It's actually closed under scalar multiplication: if $v \in \bigcup \mathcal{W}$, then $v \in W \in \mathcal{W}$, so clearly any $av \in \bigcup \mathcal{W}$ as well. Similarly, taking two vectors from a single subspace in $\mathcal{W}$, we can (obviously) add them to get another vector in the subspace. The problem is when we take two vectors from *different subspaces*. So the sum of a collection of subspaces can perhaps be thought of as what happens to the unions after you close it under addition of vectors from different subspaces.
+
+Can we formalize that idea? Maybe?
+
+**Necessary & sufficient condition for being in the sum:** $v \in + \mathcal{W}$ iff $v = m_{i_1} + \cdots + m_{i_k}$ for $m_{i_j} \in W_{i_j} \in \mathcal{W}$
+
+*Proof:* Clearly any sum of elements from subspaces of $\mathcal{W}$ is in the sum. Conversely, if $v$ is in the sum, $v$ is a linear combination of vectors drawn from $\bigcup \mathcal{W}$. Say, $v = \sum_1^n a_i u_i$. Group together the vectors that are in the subspaces of $\mathcal{W}$ to obtain your sum $v = \sum_1^t m_{i_k}$ of vectors, each from a subspace in $\mathcal{W}$. $\Box$
+
+
 If we stipulate that for every $W \in \mathcal{W}$, $+ \mathcal{W} - W \cap W = \{0\}$, then each $v \in + \mathcal{W}$ must have a unique representation as a linear combination of $v_1, \ldots, v_n$ where $v_i \in W_i \in \mathcal{W}$. Otherwise, we could find a linear combination $\sum_1^n a_i v_i = 0$, where not all $a_i = 0$. Assuming $a_1$ is not zero (we could re-order as necessary), then $v_1 = -\frac{1}{a_1} \Sum_2^n a_i v_i$, so $v_1$ is in both $W_1 and $\mathcal{W} - W_1$.
 
 Upon reflection, it shouldn't be too hard to see that the converse is true as well. So each element in the sum of a collection of subspaces has a unique linear combination yielding that vector iff $+(\mathcal{W} - W)$ and $W$ have only trivial intersection for every subspace $W$ in $\mathcal{W}$. We record this condition in a definition: the sum $+(\mathcal{W})$ is a **direct sum** if it is true.
@@ -117,6 +126,9 @@ We now give a counterpart to the established fact that every spanning set in a f
 
 *Proof:* If $S$ spans $V$, we are done. Otherwise, some $v \in V$ is not in the span of $S$, so $S \cup \{v\}$ is linearly independent. Continue this way until we obtain a set that spans $V$ (and hence a basis). This process must eventually terminate, since by the exchange lemma any linearly independent set has less elements than any spanning set, and $V$, being a finite-dimensional vector space, has a (finite) basis $B$. (Hence, once the set in question has as many elements as $B$ has, adding another element gives us a linearly dependent set, so the set spans $V$ and is a basis). $\Box$
 
+**Corollary:** If $M$ is a subspace of finite-dimensional $V$, then a basis for $M$ can be extended to a basis for $V$.
+
+
 **Maximal independent sets, minimal spanning sets:**If $V$ is finite-dimensional, then $S \subseteq V$ is a basis iff $S$ is a maximal linearly independent set (i.e. if adding any vector makes it not LI) iff $S$ is a minimal spanning set (i.e. if removing any element in $S$ makes it not span).
 
 *Proof:* If $S$ is a basis, then it spans $V$, so $S \cup \{v\}$ for $v \notin S$ is a linearly dependent set (let the coefficients of $S$ be such to give $v$, and let coefficient of $v$ be $-1$). So $S$ is a maximal linearly independent set.
@@ -124,3 +136,29 @@ We now give a counterpart to the established fact that every spanning set in a f
 If $S$ is a maximal linearly independent set, adding any element (not already in $S$) to $S$ makes it dependent, so by a previous lemma every element not in $S$ is in the span of $S$. That is, $S$ spans $V$. It must be a minimal spanning set as well, since if any proper subset of $S$ spanned $V$, then one of the elements of $S$ not in that subset would be in the span of the subset, implying $S$ is not linearly independent.
 
 Finally, if $S$ is a minimal spanning set, removing any element from $S$ results in a set that does not span. If any $x \in S$ is such that $x \in \text{span}(S - x)$, then $\text{span} S = \text{span}(S - x)$, so $S - x$ would still span $V$. Since that is not true for any $x \in S$, no $x$ is in the span of the other elements. Hence $S$ is not linearly dependent (if it were, one of the elements would be in the span of the others). So $S$ is linearly independent, and hence $S$ is a basis. $\Box$
+
+
+**Lemma:** If $M$, $N$ are finite dimensional subspaces of some vector space, then $M \subseteq N$ implies 
+
+ 1. $dim M \leq dim N$.
+ 2. if $dim M = dim N$ then $M = N$
+
+*Proof:* Since $M \subseteq N$, $M$ is also a subspace of $N$, so a basis $B$ of $M$ is linearly independent in $N$. By the exchange lemma, $dim M = |B| \leq dim N$. If the dimensions of $M$ and $N$ are the same, any basis for $M$ is linearly independent in $N$, and is maximal by the exchange lemma, so $M = N$. $\Box$
+
+**Sum/intersection dimension theorem:** If $M$, $N$ are finite dimensional subspaces of some vector space, then $M \cap N$ and $M+N$ are finite dimensional as well and
+
+$$dim M+N + dim M \cap N = dim M + dim N$$
+
+*Proof:* $M \cap N$ is a subspace of $M$ and $N$, which are subspaces of $M+N$. Let $[b]$ be a basis of $M \cap N$, $[b] + [c]$ and $[b] + [d]$ are bases for $M$ and $N$, respectively since $[b]$ can be extended to bases for $M$ and $N$. The claim is that $[b] + [c] + [d]$ is a basis for $M+N$. Let 
+
+$$ \alpha_i [b] + \beta_i [c] + \gamma_i [d]$$
+
+be a linear combination of $[b] + [c] + [d]$ yielding 0. Then
+
+$$\alpha_i [b] + \beta_i [c] = - \gamma_i [d] = v$$
+
+so $v \in M \cap N$. This means $v$ is a linear combination of $[b]$ as well, so all $\gamma_i$'s must be zero (else $[b] + [d]$ fails to be independent). Now we have
+
+$$\alpha_i [b] = - \beta_i [c] $$
+
+So we have all coefficients zero because $[b] + [c]$ is independent. So $[b] + [c] + [d]$ is linearly independent in $M+N$. To prove that $[b] + [c] + [d]$ spans, we need only note that $M+N$ can be characterized as all the linear combinations of vectors from $M \cup N$ and that $[b] + [c] + [d]$ contains bases for both $M$ and $N$. $\Box$.
