@@ -162,3 +162,23 @@ so $v \in M \cap N$. This means $v$ is a linear combination of $[b]$ as well, so
 $$\alpha_i [b] = - \beta_i [c] $$
 
 So we have all coefficients zero because $[b] + [c]$ is independent. So $[b] + [c] + [d]$ is linearly independent in $M+N$. To prove that $[b] + [c] + [d]$ spans, we need only note that $M+N$ can be characterized as all the linear combinations of vectors from $M \cup N$ and that $[b] + [c] + [d]$ contains bases for both $M$ and $N$. $\Box$.
+
+## Coordinate systems
+
+First, we need to know that the set $\mathbb{F}^n$ of all n-tuples of a field $\mathbb{F}$ can be made into a vector space. Hopefully you've seen it. $\mathbb{F}^n$ has a **standard basis** of $\{\epsilon_j = (\epsilon_j1, \ldots, \epsilon_jn) : j \in [n]\}$ where $\epsilon_ij = 1$ if $i = j$ and $0$ otherwise. This is called the **standard basis** of $\mathbb{F}^n$. It should be easy to see that it is, in fact, a basis.
+
+There is a natural ordering to the elements of the standard basis: $(\epsilon_1, \ldots, \epsilon_n)$ (recall that each $\epsilon_i$ is an $n$-tuple of elements of $\mathbb{F}$). Without motivating the generalization, we shall consider what happens when we introduce such an ordering on any basis of a vector space. Call a tuple of basis elements an **ordered basis**. We have implicitly used this idea multiple times in the development so far.
+
+Ordered bases have an essential property:
+
+**Unique representations within bases:** If $B = (b_1, \ldots, b_n)$ is a basis for some vector space $V$ and $v \in V$, then there is a unique tuple $(a_1, \ldots, a_n \in \mathbb{F}^n$ such that $\sum_1^n a_i b_i = v$.
+
+*Proof:* If there's more than one, set them equal to each other and subtract one from both sides. This is a non-trivial combination that yields zero, contrary to $B$ being linearly independent. $\Box$
+
+**Lemma:** If $T: V \rightarrow W$ is a linear map for finite-dimensional $V$, and $B = (u_1, \ldots, u_n)$ is a basis for $V$, then the image of $B$ is a spanning set for the image of $T$. If $T$ is injective, then $B$ is a basis for the image of $T$.
+
+*Proof:* For $w \in \text{img} T$, $w = T(v) = T(\sum_1^n a_i u_i) = \sum_1^n a_i T(u_i)$. If $T$ is injective, the set of $T(u_i)$'s must be linearly independent (if the kernel of $T$ contains anything but zero, injectivity will fail). $\Box$
+
+Now, if $V$ and $W$ are vector spaces of dimension $n$ and $B = (b_1, \ldots, b_n)$, $C = (c_1, \ldots, c_n)$ are ordered bases for $V$ and $W$, respectively, then if we stipulate that $T: V \rightarrow W$ is linear, then if $T$ sends $b_i \mapsto c_i$, then the whole map is determined: for any $v \in V$, $v = \sum_1^n x_i b_i$, so $T(v) = \sum_1^n x_i c_i$.
+
+TODO: every n-dimensional vector space over $\mathbb{F}$ is isomorphic to $\mathbb{F}^n$.
