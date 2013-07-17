@@ -175,7 +175,7 @@ Ordered bases have an essential property:
 
 *Proof:* If there's more than one, set them equal to each other and subtract one from both sides. This is a non-trivial combination that yields zero, contrary to $B$ being linearly independent. $\Box$
 
-**Lemma:** If $T: V \rightarrow W$ is a linear map for finite-dimensional $V$, and $B = (u_1, \ldots, u_n)$ is a basis for $V$, then the image of $B$ is a spanning set for the image of $T$. If $T$ is injective, then $B$ is a basis for the image of $T$.
+**Lemma:** If $T: V \rightarrow W$ is a linear map for finite-dimensional $V$, and $B = (u_1, \ldots, u_n)$ is a basis for $V$, then the image of $B$ is a spanning set for the image of $T$. If $T$ is injective, then the image of $B$ is a basis for the image of $T$.
 
 *Proof:* For $w \in \text{img} T$, $w = T(v) = T(\sum_1^n a_i u_i) = \sum_1^n a_i T(u_i)$. If $T$ is injective, the set of $T(u_i)$'s must be linearly independent (if the kernel of $T$ contains anything but zero, injectivity will fail). $\Box$
 
