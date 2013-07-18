@@ -190,4 +190,4 @@ This proves:
 **Theorem:**
 Every $n$-dimensional vector space $V$ over $\mathbb{F}$ is isomorphic to $\mathbb{F}^n$. Also, for every ordered basis $(b_1, \ldots, b_n)$ of $V$, there is a unique isomorphism sending $b_i \mapsto \epsilon_i$, and for any isomorphism $\phi: V \rightarrow \mathbb{F}^n$ there is a unique ordered basis $(b_1, \ldots, b_n)$ such that $\phi(b_i) = \epsilon_i$. $\Box$
 
-Such an isomorphism from an $n$-dimensional vector space $V$ to $\mathbb{F}^n$, along with the ordered basis of $V$ associated with it, is called a **coordinate system on $V$**.
+An isomorphism from an $n$-dimensional vector space $V$ to $\mathbb{F}^n$, is called a **coordinate system on $V$**. There is a bijection between coordinate systems on $V$ and ordered bases in $V$.
