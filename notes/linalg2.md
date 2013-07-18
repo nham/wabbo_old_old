@@ -179,6 +179,15 @@ Ordered bases have an essential property:
 
 *Proof:* For $w \in \text{img} T$, $w = T(v) = T(\sum_1^n a_i u_i) = \sum_1^n a_i T(u_i)$. If $T$ is injective, the set of $T(u_i)$'s must be linearly independent (if the kernel of $T$ contains anything but zero, injectivity will fail). $\Box$
 
-Now, if $V$ and $W$ are vector spaces of dimension $n$ and $B = (b_1, \ldots, b_n)$, $C = (c_1, \ldots, c_n)$ are ordered bases for $V$ and $W$, respectively, then if we stipulate that $T: V \rightarrow W$ is linear, then if $T$ sends $b_i \mapsto c_i$, then the whole map is determined: for any $v \in V$, $v = \sum_1^n x_i b_i$, so $T(v) = \sum_1^n x_i c_i$.
+For a linear map $T$ originating from a finite-dimensional space $V$, then (by linearity) entire map is determined once you specify where the basis elements of $V$ are mapped to. We use this fact to create an isomorphism between any two n-dimensional vector spaces.
 
-TODO: every n-dimensional vector space over $\mathbb{F}$ is isomorphic to $\mathbb{F}^n$.
+If $V$ and $W$ are vector spaces of dimension $n$ and $B = (b_1, \ldots, b_n)$, $C = (c_1, \ldots, c_n)$ are ordered bases for $V$ and $W$, respectively, then if we stipulate that $T: V \rightarrow W$ is linear, we can make $T$ into an isomorphism by mapping each $b_i$ to $c_i$. (Prove it!)
+
+Conversely, if $T: V \rightarrow \mathbb{F}^n$ is an ismorphism, then the set of preimages of the basis of the standard basis must be linearly independent since the kernel of $T$ must be null, and it must span $V$. So $(f^{\text{pre}}(\epsilon_1), \ldots, f^{\text{pre}}(\epsilon_n))$ is an ordered basis for $V$ and is the only ordered basis for which the $i$-th component is mapped to the $i$-component of the standard basis of $\mathbb{F}^n$.
+
+This proves:
+
+**Theorem:**
+Every $n$-dimensional vector space $V$ over $\mathbb{F}$ is isomorphic to $\mathbb{F}^n$. Also, for every ordered basis $(b_1, \ldots, b_n)$ of $V$, there is a unique isomorphism sending $b_i \mapsto \epsilon_i$, and for any isomorphism $\phi: V \rightarrow \mathbb{F}^n$ there is a unique ordered basis $(b_1, \ldots, b_n)$ such that $\phi(b_i) = \epsilon_i$. $\Box$
+
+Such an isomorphism from an $n$-dimensional vector space $V$ to $\mathbb{F}^n$, along with the ordered basis of $V$ associated with it, is called a **coordinate system on $V$**.
