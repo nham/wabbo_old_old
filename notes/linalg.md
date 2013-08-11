@@ -1,17 +1,48 @@
 % Some notes on linear algebra
 
-These terrible notes owe a great deal of the presentation style to Hoffman & Kunze's text.
+## Preliminaries
+
+$\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a non-trivial commutative ring with non-zero elements all having multiplicative inverses.
+
+## Matrices
+
+A **matrix** is a function $A: [m] \times [n] \rightarrow \mathbb{F}$ for $m, n \in \mathbb{P}$ and field $\mathbb{F}$. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$.
+
+We define an **elementary row operation** on $m \times n$ matrices, $\xi[i,j,c,d]: \mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ (or just $\xi$ if $i$, $j$, $c$, $d$ are clear) defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
+
+$$[\xi A ]_{rs} := \cases{
+    c A_{rs} + d A_{js} & \text{if } r = i \cr
+    A_{rs} & \text{otherwise}}$$
+
+This function replaces row $i$ with a linear combination of rows $i$ and $j$. 
+
+A critical property of this operation is that it has an *inverse*:
+
+**Lemma:** Any elementary row operation $\xi$ on $i, j, c, d$ has an inverse elementary row operation.
+
+*Proof:* Since $c \neq 0$, $c^{-1}$ exists in $\mathbb{F}$, we can form the elementary row operation $\phi$ on $i, j, c^{-1}, -d c^{-1}}$. Saying the original matrix is $A$, the result of the first elementary row operation is $B$, and the result of the second elementary row operation is $C$, every element $C_{is}$ has:
+
+TODO
+$$\begin{align}
+\phi(\xi A)_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
+C_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
+& = c^{-1} (c A_{is} + d A_{js}) + -d c^{-1} A_{js}
+& = A_{is}
+\end{align}$$
+
+$\Box$
+
 
 ## Systems of linear equations
 
-$\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a non-trivial commutative ring with non-zero elements all having multiplicative inverses.
 
 A **system of linear equations** is a pair $(A, y)$ where 
 
  1. $A$ is a function $[m] \times [n] \rightarrow \mathbb{F}$ for $m, n \in \mathbb{P}$ and $\mathbb{F}$ is a field. 
  2. $y \in \mathbb{F}^m$
 
-The function $A$ is called a **matrix**. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$. We will also call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
+We will call $m$ the **height** of the system. We will refer to pair $(A[i, :], y_i)$ as an *equation* of the system $(A, y)$.
+
 
 The underlying **augmented matrix** of a system of linear equations is the $m \times n+1$ matrix where $A[i, n+1] = y_i$. The significance of this will be seen later after the introduction of *linear combinations* of systems and *elementary row operations*. Essentially, these transform every column of a matrix in the same way, so that applying them to the augmented matrix yields the same solution as applying them individually to both sides of the equation.
 
@@ -48,28 +79,6 @@ It should be noted (and can probably be inferred by our use of the word "equival
 
 
 ## Row-equivalence
-
-We define an **elementary row operation**, $LC_{i,j,c,d}$ which is a function $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
-
-$$[LC_{i,j,c,d}(A)]_{rs} := \cases{
-    c A_{rs} + d A_{js} & \text{if } r = i \cr
-    A_{rs} & \text{otherwise}}$$
-
-This function replaces row $i$ with a linear combination of rows $i$ and $j$. 
-
-A critical property of this operation is that it has an *inverse*:
-
-**Lemma:** Any elementary row operation $LC_{i,j,c,d}$ has an inverse elementary row operation.
-
-*Proof:* Since $c \neq 0$, $c^{-1}$ exists in $\mathbb{F}$ we can form the operation $LC_{i,j,c^{-1}, -d c^{-1}}$. Saying the original matrix is $A$, the result of the first elementary row operation is $B$, and the result of the second elementary row operation is $C$, every element $C_{is}$ has:
-
-$$\begin{align}
-C_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
-& = c^{-1} (c A_{is} + d A_{js}) + -d c^{-1} A_{js}
-& = A_{is}
-\end{align}$$
-
-$\Box$
 
 Clearly any finite sequence of elementary row operations on some linear system $(A, y)$ will result in a system $(B,z)$ whose equations are linear combinations of $(A,y)$. The fact that every elementary row operation has an inverse operation means that applying the same sequence of operations to both $A$ and $y$ will give us an *equivalent system* $(B, z)$.
 
