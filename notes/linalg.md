@@ -4,9 +4,13 @@
 
 $\mathbb{P}$ denotes the set of all positive integers. If $m \in \mathbb{P}$, $[m]$ is defined to be the set $\{1, ..., m\}$ of the first m positive integers. A *field* is a non-trivial commutative ring with non-zero elements all having multiplicative inverses.
 
+[Insert here: Vector spaces, basic properties, subspaces, spanning sets, linear independence and dependence, bases, dimension (for finite-dimensional vector spaces)] 
+
 ## Matrices
 
 A **matrix** is a function $A: [m] \times [n] \rightarrow \mathbb{F}$ for $m, n \in \mathbb{P}$ and field $\mathbb{F}$. The image elements of the matrix are often arranged in a rectangular array of scalars. You should have seen it before. An $m \times n$ matrix is said to have $m$ rows and $n$ columns, and $A[i,j]$ refers to the scalar element in row $i$, column $j$. We notate the $1 \times n$ matrix of row $i$ by $A[i, :]$, as well as the $n \times 1$ matrix of row $j$ by $A[:, j]$.
+
+A matrix is **square** if it is $n \times n$ for some $n \in \mathbb{P}$.
 
 We define an **elementary row operation** on $m \times n$ matrices, $\xi[i,j,c,d]: \mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$ (or just $\xi$ if $i$, $j$, $c$, $d$ are clear) defined, for $i,j \in [m]$ and $c, d \in \mathbb{F}$ with $c \neq 0$, by:
 
@@ -20,21 +24,140 @@ A critical property of this operation is that it has an *inverse*:
 
 **Lemma:** Any elementary row operation $\xi$ on $i, j, c, d$ has an inverse elementary row operation.
 
-*Proof:* Since $c \neq 0$, $c^{-1}$ exists in $\mathbb{F}$, we can form the elementary row operation $\phi$ on $i, j, c^{-1}, -d c^{-1}}$. Saying the original matrix is $A$, the result of the first elementary row operation is $B$, and the result of the second elementary row operation is $C$, every element $C_{is}$ has:
+*Proof:* Since $c \neq 0$, $c^{-1}$ exists in $\mathbb{F}$, we can form the elementary row operation $\phi$ on $i, j, c^{-1}, -d c^{-1}}$. So if $A$ is $m \times n$, then $\phi(\xi A) = A$. $\Box$
 
-TODO
-$$\begin{align}
-\phi(\xi A)_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
-C_{is} & = c^{-1} B_{is} - d c^{-1} B_{js} \\
-& = c^{-1} (c A_{is} + d A_{js}) + -d c^{-1} A_{js}
-& = A_{is}
+$m \times n$ matrices $A$ and $B$ are called **row-equivalent** if there is some sequence of elementary row operations $e_1, \ldots, e_n$ such that $(e_n \circ \cdots \circ e_1)(A) = B$.
+
+The following is a consequence of elementary row operations being invertible.
+
+**Corollary:** $A$ is row-equivalent to $B$ iff $B$ is row-equivalent to $A$. $\Box$
+
+
+## Row-reduced matrices
+A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
+
+ - for every row $i$, if there is a $j$ such that $A[i,j] \neq 0$, the smallest such $j$ must have $A[i,j] = 1$. Each such cell is called a **pivot**
+ - for every pivot $(i,j)$, all non-pivot cells $A[k,j]$ in column $j$ must be zero.
+
+**Theorem:** Every matrix is row-equivalent to a row-reduced matrix.
+
+*Proof:* We give an algorithm and prove its correctness.
+
+$$ \begin{align}
+\text{def } & \text{RowReduce}(A \in \mathbb{F}^{m \times n}): \\
+& \text{for } i \in [m]: \\
+    & \text{.... } j \leftarrow 1 \\
+    & \text{.... } \text{while } A[i,j] = 0 \text{ and } j \leq m: \\
+    & \text{........ } j \leftarrow j + 1 \\
+    & \text{.... } \text{if } j \leq  m: \\
+    & \text{........ } A \leftarrow LC_{i,i, A[i,j], 0}(A) \\
+    & \text{........ } \text{for } k \in [m]: \\
+    & \text{............ } \text{if } k \neq i \text{ and } A[k,j] \neq 0: \\
+    & \text{................ } A \leftarrow LC_{k,i,1, - A[k,j]}(A) \\
 \end{align}$$
 
-$\Box$
+Prior to the start of the algorithm, we have that for $k = 1$, then for all rows $i$ with $1 \leq i \leq k-1$, if there is a $p_i$ such that $A[i, p_i] \neq 0$, then $A[i, p_i] = 1$ and if $p_1$ exists, all $j \neq i$ have $A[j, p_i] = 0$. 
+
+Assuming it is true after the $k$-th iteration, during the $(k+1)$-th iteration we set some $A[k+1,p_{k+1}]$ to 1 if possible and zero out the other terms in the $p_{k+1}$-th column (if there is such a column). So the property will be true again after the $k+1$-th iteration. Hence, after the $m$-iteration, the matrix will be row-reduced. $\Box$
+
+(Yeah, that was a bit silly, but hey, now you know how to prove the correctness of algorithms if you didn't already!)
+
+
+## Row-reduced echelon matrices
+We can extend the concept of row reduction by adding a few more properties. This will allow us to easily extract more information than mere row-reduction allows.
+
+But first we need a lemma and some notation. We will notate the $n \times n$ identity matrix as $I_n$.
+
+**Lemma:** The operation $\text{swap}_{i,j}$ defined on $m \times n$ matrices and defined by
+
+$$[swap_{i,j}(A)]_{rs} := \cases{
+    A_{js} & \text{if } r = i \cr
+    A_{is} & \text{if } r = j \cr 
+    A_{rs} & \text{otherwise}}$$
+
+can be implemented by a series of $LC$ operations.
+
+*Proof:* Peform the following:
+
+ 1. $\xi[i,j,-1,1]$
+ 2. $\xi[j,i,1,-1]$
+ 3. $\xi[i,j,1,1]$
+
+This performs $r_i \leftarrow - r_i + r_j$, $r_j \leftarrow r_j - r_i$, $r_i \leftarrow r_i + r_j$, in that order. It is an easy verification. $\Box$
+
+
+A matrix $A \in \mathbb{F}^{m \times n}$ is in **row-reduced echelon form** if
+
+ - $A$ is row-reduced
+ - every row of all zeroes in $A$ is below every non-zero row.
+ - if $(i, p_i)$ and $(j, p_j)$ are pivots with $i < j$, then $p_i < p_j$.
+
+Note that the last two stipulations can be rephrased as follows: if there are $k$ pivots, then the set $\{(i, p_i)\}$ of pivots is a monotonically increasing function on $[k] \rightarrow [n]$.
+
+It might be intuitively clear that all we need to turn a row-reduced matrix into a row-reduced echelon (RRE) matrix is swap some rows around. It is this fact that allows us to prove the following theorem:
+
+**Theorem:** Every matrix is row-equivalent to a row-reduced echelon matrix.
+
+*Proof:* First row-reduce the matrix, then swap the rows so that the criteria for echelon form are met. $\Box$
+
+If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
+
+
+## Matrix multiplication
+I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in \mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
+
+Here are two theorems about matrix multiplication that I will not prove here:
+
+**Theorem:** If $A, B, C$ are matrices such that $AB$, $BC$ is well-defined, then $(AB)C = A(BC)$ (Matrix multiplication is associative).
+
+**Theorem:** For any $A \in \mathbb{F}^{m \times n}$, $A = A I_n = I_m A$.
+
+This last theorem invites us to consider a "dual" interpretation of matrix multiplication, which is that each column of the result matrix $AB$ is a linear combination of the columns of $A$ by coefficients taken from each column of $B$.
+
+If $A \in \mathbb{F}^{m \times n}$, then $B$ is a **left-inverse** for $A$ if $BA = I_n$. $C$ is a **right-inverse** for $A$ if $AC = I_m$.
+
+**Theorem:** If $B$ is a left inverse for $A \in \mathbb{F}^{m \times n}$ and $C$ is a right inverse for $A$, then $B = C$.
+
+*Proof:* $B = B I_m = B (AC) = (BA) C = I_n C = C$. $\Box$
+
+A $B$ which is both a left and a right inverse for $A$ is called **the inverse** of $A$, on account of its being unique by the previous theorem. If $A$ has such an inverse, then $A$ is said to be **invertible**.
+
+
+## Elementary matrices
+Recall that elementary row operations were functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$. We should be able to find an $m \times m$ matrix which does the same thing when multiplied on the left.
+
+An **elementary matrix** is defined by:
+
+$$E[i,j,c,d] := \xi[i,j,c,d](I_n)$$
+
+**Proposition:** For $A \in \mathbb{F}^{m \times n}$, $E[i, j, c,d] A = \xi[i, j, c, d] (A)$
+
+*Proof:* By inspection. $\Box$
+
+**Lemma:** Every elementary matrix is invertible, and its inverse is an elementary matrix.
+
+*Proof:* Given an elementary matrix $E = f(I)$, where $f$ is some elementary row operation, we simply use $E^{-1} = f^{-1}(I)$. $\Box$
+
+After the introduction of elementary matrices, "$A$ is row-equivalent to $B$" means there's some sequence $E_1, \ldots, E_k$ such that $E_k \cdots E_1 A = B$.
+
+
+## Rank of a matrix
+
+In any $m \times n$ matrix $A$, we can consider the columns of $A$ to be elements of the $m$-dimensional vector space $\mathbb{F}^m$. Similarly, the rows are elements of $\mathbb{F}^n$. From this we can consider the subspace of $\mathbb{F}^m$ (resp. $\mathbb{F}^n$) spanned by the columns (resp. rows) of $A$. These will be called the **column space** and the **row space**, respectively, and notated $cs(A)$ and $rs(A)$.
+
+The dimensions of these spaces will be called the **column rank** and **row rank**, denoted $crk(A)$ and $rrk(A)$.
+
+
+## Rank and invertibility
+
+There's gaps in the notes, but I want to build up exactly what is needed to prove this:
+
+**Theorem:** $A \in \mathbb{F}^{m \times n}$ is invertible iff $\text{rank}(A) = m = n$ iff $A$ is the product of elementary matrices.
+
+An $n \times n$ matrix is **singular** if $\text{rank}(A) < n$, and **non-singular** otherwise.
 
 
 ## Systems of linear equations
-
 
 A **system of linear equations** is a pair $(A, y)$ where 
 
@@ -82,11 +205,6 @@ It should be noted (and can probably be inferred by our use of the word "equival
 
 Clearly any finite sequence of elementary row operations on some linear system $(A, y)$ will result in a system $(B,z)$ whose equations are linear combinations of $(A,y)$. The fact that every elementary row operation has an inverse operation means that applying the same sequence of operations to both $A$ and $y$ will give us an *equivalent system* $(B, z)$.
 
-A quick definition will help: $m \times n$ matrices $A$ and $B$ are called **row-equivalent** if there is some sequence of elementary row operations $e_1, \ldots, e_n$ such that $(e_n \circ \cdots \circ e_1)(A) = B$.
-
-The following is a consequence of elementary row operations being invertible.
-
-**Corollary:** $A$ is row-equivalent to $B$ iff $B$ is row-equivalent to $A$.
 
 This shows us that applying elementary row operations doesn't change the solution set of a system.
 
@@ -97,80 +215,13 @@ This shows us that applying elementary row operations doesn't change the solutio
 **Corollary:** If $(A,0)$ and $(B,0)$ are homogeneous systems, then they are equivalent iff $A$ and $B$ are row-equivalent.
 
 
-## Row-reduced matrices
-A matrix $A \in \mathbb{F}^{m \times n}$ is **row-reduced** if
-
- - for every row $i$, if there is a $j$ such that $A[i,j] \neq 0$, the smallest such $j$ must have $A[i,j] = 1$. Each such cell is called a **pivot**
- - for every pivot $(i,j)$, all non-pivot cells $A[k,j]$ in column $j$ must be zero.
-
-**Theorem:** Every matrix is row-equivalent to a row-reduced matrix.
-
-*Proof:* We give an algorithm and prove its correctness.
-
-$$ \begin{align}
-\text{def } & \text{RowReduce}(A \in \mathbb{F}^{m \times n}): \\
-& \text{for } i \in [m]: \\
-    & \text{.... } j \leftarrow 1 \\
-    & \text{.... } \text{while } A[i,j] = 0 \text{ and } j \leq m: \\
-    & \text{........ } j \leftarrow j + 1 \\
-    & \text{.... } \text{if } j \leq  m: \\
-    & \text{........ } A \leftarrow LC_{i,i, A[i,j], 0}(A) \\
-    & \text{........ } \text{for } k \in [m]: \\
-    & \text{............ } \text{if } k \neq i \text{ and } A[k,j] \neq 0: \\
-    & \text{................ } A \leftarrow LC_{k,i,1, - A[k,j]}(A) \\
-\end{align}$$
-
-Prior to the start of the algorithm, we have that for $k = 1$, then for all rows $i$ with $1 \leq i \leq k-1$, if there is a $p_i$ such that $A[i, p_i] \neq 0$, then $A[i, p_i] = 1$ and if $p_1$ exists, all $j \neq i$ have $A[j, p_i] = 0$. 
-
-Assuming it is true after the $k$-th iteration, during the $(k+1)$-th iteration we set some $A[k+1,p_{k+1}]$ to 1 if possible and zero out the other terms in the $p_{k+1}$-th column (if there is such a column). So the property will be true again after the $k+1$-th iteration. Hence, after the $m$-iteration, the matrix will be row-reduced. $\Box$
-
-(Yeah, that was a bit silly, but hey, now you know how to prove the correctness of algorithms if you didn't already!)
-
-This computational tool allows us to quickly find solutions to systems. We simply row-reduce the augmented matrix of the system. After doing so, we have two possibilities
+Row reduction allows us to quickly find solutions to systems. We simply row-reduce the augmented matrix of the system. After doing so, we have two possibilities
 
  1. There are pivots in the last column. This means there are no solutions to the system, because we have an equation that says $0 = 1$. No set of scalars can solve this equation.
 
  2. No pivots in the last column. Then we will have some set of $k$ pivots $(i, p_i)$. We simply have to find the solutions to the set of $k$ equations where each equation is $x_{p_i} = - B[i,n+1] + \sum_1^{m-k} c_i u_i$, where the $u_i$'s are the $x$'s that don't correspond to pivot points and $b_{n+1}$ is the value of the row-reduced augmented matrix in the last column. The point is that we can assign arbitrary values to the variables that don't correspond to pivots and we will obtain a solution of the system.
 
 
-## Row-reduced echelon matrices
-We can extend the concept of row reduction by adding a few more properties. This will allow us to easily extract more information than mere row-reduction allows.
-
-But first we need a lemma and some notation. We will notate the $n \times n$ identity matrix as $I_n$.
-
-**Lemma:** The operation $\text{swap}_{i,j}$ defined on $m \times n$ matrices and defined by
-
-$$[swap_{i,j}(A)]_{rs} := \cases{
-    A_{js} & \text{if } r = i \cr
-    A_{is} & \text{if } r = j \cr 
-    A_{rs} & \text{otherwise}}$$
-
-can be implemented by a series of $LC$ operations.
-
-*Proof:* Peform the following:
-
- 1. $LC[i,j,-1,1]$
- 2. $LC[j,i,1,-1]$
- 3. $LC[i,j,1,1]$
-
-This does $r_i \leftarrow - r_i + r_j$, $r_j \leftarrow r_j - r_i$, $r_i \leftarrow r_i + r_j$, in that order. It is an easy verification. $\Box$
-
-
-A matrix $A \in \mathbb{F}^{m \times n}$ is in **row-reduced echelon form** if
-
- - $A$ is row-reduced
- - every row of all zeroes in $A$ is below every non-zero row.
- - if $(i, p_i)$ and $(j, p_j)$ are pivots with $i < j$, then $p_i < p_j$.
-
-Note that the last two stipulations can be rephrased as follows: if there are $k$ pivots, then the set $\{(i, p_i)\}$ of pivots is a monotonically increasing function on $[k] \rightarrow [n]$.
-
-It might be intuitively clear that all we need to turn a row-reduced matrix into a row-reduced echelon (RRE) matrix is swap some rows around. It is this fact that allows us to prove the following theorem:
-
-**Theorem:** Every matrix is row-equivalent to a row-reduced echelon matrix.
-
-*Proof:* Algorithm and proof are left as an exercise to the reader. $\Box$
-
-If $A \in \mathbb{F}^{m \times n}$ is row-equivalent to a row reduced matrix $B$ with $k$ pivots, then we say that $A$ **has $k$ pivots**.
 
 **Underconstrained System Theorem:** If $(A,y)$ is a system with $A \in \mathbb{F}^{m \times n}$ with $k$ pivots and $k < n$, then if $(A,y)$ has a solution, it has at least two solutions.
 
@@ -184,62 +235,6 @@ This next theorem about square systems is a straightforward consequence of the U
 
 *Proof:* If some composition of elementary row ops, $f$, is such that $f(A) = I_n$, then the associated system of $f(A|y)$ is $(I_n, z)$ for some $z$, which clearly has only one solution. Conversely, if $(A,y)$ has only one solution, it could not be row-equivalent to a row-reduced matrix with $k < n$ pivots, for by the Underconstrained System Theorem it would have more than one solution. Any row-reduced echelon matrix which is row-equivalent to $A$ must have $n$ pivots. The only such matrix is $I_n$. $\Box$
 
-## Matrix multiplication
-I may fill in the details later, but for now I just note that matrix multiplication is a thing you can do on matrices $A$ and $B$ if $A$ has the same number of columns as $B$ has rows. The intuition here, in light of the presentation up til now, is that each row of $A$ contains a list of scalar coefficients, one for each row in $B$. When use these coefficients to form a linear combination of all the rows of $B$, and stick the result into the first row of $C$, the resulting matrix. Hence if $A \in \mathbb{F}^{k \times n}$ and $B \in \mathbb{F}^{k \times n}$, then the result $C$ will have $m$ rows (because each row of $A$ gives us a linear combination) and $n$ columns (because each linear combination is of rows of $B$, which have $n$ columns).
-
-Here are two theorems about matrix multiplication that I will not prove here:
-
-**Theorem:** If $A, B, C$ are matrices such that $AB$, $BC$ is well-defined, then $(AB)C = A(BC)$ (Matrix multiplication is associative).
-
-**Theorem:** For any $A \in \mathbb{F}^{m \times n}$, $A = A I_n = I_m A$.
-
-This last theorem invites us to consider a "dual" interpretation of matrix multiplication, which is that each column of the result matrix $AB$ is a linear combination of the columns of $A$ by coefficients taken from each column of $B$.
-
-If we consider the set $\mathbb{F}^{n \times n}$, the above two theorems show that it forms a monoid under matrix multiplication. We can use the following basic definitons about monoids to begin to understand matrix multiplication:
-
-In a monoid $(M, \circ, e)$, for $x \in M$, if $y \in M$ is such that $y \circ x = e$, then $y$ is called a **left inverse** of $x$. If, instead, $x \circ y = e$, we say it is a **right inverse**. If there is a $z$ that is both a left and a right inverse of $x$, it is called a **two-sided inverse** of $x$.
-
-As a reminder, a monoid in which every element has a two-sided inverse is a group.
-
-We would like to consider the set of all $n \times n$ matrices with two-sided inverses. If a matrix has a two-sided inverse, we will call it **invertible.** First we prove some facts about monoids, and later we see how this applies to invertible matrices.
-
-**Lemma:** If $(M, \circ, e)$ is a monoid and $S \subseteq M$ is such that for every $x \in S$ there are $y,z \in S$ such that $y$ is a right inverse of $x$ and $z$ is a left inverse of $x$, then $y = z$.
-
-*Proof:* $y = e \circ y = (z \circ x) \circ y = z \circ (x \circ y) = z \circ e = z$ $\Box$
-
-**Corollary:** Any two-sided inverse is unique.
-
-We are now warranted in calling a two-sided inverse of $x$ in some monoid in $M$ **the inverse** of $x$. We will often notate it $x^{-1}$.
-
-**Lemma:**
- 1. The inverse of $x^{-1}$ is $x$.
- 2. If $x$ and $y$ have inverses, then their product $x \circ y$ has an inverse.
-
-*Proof:* 
- 1. Since $x^{-1}$ is the inverse of $x$, $x$ symmetrically satifisies the conditions for being the inverse of $x$.
-
- 2. Consider $y^{-1} \circ x^{-1}$. It is a two-sided inverse of $x \circ y$. $\Box$
-
-**Corollary:** The subset $S$ of elements with inverses of a monoid $(M, \circ, e)$ is a group.
-
-*Proof:* $S$ is closed under the monoid operation and closed under inverses. Because of this, $e \in S$, so $S$ forms a submonoid. Since every element has an inverse in $S$, it in fact forms a group. $\Box$
-
-### Elementary matrices
-Recall that elementary row operations were functions $\mathbb{F}^{m \times n} \rightarrow \mathbb{F}^{m \times n}$. We should be able to find an $m \times m$ matrix which does the same thing when multiplied on the left.
-
-An **elementary matrix** is defined by:
-
-$$E_{i,j,c,d} := LC_{i,j,c,d}(I_n)$$
-
-**Proposition:** For $A \in \mathbb{F}^{m \times n}$, $E_{i, j, c,d} A = LC_{i, j, c, d} (A)$
-
-*Proof:* By inspection. $\Box$
-
-**Lemma:** Every elementary matrix is invertible.
-
-*Proof:* Given an elementary matrix $E = f(I)$, where $f$ is some elementary row operation, we simply use $E^{-1} = f^{-1}(I)$. $\Box$
-
-After the introduction of elementary matrices, "$A$ is row-equivalent to $B$" means there's some sequence $E_1, \ldots, E_k$ such that $E_k \cdots E_1 A = B$.
 
 **Theorem:** The following 3 conditions are equivalent for square systems (an $A \in \mathbb{F}^{n \times n}$):
 
