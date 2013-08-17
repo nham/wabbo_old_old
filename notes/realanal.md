@@ -56,3 +56,12 @@ Since every compact metric space is closed and bounded, we have the following co
 
 **Corollary:** A nonempty closed interval $[a,b]$ in $\mathbb{R}$ is compact.
 A closed interval is clearly bounded. Note also that closed intervals are the closed balls in the metric space $\mathbb{R}$, so they're actually closed sets, not just objects with the word "closed" in their name. $\Box$
+
+
+**Extreme vaue theorem:** If $[a, b]$ is a non-empty closed interval in $\mathbb{R}$ and $f: [a, b] \rightarrow \mathbb{R}$ is continuous, then $f$ takes on minimum and maximum values.
+
+*Proof:* $[a, b]$ is compact, so $f$'s image is compact (since the image of a continuous function defined on a compact metric space is compact). Hence, the image is closed and bounded, so it has both a supremum and an infimum. If the supremum isn't in the image, it's a limit point of image, and hence must be in the image, a contradiction. The same holds for the infimum, so f takes on maximum and minimum values at some point in the interval. $\Box$.
+
+**Intermediate value theorem:** If $[a,b]$ is non-empty and $f: [a, b] \rightarrow \mathbb{R}$ is continuous, then assuming $f(a) \leq f(b)$, for all $c \in [f(a), f(b)]$ there is an $x \in [a, b]$ such that $f(x) = c$. Also, if $f(a) > f(b)$, for all $c \in [f(b), f(a)]$, there's a $x \in [a, b]$ such that $f(x) = c$.
+
+*Proof:* WLOG we can prove for the $f(a) \leq f(b)$ case. (In the other case, negate the function). Now $[a, b]$ is connected, and the image of a continuous function on any connected space is connected as well. So the image must be an interval, and we can indeed find some $x \in [a, b]$ which maps to any $c \in [f(a), f(b)]$. $\Box$
