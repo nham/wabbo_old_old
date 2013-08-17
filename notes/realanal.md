@@ -49,3 +49,10 @@ In either case, we have a monotone subsequence, so by the monotone convergence t
 **Proposition:** Any closed, bounded subset of $\mathbb{R}$ is compact.
 
 *Proof:* If $S$ is bounded, any sequence in $S$ is bounded, so by the Bolzano-Weierstrass theorem it has a convergent subsequence. The limit of this subsequence must be in $S$ because, supposing not, it would be a limit point of $S$ and $S$ contains all of its limit points. This establishes that $S$ is sequentially compact, but this is equivalent to $S$ being compact in any metric space. $\Box$
+
+Since every compact metric space is closed and bounded, we have the following corollary:
+
+**Corollary:** A subset of $\mathbb{R}$ is compact iff it is closed and bounded. $\Box$
+
+**Corollary:** A nonempty closed interval $[a,b]$ in $\mathbb{R}$ is compact.
+A closed interval is clearly bounded. Note also that closed intervals are the closed balls in the metric space $\mathbb{R}$, so they're actually closed sets, not just objects with the word "closed" in their name. $\Box$
