@@ -66,6 +66,10 @@ Proof:
 
 (3) If $x \in U_1 \cap U_2$, there are open balls $B_\epsilon(x)$, $B_\delta(x)$ contained in $U_1$ and $U_2$, resp. The smaller of these balls is contained in both open sets, so is also in the intersection. $\Box$
 
+**Lemma:** If $S \subseteq X$ is a subspace of metric space $X$, then $U$ is open in $S$ iff $U = A \cap S$ for an open subset $A$ of $X$.
+
+*Proof:* TODO: define the notation $B_X(\epsilon, s)$. The key fact is that for any $s \in S$, $B_S(\epsilon, s) = B_X(\epsilon, s) \cap S$. Since any open set is a union of open balls, if $U$ open in $S$, take the open balls that make it up and fill them in so that they're open balls in $X$. Their union is now an open set in $X$, which when intersected with $S$ yields $U$ (since we didn't add any new points of $S$ when expanding). Conversely, for open $A$ in $X$, the intersection of $A$ with $S$ is the same thing as "shrinking" $A$'s open balls to open balls of $S$. $\Box$.
+
 A **neighborhood** of $x$ is an open set that contains $x$. We will use $\mathcal{N}_x$ to notate the set of all neighborhoods of a point $x$.
 
 A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. An result analogous to the topology lemma for open sets can be proved:
@@ -206,4 +210,7 @@ A function $f: X \rightarrow Y$ between two metric spaces is **sequentially cont
 **Lemma:** $f: X \rightarrow Y$ is continuous at $c$ iff it's sequentially continuous at $c$.
 *Proof:* If $f$ is continuous and $(x_n) \rightarrow c$, then for any $\epsilon > 0$, there's some $\delta$-ball around $c$ such that all points there get mapped to points in the $\epsilon$-ball around $f(c)$. But there are only finitely many terms of $(x_n)$ that aren't within that $\delta$-ball around $c$, so there are only finitely many terms $f(x_n)$ that aren't within the $\epsilon$-ball around $f(c)$.
 
-Conversely, if $f$ isn't continuous, some $\epsilon > 0$ is such that we can construct a sequence $(z_n)$ in $X$ that converges to $c$, but for which $(f z_n)$ lies entirely outside the $\epsilon$-ball around $f(c)$. Hence $(f z_n)$ does not converge to $f(c)$.
+Conversely, if $f$ isn't continuous, some $\epsilon > 0$ is such that we can construct a sequence $(z_n)$ in $X$ that converges to $c$, but for which $(f z_n)$ lies entirely outside the $\epsilon$-ball around $f(c)$. Hence $(f z_n)$ does not converge to $f(c)$. $\Box$
+
+
+And now, a sequential characterization of functional limits:
