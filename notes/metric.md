@@ -34,6 +34,10 @@ An **open ball** of radius r around x is the set of all points in the metric spa
 
 We will often call an open ball of radius $r$ an **$r$-ball**.
 
+We similarly define a **closed ball** of radius r around x to be:
+
+  $$ B_r[x_0] = \{ x : d(x, x_0) \leq r \}$$
+
 An **open set** is a set $U$ such that every $x \in U$ has an open ball $B_\epsilon(x)$ which is entirely contained in $U$.
 
 Open balls are a kind of "primitive" open set that all other open sets are defined in terms of. We haven't yet proved that open balls are open sets, however. So let's do that.
@@ -81,6 +85,10 @@ A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. A
  3. If $U_1$ and $U_2$ are closed subsets of $X$, then $X_1 \cup X_2$ is closed.
 
 *Proof:* (1) is immediate. The rest can be proved using DeMorgan's law [$X - (A \cup B) = (X-A) \cap (X-B)$] and the TLFOS. $\Box$
+
+**Proposition:** Closed balls are closed.
+
+*Proof:* TODO $\Box$
 
 A **limit point** of a set $S$ in metric space $X$ is a point $p$ such that every open ball around $p$ intersects $S$ in some element of $S - p$. We notate the set of all limit points of $S$ as $\text{limpt}(S)$. An **isolated point** of a $S$ is an $x \in S$ such that there is some open ball around $x$ for which the only element of $S$ contained in it is $x$.
 
