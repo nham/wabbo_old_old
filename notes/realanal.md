@@ -24,3 +24,28 @@ which exists (by the least upper bound property) since we know $x < y$. $s \geq 
 The problem is that for all $\epsilon > 0$, there is some $b \in B$ such that $s < b < s + \epsilon$. So all $\epsilon$-balls around $s$ intersect both $A$ and $B$. This is an issue since $s \in S$, meaning it must be in $A$ or in $B$, which are both supposed to be open. So after all, $s = x$. But this is still a problem, because every $\epsilon$-ball around $x$ intersects $B$ and $A$ is open.
 
 So $S$ must not be disconnected after all. $\Box$
+
+**Nested interval lemma:** If (I_n) is a sequence of non-empty closed intervals $[a_n, b_n]$ such that $a_n \leq a_{n+1}$ and $b_{n+1} \leq b_n$ for all $n$, then $\bigcap_1^{\infty} I_j$ is non-empty.
+
+*Proof:* Any $b_k$ is an upper bound of the set $A = \{a_n : n \in \mathbb{N}\}$, so $A$ must have a least upper bound $c$. This $c$ must be a lower bound on $B = \{a_n : n \in \mathbb{N}\}$, otherwise it would not be the least upper bound. So since $a_n \leq b_n$, we have $a_n \leq c \leq b_n$. $\Box$
+
+A sequence $(x_n)$ is **bounded** if there is some $M \in \mathbb{R}$ such that $|x_n| < M$ for all $n$. You can check that this definition meshes with the general definition for bounded sequences in metric spaces.
+
+A sequence $(x_n)$ is **monotonically nondecreasing** if for all $n$, $x_n \leq x_{n+1}$, and **monotonically nonincreasing** if $x_n \geq x_{n+1}$. It's called **monotone** if its either of these.
+
+**Monotone convergence theorem:** If $(x_n)$ is a bounded monotonically [nonincreasing | nondecreasing] sequence, it converges and its limit is the [infimum | supremum] of the set of terms.
+
+*Proof:* [We prove this for the nondecreasing case. You can fill in the blanks for the other case.] The statement of the theorem pretty much gives away the secret. By boundedness the set of terms has a least upper bound $c$, and by the properties of the LUB we can find terms arbitrarily close to $c$. By monotonicity, once the sequence is within an $\epsilon$ of $c$, it never goes any farther away. So it converges to $c$. $\Box$
+
+**Bolzano-Weierstrass theorem:** Every bounded sequence has a convergent subsequence.
+
+*Proof:* Let $(x_n)$ be bounded. We will find a monotone subsequence and use the monotone convergence theorem to establish our result.
+
+We ask the question: how many indices $k$ are there such that for all $m > k$ $x_k \geq x_m$, i.e. how many terms are greater than every term that comes after it in the sequence? Call each such term a *peak*. If there are infinitely many, then these terms give us a monotonically nonincreasing subsequence. Otherwise, the are finitely many. Suppose $x_j$ is the last one. So starting at $k_0 = j+1$, there is some $k_1 > k_0$ such that $x_{k_1} > x_{k_0}$. We can continue in this way since no terms after $k_0$ are peaks. This furnishes a monotonically increasing subsequence.
+
+In either case, we have a monotone subsequence, so by the monotone convergence theorem it converges. $\Box$
+
+
+**Proposition:** Any closed, bounded subset of $\mathbb{R}$ is compact.
+
+*Proof:* If $S$ is bounded, any sequence in $S$ is bounded, so by the Bolzano-Weierstrass theorem it has a convergent subsequence. The limit of this subsequence must be in $S$ because, supposing not, it would be a limit point of $S$ and $S$ contains all of its limit points. This establishes that $S$ is sequentially compact, but this is equivalent to $S$ being compact in any metric space. $\Box$
