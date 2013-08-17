@@ -182,6 +182,12 @@ A sequence $(x_n)$ **converges** to an element $c \in X$ if for every $\epsilon 
 
 If $(x_n)$ converges to $c$, we sometimes write $(x_n) \rightarrow c$.
 
+A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B_\epsilon(x)$ for some $\epsilon > 0$. A sequence $(x_n)$ is bounded if the set of its terms is bounded.
+
+**Proposition:** A convergent sequence is bounded.
+
+*Proof:* If $(x_n) \rightarrow c$, then for any $\epsilon > 0$, all but finitely many terms are contained in the $\epsilon$-ball around $c$. So setting $\delta = max{\epsilon, d(c, x_1) + 1, \ldots, d(c, x_n) + 1}$, all terms are contained within the $\delta$ ball around $c$. $\Box$
+
 A function $f: X \rightarrow Y$ between two metric spaces is **sequentially continuous at $c$** (for $c \in X$) if, for any sequence $(x_n) \rightarrow c$ in $X$, the sequence $(f x_n)$ converges to $f(c)$.
 
 **Lemma:** $f: X \rightarrow Y$ is continuous at $c$ iff it's sequentially continuous at $c$.
@@ -203,8 +209,6 @@ Now, if $A \subseteq X$, $f: A \rightarrow Y$, $c$ is a limit point of $A$, then
 ## Compactness
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
-
-A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B_\epsilon(x)$ for some $\epsilon > 0$.
 
 **Lemma:** A compact set $S$ in a metric space is bounded.
 
