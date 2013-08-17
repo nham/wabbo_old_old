@@ -190,7 +190,7 @@ A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subs
 
 ## Connectedness
 
-A metric space $X$ is **disconnected** if there are two open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
+A metric space $X$ is **disconnected** if there are two non-empty, open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
 
 **Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
 
