@@ -1,8 +1,6 @@
-% Notes on multivariable analysis
+% Notes on metric space topology
 
-## Metric space topology
-
-Metric spaces are an abstract characterization of spaces equipped with a notion of distance. To each pair of elements we assign a number, the *distance*, between the two points. We must employ the real numbers to quantify distance since the length of the diagonal of a unit square is irrational, and it would be silly to lay out a theory of distance that could not account for the euclidean plane. We also only make use of the nonnegative reals, since it's not clear how to interpret *negative* distance (how, exactly, would -5 distance differ from +5 distance?).
+Metric spaces are an abstract characterization of spaces equipped with a notion of distance. To each pair of elements we assign a number, the *distance*, between the two points. We must employ the real numbers to quantify distance since the length of the diagonal of a unit square is irrational, and it would be silly to lay out a theory of distance that could not account for the euclidean plane. We also only make use of the nonnegative reals, since it's not clear how to interpret *negative* distance.
 
 Let $X$ be a set, and let $X_k$ for $k \leq |X|$ be the set of all subsets of $X$ with cardinality $k$. For example, $X_1$ is the collection of all singletons, and $X_0$ is a set consisting of the empty set.
 
@@ -21,6 +19,8 @@ The most common formulation of metric spaces (and definitely easier to work with
   - $d(x,z) \leq d(x,y) + d(y,z)$
 
 A **subspace** of a metric space $X$ is just a subset $S$ of $X$ together with the (set-theoretic) restriction of the metric of $X$ to $S$.
+
+## Open and closed sets
 
 An **open ball** of radius r around x is the set of all points in the metric space that are less than a distance r from x. In symbols:
 
@@ -132,7 +132,7 @@ The dual notion to the closure of a set is the "interior" of a set, which is the
 
 *Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
 
-### Continuity
+## Continuity
 
 A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B_\delta(x)) \subseteq B_\epsilon(f(x))$.
 
@@ -145,7 +145,7 @@ We can interpret the above definition this way: $f$ allows us to ensure that we 
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
 
-### Compactness
+## Compactness
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
 
@@ -164,10 +164,28 @@ A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subs
 *Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
 
 
-### Connectedness
+## Connectedness
 
 A metric space $X$ is **disconnected** if there are two open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
 
 **Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
 
 *Proof:* If not, $f(X) = A \cup B$, where $A = S \cap f(X)$ and $B = T \cap f(Y)$, $S$ and $T$ open in $Y$. So by continuity, the pre-images of $S$ and $T$ are also open in $X$. Since $S$ and $T$ cover the image of $f$, their pre-images cover $X$. They have to be disjoint as well, by the definition of a function. We've just proved that $X$ is disconnected, contrary to hypothesis. $\Box$
+
+
+## Sequences
+
+A sequence in a metric space $X$ is a function $f: \mathbb{N} \rightarrow X$. In other words, it's an indexed family of elements of $X$ where the indexing set is the natural numbers. We notate sequences as $(x_n)$, where it is understood that this represents a sequence $n \mapsto x_n$ for all $n \in \mathbb{N}$.
+
+A sequence $(x_n)$ **converges** to an element $c \in X$ if for every $\epsilon > 0$ there is a $N \in \mathbb{N}$ such that whenever $n \geq N$, $d(x_n, c) < \epsilon$. In other words, for any given $epsilon$, there are only finitely many terms of the sequence that are not within the $\epsilon$-ball around $c$.
+
+If $(x_n)$ converges to $c$, we sometimes write $(x_n) \rightarrow c$.
+
+In what follows we sometimes notate $f(x)$ by simply $fx$, which helps improve readability when many parentheses are in play.
+
+A function $f: X \rightarrow Y$ between two metric spaces is **sequentially continuous at $c$** (for $c \in X$) if, for any sequence $(x_n) \rightarrow c$ in $X$, the sequence $(f x_n)$ converges to $f(c)$.
+
+**Lemma:** $f: X \rightarrow Y$ is continuous at $c$ iff it's sequentially continuous at $c$.
+*Proof:* If $f$ is continuous and $(x_n) \rightarrow c$, then for any $\epsilon > 0$, there's some $\delta$-ball around $c$ such that all points there get mapped to points in the $\epsilon$-ball around $f(c)$. But there are only finitely many terms of $(x_n)$ that aren't within that $\delta$-ball around $c$, so there are only finitely many terms $f(x_n)$ that aren't within the $\epsilon$-ball around $f(c)$.
+
+Conversely, if $f$ isn't continuous, some $\epsilon > 0$ is such that we can construct a sequence $(z_n)$ in $X$ that converges to $c$, but for which $(f z_n)$ lies entirely outside the $\epsilon$-ball around $f(c)$. Hence $(f z_n)$ does not converge to $f(c)$.
