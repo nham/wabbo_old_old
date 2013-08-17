@@ -174,34 +174,6 @@ Two things to note about this definition:
 
 *Proof:* TODO? $\Box$
 
-## Compactness
-
-A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
-
-A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B_\epsilon(x)$ for some $\epsilon > 0$.
-
-**Lemma:** A compact set $S$ in a metric space is bounded.
-
-*Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B_{r_1}(x), \ldots, B_{r_n}(x) \}$. The union of these is just the biggest open ball, $B_N(x)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
-
-**Lemma:** A compact subset $S$ of some metric space $X$ is closed.
-
-*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$ there is at least one pair of open balls around $x$ and $y$ that are disjoint (take $\epsilon_x = d(x,y)$). Then the collection of all such balls $B_{\epsilon_x}(x)$  is an open cover of $S$, which, being compact, implies the existence of a finite number of them that cover $S$. These open balls $B_{\epsilon_1}(x_1), \ldots, B_{\epsilon_n}(x_n)$ have corresponding open balls $D_{\delta_i}(y)$ around $y$ that are disjoint from the $B_{\epsilon_i}(x_i)$'s. The smallest ball $D_{\delta_i}(y)$ is disjoint from the whole union of $B_{\epsilon_k}(x_k)$'s, so it's disjoint from $S$, meaning contained in $X-S$. So $X-S$ is open. $\Box$
-
-**Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
-
-*Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
-
-
-## Connectedness
-
-A metric space $X$ is **disconnected** if there are two non-empty, open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
-
-**Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
-
-*Proof:* If not, $f(X) = A \cup B$, where $A = S \cap f(X)$ and $B = T \cap f(Y)$, $S$ and $T$ open in $Y$. So by continuity, the pre-images of $S$ and $T$ are also open in $X$. Since $S$ and $T$ cover the image of $f$, their pre-images cover $X$. They have to be disjoint as well, by the definition of a function. We've just proved that $X$ is disconnected, contrary to hypothesis. $\Box$
-
-
 ## Sequences
 
 A sequence in a metric space $X$ is a function $f: \mathbb{N} \rightarrow X$. In other words, it's an indexed family of elements of $X$ where the indexing set is the natural numbers. We notate sequences as $(x_n)$, where it is understood that this represents a sequence $n \mapsto x_n$ for all $n \in \mathbb{N}$.
@@ -226,3 +198,71 @@ Now, if $A \subseteq X$, $f: A \rightarrow Y$, $c$ is a limit point of $A$, then
 
 
 *Proof:* TODO $\Box$
+
+
+## Compactness
+
+A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
+
+A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B_\epsilon(x)$ for some $\epsilon > 0$.
+
+**Lemma:** A compact set $S$ in a metric space is bounded.
+
+*Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B_{r_1}(x), \ldots, B_{r_n}(x) \}$. The union of these is just the biggest open ball, $B_N(x)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
+
+**Lemma:** A compact subset $S$ of some metric space $X$ is closed.
+
+*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$ there is at least one pair of open balls around $x$ and $y$ that are disjoint (take $\epsilon_x = d(x,y)$). Then the collection of all such balls $B_{\epsilon_x}(x)$  is an open cover of $S$, which, being compact, implies the existence of a finite number of them that cover $S$. These open balls $B_{\epsilon_1}(x_1), \ldots, B_{\epsilon_n}(x_n)$ have corresponding open balls $D_{\delta_i}(y)$ around $y$ that are disjoint from the $B_{\epsilon_i}(x_i)$'s. The smallest ball $D_{\delta_i}(y)$ is disjoint from the whole union of $B_{\epsilon_k}(x_k)$'s, so it's disjoint from $S$, meaning contained in $X-S$. So $X-S$ is open. $\Box$
+
+**Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
+
+*Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
+
+**Lemma:** If $K$ is a compact metric space, then every sequence $(x_n)$ has a convergent subsequence.
+
+*Proof:* Suppose not, so some $(x_n)$ in $K$ doesn't have any convergent subsequence. That means for all $x \in K$, $x$ is not the limit of any subsequence $(x_{n_k})$. This is the same as saying that only finitely many terms of $(x_n)$ are in some $\epsilon_x$ ball around $x$ (otherwise you could make a convergent subsequence), i.e. that there is some $n_x \in \mathbb{N}$ for which $n \geq n_x$ all have $x_n$ not in the $\epsilon_x$ ball around $x$. $\Box$
+
+Now, the set of all such $\epsilon_x$ balls (remember, there is one for each $x \in K$ since *every* element isn't the limit of a convergent subsequence) is an open cover of $K$, and by compactness there are finitely many points $y_1, \ldots, y_n$ such that the balls $\epsilon_{y_i}$ cover $K$. But each of these balls contains only finitely many terms of the sequence, which is nonsense since the sequence was supposed to be contained in $K$.
+
+A metric space is said to be **sequentially compact** if every sequence in the metric space has a convergent subsequence. The last lemma says that every compact metric space is sequentially compact. We now endeavor to prove the converse, and hence their equivalence, for metric spaces.
+
+It will require an intermediate step and some definitions:
+
+A metric space is **complete** if every Cauchy sequence in the space converges in the space. (TODO: define "Cauchy sequence", lol).
+
+A metric space is **totally bounded** if for every $\epsilon > 0$, there is some $n \in \mathbb{P}$ and some elements $x_1, \ldots, x_n$ such that the epsilon balls $B_\epsilon(x_i)$ cover the space.
+
+
+**Proposition:** For a metric space $K$, these are equivalent:
+
+ 1. $K$ is compact
+ 2. $K$ is complete and totally bounded.
+ 3. $K$ is sequentially compact 
+
+*Proof:* We have established that (1) implies (3). We now prove (3) implies (2) implies (1).
+
+Let $(x_n)$ be a Cauchy sequence in $K$. By hypothesis $K$ is sequentially compact, so there is a subsequence $(x_{n_k})$ which converges to a $c \in K$. Now for any $m, n \in \mathbb{N}$,
+
+$$d(x_n, c) \leq d(x_n, x_m) + d(x_m, c)$$
+
+Let $\epsilon > 0$. We can find an $N$ such that all $m, n \geq N$ are within $\epsilon/2$ of each other. But there's also a point in the subsequence after which all terms of the subsequence are within an $\epsilon/2$ of $c$. So just pick the max of $N$ and the point for the subsequence. Then all terms $x_n$ after this point have $d(x_n, c) < \epsilon$. So $(x_n)$ converges to $c$. This establishes that $K$ is complete.
+
+If $K$ is not totally bounded, there's some $\epsilon$ such that no finite number $x_1, \ldots, x_n$ of elements in $K$ are such that $\epsilon$ balls around each $x_i$ cover $K$. Then pick any $x_1 \in K$, and for $x_2$ pick any element not in $B(\epsilon, x_1)$.
+
+In general, after picking $x_1, \ldots, x_k$, pick $x_{k+1}$ not in $\bigcup_1^k B(\epsilon, x_i)$. We can always do this, because otherwise we would have a finite number of $\epsilon$ balls covering $K$.
+
+Now for all $x_m, x_n$ with $m \neq n$, $d(x_m, x_n) \geq \epsilon$ by construction, so no subsequence is Cauchy. Since we assumed $K$ is sequentially compact, and sequentially compact spaces are complete, this would mean we've constructed a sequence with no convergence subsequence (sequences converge iff they are Cauchy). This contradicts our hypothesis. So $K$ must be totally bounded as well.
+
+
+TODO: Prove (complete and totally bounded) implies compact.
+
+$\Box$
+
+
+## Connectedness
+
+A metric space $X$ is **disconnected** if there are two non-empty, open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
+
+**Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
+
+*Proof:* If not, $f(X) = A \cup B$, where $A = S \cap f(X)$ and $B = T \cap f(Y)$, $S$ and $T$ open in $Y$. So by continuity, the pre-images of $S$ and $T$ are also open in $X$. Since $S$ and $T$ cover the image of $f$, their pre-images cover $X$. They have to be disjoint as well, by the definition of a function. We've just proved that $X$ is disconnected, contrary to hypothesis. $\Box$
