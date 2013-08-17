@@ -154,6 +154,11 @@ We can interpret the above definition this way: $f$ allows us to ensure that we 
 
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
+**Proposition:** If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are continuous at $c \in X$ and $f(c) \in Y$, respectively, then $g \circ f$ is continuous at $c$.
+
+*Proof:* TODO $\Box$
+
+
 If $A \subseteq X$ and $c$ is a limit point of $A$, then the function $f: A \rightarrow Y$ has a **limit of $L$ at $c$** if $\forall \epsilon > 0 \exists $\delta > 0$ such that for all $x \in A - c$, if $d(x, c) < \delta$, $d(fx, L) < \epsilon$. We denote this situation as
 
 $$ \lim_{x \to c} f(x) = L$$
