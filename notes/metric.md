@@ -1,5 +1,11 @@
 % Notes on metric space topology
 
+## Notation
+
+In what follows we sometimes notate $f(x)$ by simply $fx$, which helps improve readability when many parentheses are in play.
+
+## Introduction
+
 Metric spaces are an abstract characterization of spaces equipped with a notion of distance. To each pair of elements we assign a number, the *distance*, between the two points. We must employ the real numbers to quantify distance since the length of the diagonal of a unit square is irrational, and it would be silly to lay out a theory of distance that could not account for the euclidean plane. We also only make use of the nonnegative reals, since it's not clear how to interpret *negative* distance.
 
 Let $X$ be a set, and let $X_k$ for $k \leq |X|$ be the set of all subsets of $X$ with cardinality $k$. For example, $X_1$ is the collection of all singletons, and $X_0$ is a set consisting of the empty set.
@@ -132,7 +138,7 @@ The dual notion to the closure of a set is the "interior" of a set, which is the
 
 *Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
 
-## Continuity
+## Continuity and limits
 
 A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B_\delta(x)) \subseteq B_\epsilon(f(x))$.
 
@@ -144,6 +150,20 @@ We can interpret the above definition this way: $f$ allows us to ensure that we 
 
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
+If $A \subseteq X$ and $c$ is a limit point of $A$, then the function $f: A \rightarrow Y$ has a **limit of $L$ at $c$** if $\forall \epsilon > 0 \exists $\delta > 0$ such that for all $x \in A - c$, if $d(x, c) < \delta$, $d(fx, L) < \epsilon$. We denote this situation as
+
+$$ \lim_{x \to c} f(x) = L$$
+
+Two things to note about this definition:
+
+ 1. functional limits are defined for points that are not in the domain of the function, provided that they are limit points of the domain
+
+ 2. functional limits are not necessarily defined for all the points in the domain, because isolated points of the domain do not have a limit.
+
+
+**Lemma:** For $f: X \rightarrow Y$ with $c \in X$ a limit point of $X$, $f$ is continuous at $c$ iff $\lim_{x \to c} f(x) = f(c)$.
+
+*Proof:* TODO? $\Box$
 
 ## Compactness
 
@@ -180,8 +200,6 @@ A sequence in a metric space $X$ is a function $f: \mathbb{N} \rightarrow X$. In
 A sequence $(x_n)$ **converges** to an element $c \in X$ if for every $\epsilon > 0$ there is a $N \in \mathbb{N}$ such that whenever $n \geq N$, $d(x_n, c) < \epsilon$. In other words, for any given $epsilon$, there are only finitely many terms of the sequence that are not within the $\epsilon$-ball around $c$.
 
 If $(x_n)$ converges to $c$, we sometimes write $(x_n) \rightarrow c$.
-
-In what follows we sometimes notate $f(x)$ by simply $fx$, which helps improve readability when many parentheses are in play.
 
 A function $f: X \rightarrow Y$ between two metric spaces is **sequentially continuous at $c$** (for $c \in X$) if, for any sequence $(x_n) \rightarrow c$ in $X$, the sequence $(f x_n)$ converges to $f(c)$.
 
