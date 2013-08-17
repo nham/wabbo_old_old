@@ -20,6 +20,8 @@ The most common formulation of metric spaces (and definitely easier to work with
   - $d(x,y) = d(y,x)$
   - $d(x,z) \leq d(x,y) + d(y,z)$
 
+A **subspace** of a metric space $X$ is just a subset $S$ of $X$ together with the (set-theoretic) restriction of the metric of $X$ to $S$.
+
 An **open ball** of radius r around x is the set of all points in the metric space that are less than a distance r from x. In symbols:
 
   $$ B_r(x_0) = \{ x : d(x, x_0) < r \}$$
@@ -143,6 +145,7 @@ We can interpret the above definition this way: $f$ allows us to ensure that we 
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
 
+### Compactness
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
 
@@ -159,3 +162,12 @@ A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subs
 **Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
 
 *Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
+
+
+### Connectedness
+
+A metric space $X$ is **disconnected** if there are two open subsets $S$ and $T$ of $X$ that are disjoint and such that $S \cup T = X$. $X$ is **connected** if its not disconnected.
+
+**Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
+
+*Proof:* If not, $f(X) = A \cup B$, where $A = S \cap f(X)$ and $B = T \cap f(Y)$, $S$ and $T$ open in $Y$. So by continuity, the pre-images of $S$ and $T$ are also open in $X$. Since $S$ and $T$ cover the image of $f$, their pre-images cover $X$. They have to be disjoint as well, by the definition of a function. We've just proved that $X$ is disconnected, contrary to hypothesis. $\Box$
