@@ -214,3 +214,10 @@ Conversely, if $f$ isn't continuous, some $\epsilon > 0$ is such that we can con
 
 
 And now, a sequential characterization of functional limits:
+
+**Proposition:** First, for metric space $X$ and $c \in X$, we define an *approximation sequence of $c$ in $X$* to be a sequence in $X$ for which every term $x_i \neq c$, but $(x_n) \rightarrow c$.
+
+Now, if $A \subseteq X$, $f: A \rightarrow Y$, $c$ is a limit point of $A$, then $\lim_{x \to c} f(x) = L$ iff every approximation sequence $(x_n)$ of $c$ in $A$ is such that $(f x_n) \rightarrow L$.
+
+
+*Proof:* TODO $\Box$
