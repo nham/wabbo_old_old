@@ -90,7 +90,11 @@ A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. A
 
 **Proposition:** Closed balls are closed.
 
-*Proof:* TODO $\Box$
+*Proof:* If $X$ is a metric space, then if $y \in C = X - B[x, \epsilon]$, $d(y, x) > \epsilon$. Let $\delta = d(x, y) - \epsilon$. Now, let $z \in B(y, \delta)$. By the triangle inequality,
+
+$$d(x, y) \leq d(x,z) + d(y, z) < d(x,z) + \delta$$
+
+We can further transform this into $\epsilon = \delta + \epsilon - \delta < d(x,z)$. So $z$ is not in $B[x, \epsilon]$. This proves $C$ is open. $\Box$
 
 A **limit point** of a set $S$ in metric space $X$ is a point $p$ such that every open ball around $p$ intersects $S$ in some element of $S - p$. We notate the set of all limit points of $S$ as $\text{limpt}(S)$. An **isolated point** of a $S$ is an $x \in S$ such that there is some open ball around $x$ for which the only element of $S$ contained in it is $x$.
 
