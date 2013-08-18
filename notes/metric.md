@@ -302,7 +302,13 @@ If $X$ is a metric space and $\mathcal{U}$ is an open covering of $X$, then we s
 
 **Proposition:** if $X$ is sequentially compact, then every open cover $\mathcal{U}$ of $X$ has a Lebesgue number.
 
-*Proof:* TODO $\Box$
+*Proof:* Suppose not. Then $\mathcal{U}$ is an open cover of $X$ and has no Lebesgue number, meaning that for every $\epsilon > 0$, there is some point $x_{\epsilon}$ with the ball $B(x_{\epsilon}, \epsilon)$ not contained in any open set in $\mathcal{U}$. We construct a sequence for $\epsilon_n = \frac{1}{n}$, finding elements $x_n$ which have $\epsilon_n$-balls not contained in any open set in $\mathcal{U}$.
+
+$X$ was supposed to be sequentially compact, so $(x_n)$ has a convergent subsequence, with some limit $c$. $c$ is contained in some open set $U$ in the cover. Now consider $\xi = dist(c, X - U)$. Since $c$ is contained in $U$ and $U$ is open, $\xi > 0$. We can now find a $N$ such that for all $k \geq N$, $d(x_{n_k}, c) < \frac{\xi}{2}$. Also, there is certainly a number $m$ such that $\frac{1}{m} < \frac{\xi}{2}$. Hence, for all $k \geq max{N, m}$ and for all $x \in B(x_{n_k}, \frac{1}{n_k})$, we have
+
+$$d(x, c) \leq d(x_{n_k}, c) + d(x, x_{n_k}) < \frac{\xi}{2} + \frac{1}{m} < \xi$$
+
+So the $\frac{1}{n_k}$-ball around $x_{n_k}$ is entirely contained in $U$, a contradiction. $\Box$
 
 **Theorem:** For a metric space $K$, these are equivalent:
 
