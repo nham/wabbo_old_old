@@ -170,7 +170,7 @@ Conversely if the inverse image of any open set in $Y$ is an open set in $X$, th
 
 **Proposition:** If $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ are continuous at $c \in X$ and $f(c) \in Y$, respectively, then $g \circ f$ is continuous at $c$.
 
-*Proof:* TODO $\Box$
+*Proof:* There is a $\delta$ such that for all $x$ within a $\delta$ of $f(c)$ in $Y$, $g(x)$ is within an \epsilon of $g(f(c))$. We can also find a $\gamma$ such that when $x$ is within a $\gamma$ of $c$, $f(x)$ is within an $\epsilon of $f(c)$. So $g \circ f$ is continuous at $c$. $\Box$
 
 
 If $A \subseteq X$ and $c$ is a limit point of $A$, then the function $f: A \rightarrow Y$ has a **limit of $L$ at $c$** if $\forall \epsilon > 0 \exists $\delta > 0$ such that for all $x \in A - c$, if $d(x, c) < \delta$, $d(fx, L) < \epsilon$. We denote this situation as
