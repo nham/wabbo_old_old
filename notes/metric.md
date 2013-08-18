@@ -28,6 +28,8 @@ A **subspace** of a metric space $X$ is just a subset $S$ of $X$ together with t
 
 ## Open and closed sets
 
+TODO: make the notation for open balls consistent. I believe I'm using all kinds of crap now :)
+
 An **open ball** of radius r around x is the set of all points in the metric space that are less than a distance r from x. In symbols:
 
   $$ B_r(x_0) = \{ x : d(x, x_0) < r \}$$
@@ -272,7 +274,7 @@ Now, the set of all such $\epsilon_x$ balls (remember, there is one for each $x 
 
 A metric space is said to be **sequentially compact** if every sequence in the metric space has a convergent subsequence. The last lemma says that every compact metric space is sequentially compact. We now endeavor to prove the converse, and hence their equivalence, for metric spaces.
 
-It will require an intermediate step and some definitions:
+It will require a brief detour:
 
 If $X$ is a metric space and $\epsilon > 0$, then an **$\epsilon$-net** is a subset $A$ of $X$ such that $X = \bigcup_{y \in A} B(\epsilon, y)$. In words, its subset for which the collection of $\epsilon$-balls around $y \in A$ covers $X$.
 
@@ -290,25 +292,28 @@ Note that for every $(x_n^{(k)})$, every pair of terms in this sequence is such 
 
 Now, the sequence $(x_k^{(k)})$ is a subsequence of $(x_n)$ by definition, and for all $m, n \geq N$, $d(x_m^{(m)}, x_n^{(n)}) < \frac{1}{N}$ since both are terms in the sequence $(x_N^{(N)})$. We can certainly make the distance between terms arbitrarily small; this is a Cauchy subsequence. $\Box$.
 
+**Corollary:** A metric space is complete and totally bounded iff it is sequentially compact.
 
-**Proposition:** For a metric space $K$, these are equivalent:
+*Proof:* If $X$ is complete and totally bounded, every sequence has a Cauchy subsequence since it's totally bounded. But such a subsequence converges since $X$ is complete, so $X$ is sequentially compact.
+
+Conversely, if every sequence has a convergent subsequence, because all convergent sequences are Cauchy we have that every sequence has a Cauchy subsequence. The proposition implies that the space is totally bounded. Furthermore, if $(x_n)$ is Cauchy, it has a convergent subsequence, and we use the proposition that any Cauchy sequence with a convergent subsequence converges to establish that the space is complete. $\Box$
+
+If $X$ is a metric space and $\mathcal{U}$ is an open covering of $X$, then we say that $\epsilon > 0$ is a **Lebesgue number** for $\mathcal{U}$ if for all $x \in X$, $B(x, \epsilon)$ is contained in one of the elements $U \in \mathcal{U}$.
+
+**Proposition:** if $X$ is sequentially compact, then every open cover $\mathcal{U}$ of $X$ has a Lebesgue number.
+
+*Proof:* TODO $\Box$
+
+**Theorem:** For a metric space $K$, these are equivalent:
 
  1. $K$ is compact
  2. $K$ is complete and totally bounded.
  3. $K$ is sequentially compact 
 
-*Proof:* We have established that (1) implies (3). We now prove (3) implies (2) implies (1).
+*Proof:* We have established that (1) implies (3), and that (2) and (3) are equivalent.
+We now prove that (3) and (2) imply (1).
 
-Let $(x_n)$ be a Cauchy sequence in $K$. By hypothesis $K$ is sequentially compact, so there is a subsequence $(x_{n_k})$ which converges to a $c \in K$. But any Cauchy sequence with a convergent subsequence converges as well, so $(x_n) \rightarrow c$.
-
-Hence, $K$ is complete.
-
-$K$'s completeness and its sequential compactness establishes that every sequence in $K$ has a Cauchy subsequence, and by a previous proposition $K$ must be totally bounded.
-
-
-TODO: Prove (complete and totally bounded) implies compact.
-
-$\Box$
+Let $\mathcal{U}$ be an open cover of $X$. Since every open covering of a sequentially compact space has a Lebesgue number, $\mathcal{U}$ has one. Call it $\epsilon$. But $X$ is totally bounded, so it has a finite $\epsilon$-net. Each of these $\epsilon$-balls is contained some element of $\mathcal{U}$ (since $\epsilon$ is a Lebesgue number), and they cover the whole space. So $\mathcal{U}$ has a finite subcover, and $X$ is compact. $\Box$
 
 
 ## Connectedness
