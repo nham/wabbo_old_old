@@ -321,4 +321,10 @@ Calling the right hand side of that $N$, we know that $N = i \Diamond x y + i \D
 
 **Proposition:** If $K_1, \ldots, K_m$ are compact metric spaces, then the product space $\prod_1^m K_i$ (defined by the sup metric) is compact as well.
 
-*Proof:* TODO $\Box$
+*Proof:* First we note that each $K_i$ is sequentially compact. Let $(\gamma_n)$ defined by $\gamma_n = (a_n^{(1)}, \ldots, a_n^{(m)})$ be a sequence in the product space $\prod_1^m K_i$. then $(a_n^{(1)})$ is a sequence in $K_1$, and it has a convergent subsequence $(a_{n_k}^{(1)})$. We define $(\gamma_n^{(1)})$ by $\gamma_k^{(1)} = (a_{n_k}^{(1)}, \ldots, a_{n_k}^{(m)})$. We can now take the sequence $(a_{n_k}^{(2)})$ and continue in the same way, finding a convergent subsequence in $K_2$, then taking a subsequence of the $\gamma_n^{(1)}$ sequence.
+
+First we note that each $K_i$ is sequentially compact. This proof is a bit messy in the general case, so we prove it for $m = 2$. There is no new idea needed to extend it to arbitrary finite products, just more bookkeeping.
+
+We let $(\gamma_n)$ be a sequence in $K_1 \times K_2$, with $\gamma_n = (a_n, b_n)$. Then $(a_n)$ is a sequence in $K_1$, and it has a convergent subsequence $(a_{n_k})$. So the subsequence $(\xi_k)$ with $\xi_k = \gamma_{n_k}$ is a subsequence of $(\gamma_n)$. Letting $xi_k = (c_k, d_k)$, we have that $(d_n)$ is a sequence in $K_2$, so it has a convergent subsequence $(d_{n_j})$. Now $(\xi_{n_j})$ is a subsequence of the original $(\gamma_n)$. But both $(c_{n_j})$ and $(d_{n_j})$ converge on their own, in $K_1$ and $K_2$, respectively. So $(\xi_{n_j})$ converges as well. Hence $K_1 \times K_2$ is sequentially compact. $\Box$.
+
+$\Box$
