@@ -242,7 +242,21 @@ It will require an intermediate step and some definitions:
 
 A metric space is **complete** if every Cauchy sequence in the space converges in the space. (TODO: define "Cauchy sequence", lol).
 
-A metric space is **totally bounded** if for every $\epsilon > 0$, there is some $n \in \mathbb{P}$ and some elements $x_1, \ldots, x_n$ such that the epsilon balls $B_\epsilon(x_i)$ cover the space.
+If $X$ is a metric space and $\epsilon > 0$, then an **$\epsilon$-net** is a subset $A$ of $X$ such that $X = \bigcup_{y \in A} B(\epsilon, y)$. In words, its subset for which the collection of $\epsilon$-balls around $y \in A$ covers $X$.
+
+A metric space $X$ is **totally bounded** if for every $\epsilon > 0$, $X$ has a finite $\epsilon$-net.
+
+**Proposition:** A metric space is totally bounded iff every sequence has a Cauchy subsequence.
+
+*Proof:* Let $X$ be a metric space. If $X$ isn't totally bounded, let $\epsilon > 0$ be such that it has no finite $\epsilon$-net. Then we can pick an arbitrary $x_1 \in X$. Having picked $x_1, \ldots, x_k$, pick $x_{k+1}$ not in $\bigcup_1^k B(\epsilon, x_i)$. We can always do this, because otherwise we would have a finite $\epsilon$-net of $X$.
+
+Now for all $x_m, x_n$ with $m \neq n$, $d(x_m, x_n) \geq \epsilon$ by construction, so no subsequence is Cauchy. 
+
+Conversely, suppose $X$ is totally bounded. For any $\epsilon > 0$ and any sequence $(z_n)$, we can obtain a subsequence $(z_{n_k})$ contained entirely within one of the $\epsilon$-balls, since either (a) the sequence takes on finitely many different values, or (b) it takes on infinitely many values, and there are only finitely many balls. In particular, we can obtain subsequence $(x_{n_k}^{(1)})$ contained within some $\frac{1}{2}$-ball, and (proceeding inductively now) applying the same proposition again to $(x_{n_k}^{(k)})$, some subsequence $(x_{n_k}^{(k+1)})$ is contained entirely within a $\frac{1}{2(k+1)}$-ball.
+
+Note that for every $(x_n^{(k)})$, every pair of terms in this sequence is such that $d(x_n^{(k)}, x_m^{(k)}) < \frac{1}{k}$.
+
+Now, the sequence $(x_k^{(k)})$ is a subsequence of $(x_n)$ by definition, and for all $m, n \geq N$, $d(x_m^{(m)}, x_n^{(n)}) < \frac{1}{N}$ since both are terms in the sequence $(x_N^{(N)})$. We can certainly make the distance between terms arbitrarily small; this is a Cauchy subsequence. $\Box$.
 
 
 **Proposition:** For a metric space $K$, these are equivalent:
@@ -259,11 +273,7 @@ $$d(x_n, c) \leq d(x_n, x_m) + d(x_m, c)$$
 
 Let $\epsilon > 0$. We can find an $N$ such that all $m, n \geq N$ are within $\epsilon/2$ of each other. But there's also a point in the subsequence after which all terms of the subsequence are within an $\epsilon/2$ of $c$. So just pick the max of $N$ and the point for the subsequence. Then all terms $x_n$ after this point have $d(x_n, c) < \epsilon$. So $(x_n)$ converges to $c$. This establishes that $K$ is complete.
 
-If $K$ is not totally bounded, there's some $\epsilon$ such that no finite number $x_1, \ldots, x_n$ of elements in $K$ are such that $\epsilon$ balls around each $x_i$ cover $K$. Then pick any $x_1 \in K$, and for $x_2$ pick any element not in $B(\epsilon, x_1)$.
-
-In general, after picking $x_1, \ldots, x_k$, pick $x_{k+1}$ not in $\bigcup_1^k B(\epsilon, x_i)$. We can always do this, because otherwise we would have a finite number of $\epsilon$ balls covering $K$.
-
-Now for all $x_m, x_n$ with $m \neq n$, $d(x_m, x_n) \geq \epsilon$ by construction, so no subsequence is Cauchy. Since we assumed $K$ is sequentially compact, and sequentially compact spaces are complete, this would mean we've constructed a sequence with no convergence subsequence (sequences converge iff they are Cauchy). This contradicts our hypothesis. So $K$ must be totally bounded as well.
+$K$'s completeness and its sequential compactness establishes that every sequence in $K$ has a Cauchy subsequence, and by a previous proposition $K$ must be totally bounded.
 
 
 TODO: Prove (complete and totally bounded) implies compact.
