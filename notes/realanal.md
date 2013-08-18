@@ -65,3 +65,52 @@ A closed interval is clearly bounded. Note also that closed intervals are the cl
 **Intermediate value theorem:** If $[a,b]$ is non-empty and $f: [a, b] \rightarrow \mathbb{R}$ is continuous, then assuming $f(a) \leq f(b)$, for all $c \in [f(a), f(b)]$ there is an $x \in [a, b]$ such that $f(x) = c$. Also, if $f(a) > f(b)$, for all $c \in [f(b), f(a)]$, there's a $x \in [a, b]$ such that $f(x) = c$.
 
 *Proof:* WLOG we can prove for the $f(a) \leq f(b)$ case. (In the other case, negate the function). Now $[a, b]$ is connected, and the image of a continuous function on any connected space is connected as well. So the image must be an interval, and we can indeed find some $x \in [a, b]$ which maps to any $c \in [f(a), f(b)]$. $\Box$
+
+
+## Multivariable real analysis
+
+First note that every normed vector space $V$ with norm $\| \cdot \|$  induces a metric space by:
+
+$$d(x, y) := \|x - y\|$$
+
+We start with the standard inner product space over $\mathbb{R}^n$, which induces a norm via:
+
+$$\| x \| = \sqrt{x \cdot x}$$
+
+This is the standard euclidean distance. It turns $\mathbb{R}^n$ into a normed vector space, and hence into a metric space. We call this metric the **euclidean metric**. 
+
+There is another metric that is easier to work with, which is induced by an alternative norm, the **sup norm:**
+
+$$|x| := max{|x_1|, \ldots, |x_n|}$$
+
+This metric induced by this norm is called the **sup metric**.
+
+These are different metric spaces over $\mathbb{R}^n$, and accordingly the open balls of these metric spaces are different. We call an open ball in the euclidean metric an **open ball in $\mathbb{R}^n$** (it's confusing, I'm aware, but since we are working almost exclusively in \mathbb{R}^n the context should be clear). It is notated:
+
+$$B(x, \epsilon) := \{y \in \mathbb{R}^n : \| y - x \| < \epsilon\}$$
+
+An open ball in the sup metric is called a **open cube in $\mathbb{R}^n$**, as is notated:
+
+$$C(x, \epsilon) := \{y \in \mathbb{R}^n : |y - x| < \epsilon\}$$
+
+Even though the open balls are different, the two spaces are topologically equivalent (luckily for us!), meaning $U$ is open under one metric iff it's open under the other.
+
+We use this lemma:
+
+**Lemma:** For all $\textbf{x} \in \mathbb{R}^n$, $| \textbf{x} | \leq \| \textbf{x} \| \leq \sqrt n | \textbf{x} |$.
+
+*Proof:* $|\textbf{x}| = |x_i|$ for some $i$, and each $i$ is such that $|x_i|^2 \leq \| \textbf{x} \|^2$, which establishes that $| \textbf{x} | \leq \| \textbf{x} \|$. Now, $\| \textbf{x} \| \leq \sqrt{\sum_1^n | \textbf{x} |} = \sqrt{n | \textbf{x} |^2} = \sqrt n | \textbf{x} |$. $\Box$
+
+**Proposition:** For all $x \in \mathbb{R}^n$, $B(x, \epsilon) \subseteq C(x, \epsilon) \subseteq B(x, \epsilon \sqrt n)$
+
+*Proof:* If $y \in B(x, \epsilon)$, each $|x_i - y_i| < \epsilon$, since otherwise $\| x - y \|$ could not be less than $\epsilon$. Hence $| \textbf{x - y} | < \epsilon$, so $y \in C(x, \epsilon)$.
+
+Now let $z \in C(x, \epsilon)$. Then $| x_i - z_i | < \epsilon$ for all $i$. This implies that $\| x - z \| < \sqrt{ n \epsilon^2} = \sqrt n \epsilon$. $\Box$
+
+Now if $U$ is open in the euclidean metric, every $x \in U$ has an open ball around $x$ contained in $U$. The last proposition implies that an open cube around $x$ is contained in $U$, so $U$ is open in the sup metric. The converse similarly holds.
+
+**Proposition:** If $[a_i, b_i] \subseteq \mathbb{R}$ for $i \in [n]$, then $\prod_1^n [a_i, b_i]$ is a compact subset of $\mathbb{R}^n$.
+
+*Proof:* Each $[a_i, b_i]$ is compact, and the finite product of compact spaces is compact. $\Box$
+
+This is technically a compact subspace of $\mathbb{R}^n$ over the sup metric, but the euclidean metric and the sup metric are topologically equivalent, so $S$ is compact in one iff it's compact in the other.
