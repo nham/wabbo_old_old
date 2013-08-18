@@ -202,6 +202,24 @@ A **subsequence** of a sequence $f: \mathbb{N} \rightarrow X$ is the composition
 
 *Proof:* If all the terms of $(x_n)$ are within an epsilon of some $c$ after a point $N$, then all the terms of any subsequence are as well, since the subsequence terms after $N$ are all terms that come after $N$ in the original sequence. $\Box$
 
+A **Cauchy sequence** is a sequence $(x_n)$ such that for ever $\epsilon > 0$, there is some $N \in \mathbb{N}$ such that for all $m, n \geq N$, $d(x_m, x_n) < \epsilon$.
+
+**Proposition:** Every convergent sequence is Cauchy.
+
+*Proof:* If $(x_n) \rightarrow c$, there is an $N$ such that for all $n \geq N$, $d(x_n, c) < \frac{\epsilon}{2}$. Hence for all $m, n \geq N$, $d(x_m, x_n) < d(x_m, c) + d(c, x_n) < \epsilon$. $\Box$
+
+The converse is not, in general, true. Consider the metric space of the rational numbers and the sequence of success approximations to $\sqrt 2$, $(1, 1.4, 1.41, 1.414, 1.4142, 1.41421...)$. This sequence is Cauchy, but it does not converge in the rationals.
+
+A metric space where every Cauchy sequence converges is called a **complete** metric space..
+
+**Proposition:** If $(x_n)$ is Cauchy and a subsequence $(x_{n_k})$ converges to some $c$, then $(x_n)$ converges to $c$ as well.
+
+*Proof:* For any $m, n \in \mathbb{N}$, $d(x_n, c) \leq d(x_n, x_m) + d(x_m, c)$.
+
+Let $\epsilon > 0$. We can find an $N$ such that all $m, n \geq N$ are within $\epsilon/2$ of each other. So if there were a term of the sequence coming after $N$ that was within $\epsilon/2$ of $c$, we could use that to establish that $d(x_n, c) < \epsilon$ for all $n \geq N$.
+
+But there certainly is such a term, since $(x_{n_k}) \rightarrow c$. $\Box$
+
 
 A function $f: X \rightarrow Y$ between two metric spaces is **sequentially continuous at $c$** (for $c \in X$) if, for any sequence $(x_n) \rightarrow c$ in $X$, the sequence $(f x_n)$ converges to $f(c)$.
 
@@ -256,8 +274,6 @@ A metric space is said to be **sequentially compact** if every sequence in the m
 
 It will require an intermediate step and some definitions:
 
-A metric space is **complete** if every Cauchy sequence in the space converges in the space. (TODO: define "Cauchy sequence", lol).
-
 If $X$ is a metric space and $\epsilon > 0$, then an **$\epsilon$-net** is a subset $A$ of $X$ such that $X = \bigcup_{y \in A} B(\epsilon, y)$. In words, its subset for which the collection of $\epsilon$-balls around $y \in A$ covers $X$.
 
 A metric space $X$ is **totally bounded** if for every $\epsilon > 0$, $X$ has a finite $\epsilon$-net.
@@ -283,11 +299,9 @@ Now, the sequence $(x_k^{(k)})$ is a subsequence of $(x_n)$ by definition, and f
 
 *Proof:* We have established that (1) implies (3). We now prove (3) implies (2) implies (1).
 
-Let $(x_n)$ be a Cauchy sequence in $K$. By hypothesis $K$ is sequentially compact, so there is a subsequence $(x_{n_k})$ which converges to a $c \in K$. Now for any $m, n \in \mathbb{N}$,
+Let $(x_n)$ be a Cauchy sequence in $K$. By hypothesis $K$ is sequentially compact, so there is a subsequence $(x_{n_k})$ which converges to a $c \in K$. But any Cauchy sequence with a convergent subsequence converges as well, so $(x_n) \rightarrow c$.
 
-$$d(x_n, c) \leq d(x_n, x_m) + d(x_m, c)$$
-
-Let $\epsilon > 0$. We can find an $N$ such that all $m, n \geq N$ are within $\epsilon/2$ of each other. But there's also a point in the subsequence after which all terms of the subsequence are within an $\epsilon/2$ of $c$. So just pick the max of $N$ and the point for the subsequence. Then all terms $x_n$ after this point have $d(x_n, c) < \epsilon$. So $(x_n)$ converges to $c$. This establishes that $K$ is complete.
+Hence, $K$ is complete.
 
 $K$'s completeness and its sequential compactness establishes that every sequence in $K$ has a Cauchy subsequence, and by a previous proposition $K$ must be totally bounded.
 
