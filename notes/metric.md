@@ -218,6 +218,15 @@ Now, if $A \subseteq X$, $f: A \rightarrow Y$, $c$ is a limit point of $A$, then
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
 
+The following allows us to speak simply of a *compact space*, not merely of compact subsets of some metric space.
+
+**Lemma:** If $X$ is a metric space, and $K \subseteq Y \subseteq X$, then $K is compact in $Y$ iff $K$ is compact in $X$.
+
+*Proof:* If $K$ compact in $X$, and $\mathcal{S}$ is an open cover in $Y$ of $K$, then each $S_i \in \mathcal{S}$ has some $U_i \subseteq X$ such that $U_i \cap Y = S_i$. So the family $\{U_i\}$ is an open cover of $K in $X$, and it has a finite subcover $U_1, \ldots, U_n$. Intersecting these with $Y$ we get a finite subcover in $Y$, so $K$ is compact in $Y$ as well.
+
+The same trick works when we start with $K$ compact in $Y$: an open cover in $X$ can have its elements intersected with $Y$ to obtain an open cover in $Y$, which has a finite subcover in $Y$. Each element of this finite subcover is the intersection of an open set of $X$ with $Y$, and the open sets are elements of the original cover in $X$. $\Box$.
+
+
 **Lemma:** A compact set $S$ in a metric space is bounded.
 
 *Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B_{r_1}(x), \ldots, B_{r_n}(x) \}$. The union of these is just the biggest open ball, $B_N(x)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
