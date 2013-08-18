@@ -278,3 +278,28 @@ A metric space $X$ is **disconnected** if there are two non-empty, open subsets 
 **Lemma:** If $X$ is connected and $Y$ is an arbitrary metric space and $f: X \rightarrow Y$ is continuous, then $f(X)$ is a connected subspace of $Y$.
 
 *Proof:* If not, $f(X) = A \cup B$, where $A = S \cap f(X)$ and $B = T \cap f(Y)$, $S$ and $T$ open in $Y$. So by continuity, the pre-images of $S$ and $T$ are also open in $X$. Since $S$ and $T$ cover the image of $f$, their pre-images cover $X$. They have to be disjoint as well, by the definition of a function. We've just proved that $X$ is disconnected, contrary to hypothesis. $\Box$
+
+
+## Products
+
+If $(X_i, d_i)$, $i \in [n]$ is some finite number of metric spaces, we can form the **product space** $(\prod_i^n X_i, d)$ where $d$ is defined by:
+
+$$d[(x_1, \ldots, x_n), (y_1, \ldots, y_n)] := max{d_1(x_1, y_1), \ldots, d_n(x_n, y_n)}$$
+
+There are actually a few choices we can make for the product metric, but this choice, the *sup metric*, is fairly simple to work with.
+
+It's clearly always a nonnegative real, and is zero iff each $d(x_i, y_i)$ is zero, which is true iff $x_i = y_i$. Hence $d$ is positive definite. Symmetry holds because it holds in each $d_i$.
+
+So for $(x_1, \ldots, x_n)$, $(y_1, \ldots, y_n)$, $(z_1, \ldots, z_n)$, for each $i$ we have $d(x_i, z_i) \leq d(x_i, y_i) + d_i(y_i, z_i)$. So letting $M = d(x, z)$, and letting $i \Diamond x y$ stand for $d_i(x_i, y_i)$ and $i \Diamond y z$ stand similarly, we have:
+
+$$M \leq max{1 \Diamond x y + 1 \Diamond y z, \ldots, n \Diamond x y + n \Diamond y z}$$
+
+Calling the right hand side of that $N$, we know that $N = i \Diamond x y + i \Diamond y z$ for some $i$. But $d(x, y)$ is bigger than $j \Diamond x y$ for every $j$, and ditto for $d(y, z)$ and every $j \Diamond y z$. This is the triangle inequality we seek, so the product space over a sup metric is a metric space. $\Box$
+
+**Proposition:** If $(x_n^i) is a sequence in $(X_i, d_i)$ for each $i \in [k]$, then the product sequence $(x_n^1, \ldots, x_n^k)$ converges to $(c_1, \ldots, c_k)$ iff each $(x_n^i)$ converges to $c_i$.
+
+*Proof:* If the product sequence converges, for all $\epsilon$ there's a $N$ such that for all $n \geq N$, $d(x_n, c) < \epsilon$. By definition, each $d_i(x_n^i, c_i) < \epsilon$, so $(x_n^i)$ converges to $c_i$. Conversely, since there exist $N_i$ that will get each $(x_n^i)$ within an epsilon of $c_i$, taking the max of them will get the product sequence within an $\epsilon$ of $(c_1, \ldots, c_k)$. $\Box$
+
+**Proposition:** If $K_1, \ldots, K_m$ are compact metric spaces, then the product space $\prod_1^m K_i$ (defined by the sup metric) is compact as well.
+
+*Proof:* TODO $\Box$
