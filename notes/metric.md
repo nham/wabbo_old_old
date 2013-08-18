@@ -196,6 +196,13 @@ A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subs
 
 *Proof:* If $(x_n) \rightarrow c$, then for any $\epsilon > 0$, all but finitely many terms are contained in the $\epsilon$-ball around $c$. So setting $\delta = max{\epsilon, d(c, x_1) + 1, \ldots, d(c, x_n) + 1}$, all terms are contained within the $\delta$ ball around $c$. $\Box$
 
+A **subsequence** of a sequence $f: \mathbb{N} \rightarrow X$ is the composition of $f$ with a monotonically increasing function $i: \mathbb{N} \rightarrow \mathbb{N}$, i.e. $i \circ f$.In other words, it's a version of the original sequence where we keep the terms in the same order, but perhaps leave out some of them.
+
+**Proposition:** Every subsequence of a convergent sequence is convergent.
+
+*Proof:* If all the terms of $(x_n)$ are within an epsilon of some $c$ after a point $N$, then all the terms of any subsequence are as well, since the subsequence terms after $N$ are all terms that come after $N$ in the original sequence. $\Box$
+
+
 A function $f: X \rightarrow Y$ between two metric spaces is **sequentially continuous at $c$** (for $c \in X$) if, for any sequence $(x_n) \rightarrow c$ in $X$, the sequence $(f x_n)$ converges to $f(c)$.
 
 **Lemma:** $f: X \rightarrow Y$ is continuous at $c$ iff it's sequentially continuous at $c$.
