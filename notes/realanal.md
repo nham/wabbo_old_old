@@ -109,8 +109,23 @@ Now let $z \in C(x, \epsilon)$. Then $| x_i - z_i | < \epsilon$ for all $i$. Thi
 
 Now if $U$ is open in the euclidean metric, every $x \in U$ has an open ball around $x$ contained in $U$. The last proposition implies that an open cube around $x$ is contained in $U$, so $U$ is open in the sup metric. The converse similarly holds.
 
+So all topological properties of the sup metric hold in the euclidean metric, and vice versa. That is, the two spaces share the same open and closed sets, the same compact and connected sets, the same continuous functions (continuity does not, in fact, rely on open balls in the metric space. It can be characterized entirely in terms of open sets).
+
 **Proposition:** If $[a_i, b_i] \subseteq \mathbb{R}$ for $i \in [n]$, then $\prod_1^n [a_i, b_i]$ is a compact subset of $\mathbb{R}^n$.
 
 *Proof:* Each $[a_i, b_i]$ is compact, and the finite product of compact spaces is compact. $\Box$
 
 This is technically a compact subspace of $\mathbb{R}^n$ over the sup metric, but the euclidean metric and the sup metric are topologically equivalent, so $S$ is compact in one iff it's compact in the other.
+
+
+Define the $i$-th projection function $\pi_i: \mathbb{R}^n \rightarrow \mathbb{R}$, by $\pi_i (\textbf{x}) = x_i$. If $A \subseteq \mathbb{R}^n$, $f: A \rightarrow \mathbb{R}^m$, we can define $f_i: A \rightarrow \mathbb{R}$ by $f_i(\textbf{x}) = pi_i \circ f (\textbf{x}) for all $\textbf{x} \in A$. Such functions $f_i$ are called the **component functions** of $f$.
+
+From this, we have $f(\textbf{x}) = (f_1(\textbf{x}), \ldots, f_m(\textbf{x}))$ for all $\textbf{x}$.
+
+**Proposition:** Each projection function $\pi_i$ on $\mathbb{R}^n$ is continuous.
+
+*Proof:* It suffices to prove it holds in the sup metric. If $\textbf{x} \in \mathbb{R}^n$, then for every $\epsilon > 0$, any $y$ in the open cube of radius $\epsilon$ around $\textbf{x}$ will have $\pi_i(\textbf{y})$ within an $\epsilon$ of $\pi_i(\textbf{x})$. $\Box$
+
+**Corollary:** For $A \subseteq \mathbb{R}^n$, any continuous $f: A \rightarrow \mathbb{R}^m$ has continuous component functions.
+
+*Proof:* Each component is the composition of continuous functions. $\Box$
