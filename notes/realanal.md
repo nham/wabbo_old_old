@@ -83,7 +83,21 @@ A closed interval is clearly bounded. Note also that closed intervals are the cl
  2. for all $c \in \mathbb{R}$, $cf$ is continuous at $x$
  3. $fg$ is continuous at $x$
 
-*Proof:* TODO $\Box$
+*Proof:* We can use sequential continuity and the algebraic limit theorems for sequences to prove these. Suppose that $(x_n)$ is any sequence in $X$ converging to $x$. By sequential continuity, the sequences $(f x_n)$ and $(g x_n)$ converge to $f(x)$ and $g(x)$, respectively.
+
+For (1)  By the algebraic limit theorem, $((f+g)(x_n))$ = $(f x_n + g x_n)$ converges to $f(x) + g(x) = (f+g)(x)$.
+
+For (2), $(c f(x_n)) \rightarrow c f(x)$.
+
+For (3), $(f x_n g x_n) \rightarrow f(x) g(x) = (fg)(x)$. $\Box$
+
+**Algebraic limit theorem:** If $X$ is a metric space, $A \subseteq X$, and if $f, g: A \rightarrow \mathbb{R}$ with $f(x) \rightarrow K$ and $g(x) \rightarrow L$ as $x \rightarrow a$, then we have, for $x \rightarrow a$:
+
+ 1. $(f+g)(x) \rightarrow K + L$
+ 2. $(cf)(x) \rightarrow cK$ for all $c \in \mathbb{R}$
+ 3. $(fg)(x) \rightarrow KL$
+
+*Proof:* By the sequential characterization of functional limits, we have that every approximation sequence $(x_n)$ of $a$ in $X$, is such that $(f x_n) \rightarrow K$ and $(g x_n) \rightarrow L$. Again, by the algebraic limit theorem for sequences, the above all hold. $\Box$
 
 
 An **interval** of $\mathbb{R}$ is a subset $I$ such that for all $x, y \in I$, for all $z \in \mathbb{R}$ such that $x < z < y$, then $z \in \mathbb{R}$.
@@ -104,6 +118,21 @@ which exists (by the least upper bound property) since we know $x < y$. $s \geq 
 The problem is that for all $\epsilon > 0$, there is some $b \in B$ such that $s < b < s + \epsilon$. So all $\epsilon$-balls around $s$ intersect both $A$ and $B$. This is an issue since $s \in S$, meaning it must be in $A$ or in $B$, which are both supposed to be open. So after all, $s = x$. But this is still a problem, because every $\epsilon$-ball around $x$ intersects $B$ and $A$ is open.
 
 So $S$ must not be disconnected after all. $\Box$
+
+
+### Derivatives
+
+If $f: A \rightarrow \mathbb{R}$, $A \subseteq \mathbb{R}$ and $a$ is in the interior of $A$, then we say that $f$ is **differentiable** at $a$ if this limit exists
+
+$$\lim_{t \to 0} \frac{f(a+t) - f(a)}{t}$$
+
+We notate this limit, if it exists, as $f'(a)$.
+
+**Proposition:** If $f: A \to \mathbb{R}$ is differentiable at $a \in A$, then it is continuous at $a$.
+
+*Proof:* By hypothesis, $\frac{f(a + t) - f(a)}{t} \to f'(a)$ as $t \to 0$. By the algebraic limit theorem, since the identity function $t \mapsto t$ defined on $A$ goes to $0$ at $t \to 0$, we must have $[f(a+t) - f(a)] \to 0$ as $t \to 0$. Or $f(a+t) \to f(a)$ as $t \to 0$.
+
+This means that for every $\epsilon > 0$ there's a $\delta > 0$ such that when $|t| < \delta$, $t \neq 0$, we have $|f(a+t) - f(a)| < \epsilon$. But for all $x$ such that $x \neq a$, $|x - a| < \delta$, this implies $|f(x) - f(a)| < \epsilon$. For $x = a$, $|f(x) - f(a)|$ is zero. This is, word for word, the definition for continuity at $a$. $\Box$.
 
 
 
