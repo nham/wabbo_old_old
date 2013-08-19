@@ -126,7 +126,7 @@ If $f: A \rightarrow \mathbb{R}$, $A \subseteq \mathbb{R}$ and $a$ is in the int
 
 $$\lim_{t \to 0} \frac{f(a+t) - f(a)}{t}$$
 
-We notate this limit, if it exists, as $f'(a)$.
+We notate this limit, if it exists, as $f'(a)$, and call it the **derivative** of $f$ at $a$.
 
 **Proposition:** If $f: A \to \mathbb{R}$ is differentiable at $a \in A$, then it is continuous at $a$.
 
