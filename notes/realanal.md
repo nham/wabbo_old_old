@@ -14,7 +14,7 @@ $\mathbb{R}$ can be made a metric space by defining $d(x,y) = |x - y|$.
 A sequence $(x_n)$ is **bounded** if there is some $M \in \mathbb{R}$ such that $|x_n| < M$ for all $n$. You can check that this definition meshes with the general definition for bounded sequences in metric spaces.
 
 
-**Algebraic limit theorem for sequences:** If $(x_n)$, $(y_n)$ are sequences that converge to $c$ and $d$, respectively, then
+**Algebraic limit theorem for sequences:** If $(x_n)$, $(y_n)$ are sequences in $\mathbb{R}$ that converge to $c$ and $d$, respectively, then
 
  1. $(x_n + y_n) \rightarrow c + d$
  2. $(a x_n) \rightarrow ac$ for all $a \in \mathbb{R}$
@@ -39,6 +39,15 @@ $$|x_n y_n - cd| = |x_n y_n - x_n d + x_n d - cd| \leq |x_n| |y_n - d| + |d| |x_
 The obvious strategy is to find a point $N$ after which both terms are individually less than $\frac{\epsilon}{2}$. We can make $|x_n - c|$ and $|y_n - d|$ as near zero as we like and $|d|$ is fixed, but the $|x_n|$ seems problematic.
 
 In fact it is not, since every convergent sequence is bounded. So we can find some $M \in \mathbb{R}$ such that $|x_n| < M$ for all $n$. This establishes the result. $\Box$
+
+
+**Order limit theorem:** If $(x_n)$ and $(y_n)$ are sequences in $\mathbb{R}$ that converge to $K$ and $L$, respectively, then if there's an $N$ such that $n \geq N$ implies $x_n \geq y_n$, then $K \geq L$
+
+*Proof:* Suppose not. $K < L$, so taking $\epsilon = $\frac{L-K}{2}$, we have that eventually $x_n$'s are within an $\epsilon of $K$, and similarly $y_n$'s are within an $\epsilon$ of $L$. For all such terms, $x_n < y_n$, contradicting our assumption. $\Box$
+
+**Squeeze theorem:** If $(x_n)$, $(y_n)$, $(z_n)$ are sequences in $\mathbb{R}$ and $\exists N$ such that $n \geq N$ implies $x_n \leq y_n \leq z_n$, then if $(x_n) \to L$ and $(z_n) \to L$, we must have $(y_n) \to L$.
+
+*Proof:* For all $\epsilon > 0$, there is some point after which all $x_n$ and $z_n$ are within $\epsilon$ of $L$. $y_n$ must be between them each time, so $y_n$ is also within an $\epsilon$ of $L$. $\Box$.
 
 
 A sequence $(x_n)$ is **monotonically nondecreasing** if for all $n$, $x_n \leq x_{n+1}$, and **monotonically nonincreasing** if $x_n \geq x_{n+1}$. It's called **monotone** if its either of these.
