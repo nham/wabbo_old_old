@@ -135,6 +135,16 @@ We notate this limit, if it exists, as $f'(a)$, and call it the **derivative** o
 This means that for every $\epsilon > 0$ there's a $\delta > 0$ such that when $|t| < \delta$, $t \neq 0$, we have $|f(a+t) - f(a)| < \epsilon$. But for all $x$ such that $x \neq a$, $|x - a| < \delta$, this implies $|f(x) - f(a)| < \epsilon$. For $x = a$, $|f(x) - f(a)|$ is zero. This is, word for word, the definition for continuity at $a$. $\Box$.
 
 
+**Proposition:** If $f, g: A \to \mathbb{R}$ are differentiable at $a$, then
+
+ 1. $(f+g)'(a) = f'(a) + g'(a)$
+ 2. $(cf)'(a) = c f'(a)$ for all $c \in \mathbb{R}$
+ 3. $(fg)'(a) = f'(a) g(a) + g'(a) f(a)$
+
+*Proof:* We can prove (1) and (2) (i.e. the *linearity* of the derivative) in one fell swoop using the algebraic limit theorem. I won't carry it out here, but I promise it can be done. Just trust me, okay?
+
+For (3), TODO. $\Box$
+
 
 ## Multivariable real analysis
 
