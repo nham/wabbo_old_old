@@ -154,6 +154,22 @@ This means that for every $\epsilon > 0$ there's a $\delta > 0$ such that when $
 
 For (3), TODO. $\Box$
 
+A function $f: A \to \mathbb{R}$ has a **local maximum** at $c \in A$ if there is an $\epsilon > 0$ such that for all $x$ with $|x - c| < \epsilon$, $f(x) \leq f(c)$. Such a $c$ is a **local minimum** if instead we have all such $f(x) \geq f(c)$. Local minima and maxima are collectively called **local extrema**.
+
+**Interior Extremum Theorem:** If $f: A \to \mathbb{R}$ and $c$ is an interior point of $A$, and if $c$ if a local extremum of $f$, then if $f$ is differentiable at $c$, $f'(c) = 0$.
+
+*Proof:* We assume $f$ takes on a local maximum at $c$ and proclaim that the case for a local minimum is similar. Let $B(c, \gamma)$ be the range on which $f(c)$ is maximum. We also let $\phi$ be a function detined by
+
+$$\phi(t) = \frac{f(c+t) - f(c)}{t}$$
+
+for all $t \neq 0$.
+
+Then for all $t$ with $0 < t < \gamma$, $\phi(t) \leq 0$, and similarly for all $s$ with $- \gamma < s < 0$, $\phi(s) \geq 0$.
+
+By the definition of derivative, for each $\epsilon > 0$ there is a $\delta > 0$ such that for all $t$ with $0 < |t| < \delta$, $|\phi(t) - f'(c)| < \epsilon$. It would be absurd if $f'(c) > 0$, since we could set $\epsilon = \frac{f'(c)}{2}$ to obtain a $\delta$ for which all $t$ within $\delta$ of $0$ would imply that $\phi(t)$ is within $\epsilon$ of $f'(c)$. This would imply that $\phi(t)$ is positive for all such $t$. But for all $t$ within $\text{min}{\delta, \gamma}$ of $0$ and *greater than* $0$, we have $\phi(t)$ is non-positive. Contradiction.
+
+We arrive at a similar contradiction by assuming $f'(c) < 0. So by the trichotomy law, $f'(c) = 0$. $\Box$
+
 
 ## Multivariable real analysis
 
