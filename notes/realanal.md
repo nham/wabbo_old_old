@@ -171,6 +171,21 @@ By the definition of derivative, for each $\epsilon > 0$ there is a $\delta > 0$
 We arrive at a similar contradiction by assuming $f'(c) < 0. So by the trichotomy law, $f'(c) = 0$. $\Box$
 
 
+**Rolle's theorem:** If $f: [a, b] \to \mathbb{R}$ is continuous such that $f(a) = f(b)$ and $f$ is differentiable on $(a, b)$, then some $c \in (a, b)$ is such that $f'(c) = 0$.
+
+*Proof:* By the extreme value theorem, $f$ takes on maximum and minimum values on $[a, b]$. If these points are at $a$ and $b$, then $f(x) = 0$ for all $x \in (a, b)$, whence $f'(x) = 0$. Otherwise, $f$ has an extremum at some $c \in (a, b)$, and by the interior extremum theorem $f'(c) = 0$. $\Box$
+
+**Mean value theorem:**  If $f: [a, b] \to \mathbb{R}$ is continuous and also differentiable on $(a, b)$, then there is some $c \in (a, b)$ such that $f'(c) = \frac{f(b)-f(a)}{b-a}$.
+
+*Proof:* Consider the function $g: [a, b] \to \mathbb{R}$ defined by
+
+$$g(x) = \frac{f(b) - f(a)}{b - a}$$
+
+then $(f-g)(a) = (f-g)(b) = f(a)$. Since $g$ is continuous, $(f - g)$ is continuous. $g$ is also differentiable on $(a, b)$, so $(f-g)$ is as well and we can apply Rolle's theorem to obtain some $c \in (a, b)$ such that $(f-g)'(c) = 0$. In other words, $f'(c) = g'(c)$.
+
+But $g'(c) = \frac{f(b) - f(a)}{b - a}$. $\Box$
+
+
 ## Multivariable real analysis
 
 First note that every normed vector space $V$ with norm $\| \cdot \|$  induces a metric space by:
