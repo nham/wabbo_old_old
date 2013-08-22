@@ -152,7 +152,18 @@ This means that for every $\epsilon > 0$ there's a $\delta > 0$ such that when $
 
 *Proof:* We can prove (1) and (2) (i.e. the *linearity* of the derivative) in one fell swoop using the algebraic limit theorem. I won't carry it out here, but I promise it can be done. Just trust me, okay?
 
-For (3), TODO. $\Box$
+For (3), let $\Delta_a^t f = f(a + t) - f(a)$. Then
+
+$$\Delta_a^t fg = f(a+t) \Delta_a^t g + \Delta_a^t f g(a)$$
+
+Since $(fg)'(a)$, if it exists, equals $\lim_{t \to 0} \frac{\Delta_a^t fg}{t}$, we just need to prove that
+
+$$\lim_{t \to 0} \frac{1}{t} (f(a+t) \Delta_a^t g + \Delta_a^t f g(a)) = f(a) g'(a) + f'(a) g(a)$$.
+
+With the algebraic limit theorem, that is not too hard. $\Box$
+
+
+g(a) / t * [\Delta_a^t f - t f'(a)]
 
 A function $f: A \to \mathbb{R}$ has a **local maximum** at $c \in A$ if there is an $\epsilon > 0$ such that for all $x$ with $|x - c| < \epsilon$, $f(x) \leq f(c)$. Such a $c$ is a **local minimum** if instead we have all such $f(x) \geq f(c)$. Local minima and maxima are collectively called **local extrema**.
 
