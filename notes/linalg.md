@@ -147,6 +147,12 @@ In any $m \times n$ matrix $A$, we can consider the columns of $A$ to be element
 
 The dimensions of these spaces will be called the **column rank** and **row rank**, denoted $crk(A)$ and $rrk(A)$.
 
+**Theorem:** For any $m \times n$ matrix $A$, $crk(A) = rrk(A)$.
+
+*Proof:* Let $crk(A) = r$. We know $r \leq n$. Let $c_1, \ldots, c_r$ be a basis for $cs(A)$. Then form the matrix $C$ with $C[:, i] = c_i$. We can find some $r \times n$ matrix $R$ such that $CR = A$ (the columns of $C$ are a basis). But this multiplication is also a linear combination of the $r$ rows of $R$ that yields rows of $A$, so $r = rrk(A) \leq rrk(R) \leq crk(A)$.
+
+The same argment on the transpose of $A$ yields that $crk(A) \leq rrk(A)$. $\Box$
+
 
 ## Rank and invertibility
 
@@ -155,6 +161,15 @@ There's gaps in the notes, but I want to build up exactly what is needed to prov
 **Theorem:** $A \in \mathbb{F}^{m \times n}$ is invertible iff $\text{rank}(A) = m = n$ iff $A$ is the product of elementary matrices.
 
 An $n \times n$ matrix is **singular** if $\text{rank}(A) < n$, and **non-singular** otherwise.
+
+
+
+
+
+
+
+
+
 
 
 ## Systems of linear equations
