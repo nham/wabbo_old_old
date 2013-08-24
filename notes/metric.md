@@ -257,6 +257,10 @@ The following allows us to speak simply of a *compact space*, not merely of comp
 
 The same trick works when we start with $K$ compact in $Y$: an open cover in $X$ can have its elements intersected with $Y$ to obtain an open cover in $Y$, which has a finite subcover in $Y$. Each element of this finite subcover is the intersection of an open set of $X$ with $Y$, and the open sets are elements of the original cover in $X$. $\Box$.
 
+**Lemma:** Any closed subset of a compact metric space $X$ is a compact subset of $X$.
+
+*Proof:* TODO $\Box$
+
 
 **Lemma:** A compact set $S$ in a metric space is bounded.
 
