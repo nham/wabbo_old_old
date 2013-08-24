@@ -26,3 +26,29 @@ A set $U$ is open in $Y$ iff $U = Y \cap V$ for some $V$ open in $X$.
 
 *Idea:* $U$ open in $Y$ is a union of some open balls in $Y$. By the previous proposition, we can "fill in" these open balls with points from $X - Y$ to obtain open balls in $X$. The union of all of these open balls of $X$, call it $B$, is an open set which, when intersected with $Y$, gives $U$. The converse works by the reverse trick of turning an open set $V$ into a collection of open balls, throwing away the elements $X - Y$ to obtain a set open in $Y$. $\Box$
 
+A **compact** subset of a metric space $X$ is some $K \subseteq X$ such that any collection of open sets of $X$ whose union is a superset of $K$ has a finite sub-collection whose union is a superset of $K$.
+
+We don't actually need to talk about the ambient space. Compact subsets stand alone:
+
+**Proposition:** for $K \subseteq Y \subseteq X$, $K$ is compact in $X$ iff $K$ is compact in $Y$.
+
+*Idea:* If $K$ compact in $Y$, for any open cover in $X$ of $K$, we intersect all the sets of the cover with $Y$ to get an open cover $\mathcal{S}$ of $K$. There's a finite subcover of $\mathcal{S}$ by hypothesis, so the original open sets of $X$ associated with the subcover also cover $K$, which yields the finite subcover. We can use the same passage between open sets of $Y$ and open sets of $X$ to prove the converse. $\Box$
+
+We now speak simply of **compact metric spaces** since $K$ being compact means it is compact in any superspace.
+
+In a compact metric space, we can view the compactness condition through complements: for any collection of closed sets with empty intersection, some finite number of them have empty intersection as well.
+
+Any collection $\mathcal{F}$ of subsets of a metric space $X$ is said to have the **finite intersection property** if every finite subcollection of $\mathcal{F}$ has a non-empty intersection. Using this definition, we can rephrase compactness:
+
+**Proposition:** $X$ is compact iff every collection of closed sets that possesses the finite intersection property has a non-empty intersection.
+
+*Idea:* It's the contrapositive of the characterization via complements. $\Box$
+
+A subset of a metric space is **bounded** if there is some number $M$ for which all $x, y$ in the subset have $d(x,y) \leq M$. The set of distances between points of a bounded set is then a subset of $\mathbb{R}$ that is bounded above, so we can (by the least upper bound property) define the **diameter** of a bounded set $A$ to be $diam(A) = sup \{d(x,y) : x, y \in A\}$. $\Box$
+
+**Theorem:** Compact subsets are closed and bounded.
+
+*Idea:* Suppose $K$ is a compact subset of $X$ and let $a \in K$. Just take all possible open balls around $x$. This is an open cover of $K$, so there's a finite subcover. The open balls are nested, so the biggest ball, say of radius $\epsilon$, of the subcover contains all of $K$. Then points in $K$ are no more than $2 \epsilon$ apart, so $K$ is bounded.
+
+To prove that it's closed, pick some point $z \in X - K$. Then for each $k \in K$, construct two open balls, one around $z$, one around $k$, with radius of half of $d(k, z)$. These pairs of open balls are disjoint, and the balls around elements of $K$ are an open cover of $K$, so finitely many of them cover $K$ as well. Taking the smallest of the open balls around $z$ that correspond to the finite subcover, we obtain an open ball of $z$ that is disjoint from each of the sets in the finite subcover, and hence disjoint from $K$. This proves that $X - K$ is open. $\Box$
+
