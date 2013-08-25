@@ -34,6 +34,20 @@ A set $S$ is **linearly independent** if every finite subset $\{s_1, \ldots, s_n
 
 Every subset of an independent set is independent, and every superset of a dependent set is dependent.
 
+A set $S$ is linearly independent iff for all $x \in S$, $x \notin \langle S - x \rangle$: $x$ being in the span of its (set-theoretic) complement would yield a non-trivial combination that results in zero, and if $S$ is dependent, one element is a combination of the others, so it can be removed without affecting the span.
+
+If a set is dependent, then for any non-trivial combination resulting in zero, any vector with a non-zero scalar coefficient is in the span of the other vectors in the non-trivial combination.
+
+An independent spanning set is a **basis**. The following characterization is insightful:
+
+**Theorem:** A subset $B$ of vector space $V$ is a basis iff it is a minimal spanning set iff it is a maximal independent set.
+
+*Idea:* Any basis is a minimal spanning set, otherwise you would remove an element without affecting the span, implying the set was dependent. A basis is also a maximal independent set: since it spans, adding any new vector results in a dependent set.
+
+Any minimal spanning set must be independent since you can't remove any element without affecting the span, so minimal spanning sets are bases, and hence maximal independent sets by what we just proved.
+
+Finally, a maximal independent set cannot be added to without making it dependent: if we add a vector, it becomes dependent. But the non-trivial zero-obtaining combination in question must have the new vector with a non-zero coefficient since otherwise we would contradict the independence the original set. So the new vector is in the span of some other vectors in the set, hence the original set spans (and hence is a basis). $\Box$
+
 
 
 ## Matrices
