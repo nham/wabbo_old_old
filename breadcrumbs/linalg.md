@@ -8,6 +8,12 @@ A vector space is a pair $(V, \mathbb{F})$ where $V$ is an abelian group, $\math
  - $1u = u$
  - $(ab)u = a(bu)$
 
+If $v_1, \ldots, v_n$ are vectors and $c_1, \ldots, c_n$ are field elements (scalars), then
+
+$$ a_1 v_1 + \cdots + a_n v_n$$
+
+is said to be a **linear combination** of the $v_i$'s.
+
 A **subspace** of vector space $V$ is a subset $S$ of $V$ that forms a vector space when the vector addition and scalar multiplication operations are restricted to $S$. Equivalently, a **subspace** is a subset closed under linear combinations.
 
 The intersection of any collections of subspace is again a subspace, but the union is not, in general. We are forced to define the **sum** of subspaces instead, which is the smallest subspace that contains all the subspaces in the collection. With these two operations, the set of all subspaces of a vector space forms a complete lattice under set containment.
@@ -21,7 +27,12 @@ It's a stronger condition than sayin $S \cap T = \{0\}$ for all $S, T \in \mathc
 There is a particular direct sum to single out, which is the idea of a **complement:** $T$ is the complement of $S$ in $V$ if $V = S \oplus T$.
 
 
-The **span** or **subspace generated** by some subset $S$ of a vector space is the intersection of all subspaces containing $S$. Alternatively, it is the set of all linear combinations of vectors in $S$.
+The **span** or **subspace generated** by some subset $S$ of a vector space is the intersection of all subspaces containing $S$. Alternatively, it is the set of all linear combinations of vectors in $S$. We notate the span $\langle S \rangle$, and say that $S$ **spans the space $\langle S \rangle$.
+
+
+A set $S$ is **linearly independent** if every finite subset $\{s_1, \ldots, s_n\}$ is such that the the only linear combination that results in the zero vector is the *trivial combination* of all zero scalars. A set is $S$ linearly dependent if not independent.
+
+Every subset of an independent set is independent, and every superset of a dependent set is dependent.
 
 
 
