@@ -1,5 +1,30 @@
 # Linear algebra notes
 
+## Vector spaces
+A vector space is a pair $(V, \mathbb{F})$ where $V$ is an abelian group, $\mathbb{F}$ is a field, and
+
+ - $a(u + v) = au + av$
+ - $(a + b)u = au + bu$
+ - $1u = u$
+ - $(ab)u = a(bu)$
+
+A **subspace** of vector space $V$ is a subset $S$ of $V$ that forms a vector space when the vector addition and scalar multiplication operations are restricted to $S$. Equivalently, a **subspace** is a subset closed under linear combinations.
+
+The intersection of any collections of subspace is again a subspace, but the union is not, in general. We are forced to define the **sum** of subspaces instead, which is the smallest subspace that contains all the subspaces in the collection. With these two operations, the set of all subspaces of a vector space forms a complete lattice under set containment.
+
+An alternate characterization of the sum of a collection $\mathcal{S}$ of subspaces is $\{x \in V : \exists n \in \mathbb{P} x = s_1 + \cdots + s_n, s_i \in \bigcup \mathcal{S}\}$: on the one hand, it's a subspace containing each $S \in \mathcal{S}$. On the other, if $x = s_1 + \ldots + s_n$ is such that $s_i \in \bigcup \mathcal{S}$, then $x \in \sum \mathcal{S}$ since subspaces are closed under addition.
+
+The **direct sum** of a collection $\mathcal{S}$ of subspaces is the sum $\sum \mathcal{S}$ such that for all $S \in \mathcal{S}$, $S \cap (\sum \mathcal{S} - S)$ is the zero subspace. It is written $\bigoplus \mathcal{S}$.
+
+It's a stronger condition than sayin $S \cap T = \{0\}$ for all $S, T \in \mathcal{S}$. Consider 3 subspaces of $\mathbb{R}^3$ which are coplanar, say the spaces spanned by $e_1, e_2$, and $(1, 1)$. Pairwise intersections are only at the origin, but the sum of $e_1$ and $e_2$ contains the space spanned by $(1, 1)$.
+
+There is a particular direct sum to single out, which is the idea of a **complement:** $T$ is the complement of $S$ in $V$ if $V = S \oplus T$.
+
+
+The **span** or **subspace generated** by some subset $S$ of a vector space is the intersection of all subspaces containing $S$. Alternatively, it is the set of all linear combinations of vectors in $S$.
+
+
+
 ## Matrices
 A function from $[m] \times [n]$ into some field $\mathbb{F}$. There are also infinite matrices, but we focus on finite matrices here.
 
