@@ -48,6 +48,25 @@ Any minimal spanning set must be independent since you can't remove any element 
 
 Finally, a maximal independent set cannot be added to without making it dependent: if we add a vector, it becomes dependent. But the non-trivial zero-obtaining combination in question must have the new vector with a non-zero coefficient since otherwise we would contradict the independence the original set. So the new vector is in the span of some other vectors in the set, hence the original set spans (and hence is a basis). $\Box$
 
+The following theorem depends on Zorn's lemma, which can be stated as: in any poset $P$, if every chain in $P$ has an upper bound in $P$, then $P$ has a maximal element.
+
+**Theorem:** If $V$ is a vector space, $I$ is an independent subset of $V$, $S$ is a spanning set of $V$, and $I \subseteq S$, then there is a basis $B$ with $I \subseteq B \subseteq S$.
+
+*Proof:* Consider the poset $P$ (under set containment) of all independent sets containing $I$ and contained in $S$. Then any chain $\mathcal{C}$ in $P$ is such that $U = \bigcup \mathcal{C}$ is linearly independent: any finite collection of vectors must be contained in a single independent set $A$ in $\mathcal{C}$, so no finite collection of vectors could be dependent without contradicting that $\mathcal{C}$ is made up of independent sets.
+
+This shows that $U$ is linearly independent and $I \subseteq U \subseteq S$, meaning $\mathcal{C}$ has an upper bound. By Zorn's lemma, $P$ has a maximal element $B$. There's a bit of a subtlety here, because we'd like to use "maximal independent sets are bases" to prove that $B$ is a basis, but we actually have two different notions of "maximal" going on:
+
+ - $B$ is maximal in the poset $P$, which means that among all independent sets containing $I$ and contained in $S$, the only set that contains $B$ is $B$ itself.
+
+ - a maximal independent set in a vector space is any independent set for which adding any other vector to the set creates a set which is no longer independent.
+
+So we'd like the prove that these two notions coincide. Partial progress can be obtained by noting that adding any element of $S - B$ to $B$ would result in a set containing $B$, so any such set must not be independent. Actually, this implies that every element of $S$ is in the span of $B$, so $B$ must span $V$ as well (every element of $V$ can be represented as a linear combination of elements of $S$, each of which can be represented as a linear combination of elements of $B$). So we didn't need to make use of our fact about maximal independent sets after all. $\Box$
+
+The idea behind this last theorem is that any independent set can be expanded to a basis, and every spanning set can be reduced to a basis. Actually my wording is a bit sloppy here, we haven't displayed an *algorithm* for reducing an actual spanning set to a basis, we've just shown that one *exists*. This is because our theorem works for infinite-dimensional vector spaces, so such an algorithm might not ever end. There's a pretty simple one that works for the finite-dimensional case, though: given a spanning set, just find a vector that's in the span of the others and throw it away. If ever you can't do this, you have a basis. For expanding an independent set to a basis in the finite-dimensional case, we have the famous Steinitz exchange lemma, which gives us something more than just an algorithm for expanding independent sets:
+
+**Steinitz exchange lemma:** If $n$ vectors span $V$, then for any independent set $S$ in $V$, $S$ has no more than $n$ vectors.
+
+*Idea:* Let $T$ span $V$ and have $n$ vectors in it. The idea is to replace vectors in $T$ one by one with vectors in $S$, each time preserving the span. If we can do this, then we can't run out of vectors in $T$ before running out of vectors in $S$, otherwise some proper subset of $S$ would span $V$ and $S$ would not be independent. $\Box$
 
 
 ## Matrices
